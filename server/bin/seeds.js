@@ -47,7 +47,48 @@ let recipes = [
     personcount: '2 people',
     duration: '30 minutes',
   }),
+  new Recipe({
+    _owner: users[0]._id,
+    name: 'Algarve Tomato Mint Salad',
+    description:
+      'Dice the tomatoes (for this fresh salad, the cuts may be uneven). Halve the onions and cut into thin slices. Mix everything together and season generously with good olive oil, salt, dried oregano, fresh cilantro, and fresh mint.',
+    ingredients: [
+      { qty: 1, unit: 'kg', item: 'tomatoes' },
+      { qty: 2, item: 'onions' },
+      { qty: 1, item: 'dried oregano' },
+      { qty: 1, item: 'fresh mint' },
+      { qty: 1, item: 'fresh cilandro' },
+      { qty: 200, unit: 'gr', item: 'parmesan' },
+      { qty: 1, unit: 'pinch', item: 'Fleur de Sel' },
+      { qty: 1, unit: 'tbs', item: 'olive oil' },
+    ],
+    image: '../../public/images/carbonara.jpg',
+    personcount: '4 people',
+    duration: '20 minutes',
+  }),
 ]
+
+recipes.push(
+  new Recipe({
+    _owner: users[1]._id,
+    _originalRecipe: recipes[0]._id,
+    name: 'Spaghetti Carbonara Vegetarian',
+    description:
+      "Put a large pot of salted water on to boil. While the water is coming to a boil, heat the olive oil in a large sauté pan over medium heat. Add the tofu and cook slowly until crispy. In a small bowl, beat the eggs and mix in about half of the cheese. Once the water has reached a rolling boil, add the dry pasta, and cook, uncovered, at a rolling boil. When the pasta is al dente (still a little firm, not mushy), use tongs to move it to the bowl with the bacon. Let it be dripping wet. Reserve some of the pasta water. Move the pasta from the pot to the bowl quickly, as you want the pasta to be hot. It's the heat of the pasta that will heat the eggs sufficiently to create a creamy sauce. Add the beaten eggs with cheese and toss quickly to combine once more. Add salt to taste. Add some pasta water back to the pasta to keep it from drying out. Serve at once with the rest of the parmesan and freshly ground black pepper. Enjoy!",
+    ingredients: [
+      { qty: 200, unit: 'gr', item: 'tofu' },
+      { qty: 2, item: 'eggs' },
+      { qty: 200, unit: 'gr', item: 'pasta' },
+      { qty: 200, unit: 'gr', item: 'parmesan' },
+      { qty: 500, unit: 'ml', item: 'water' },
+      { qty: 1, unit: 'pinch', item: 'black pepper' },
+      { qty: 1, unit: 'tbs', item: 'olive oil' },
+    ],
+    image: '../../public/images/carbonara.jpg',
+    personcount: '2 people',
+    duration: '30 minutes',
+  })
+)
 
 Promise.all([User.deleteMany(), Recipe.deleteMany()])
   .then(() => {
