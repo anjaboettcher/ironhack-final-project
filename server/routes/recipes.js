@@ -7,17 +7,16 @@ const { isLoggedIn } = require('../middlewares')
 
 router.get('/my-recipes', isLoggedIn, (req, res, next) => {
   let id = req.user.id
-  let name = req.user.name
+  // let name = req.user.name
+  console.log('wtf', id)
   Recipe.find({ _owner: id })
     .then(recipe => {
-      res.json(recipe, name)
+      res.json(recipe)
     })
     .catch(err => next(err))
 })
 
-router.get('/my-recipes/:recipeId', isLoggedIn, (req, res, next) => {
-  let id = req.user.id
-  let name = req.user.name
+router.get('/my-recipes/:id', isLoggedIn, (req, res, next) => {
   Recipe.findById(req.params.id)
     .then(recipe => {
       res.json(recipe)
@@ -25,6 +24,7 @@ router.get('/my-recipes/:recipeId', isLoggedIn, (req, res, next) => {
     .catch(next)
 })
 
+//we need to add a way to filter out your own recipes in the front-end!
 router.get('/explore', (req, res, next) => {
   Recipe.find()
     .then(recipe => {
@@ -70,36 +70,18 @@ router.post(
   }
 )
 
-router.delete('/my-recipes/:recipeId', isLoggedIn, (req, res, next) => {
-  let recipeId = req.params.recipeId
-  Recipe.findById(recipeId).then(recipe => {
-    if (!recipe) {
-      next({
-        status: 400,
-        message: 'There is no recipe with the _id = ' + recipeId,
-      })
-    } else if (recipe._user.toString() !== req.user._id.toString()) {
-      next({
-        status: 403,
-        message: 'You are have not created this recipe',
-      })
-    } else {
-      Recipe.findByIdAndDelete(recipeId).then(() => {
-        res.json({ message: 'The recipe was successfully deleted' })
-      })
-    }
-  })
-})
+router.delete('/my-recipes/:id', isLoggedIn, (req, res, next) => {
+  let recipeId = req.params.id
 
-router.delete('/my-recipes/:recipeId', isLoggedIn, (req, res, next) => {
-  let recipeId = req.params.recipeId
   Recipe.findById(recipeId).then(recipe => {
+    console.log('recipexxx', recipe)
     if (!recipe) {
       next({
         status: 400,
         message: 'There is no recipe with the _id = ' + recipeId,
       })
-    } else if (recipe._user.toString() !== req.user._id.toString()) {
+      console.log('recipe ownder', recipe._owner.toString())
+    } else if (recipe._owner.toString() !== req.user._id.toString()) {
       next({
         status: 403,
         message: 'You are have not created this recipe',
