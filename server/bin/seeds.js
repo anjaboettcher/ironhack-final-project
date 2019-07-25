@@ -10,7 +10,6 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const User = require('../models/User')
 const Recipe = require('../models/Recipe')
-
 const bcryptSalt = 10
 
 require('../configs/database')
@@ -46,6 +45,7 @@ let recipes = [
     image: '../../public/images/carbonara.jpg',
     personcount: '2 people',
     duration: '30 minutes',
+    categories: [{ category: 'Pasta' }],
   }),
   new Recipe({
     _owner: users[0]._id,
@@ -65,6 +65,7 @@ let recipes = [
     image: '',
     personcount: '4 people',
     duration: '20 minutes',
+    categories: [{ category: 'Salads' }],
   }),
 ]
 
@@ -87,6 +88,7 @@ recipes.push(
     image: '../../public/images/carbonara.jpg',
     personcount: '2 people',
     duration: '30 minutes',
+    categories: [{ category: 'Vegetarian' }],
   })
 )
 
