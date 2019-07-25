@@ -17,12 +17,12 @@ require('../configs/database')
 
 let users = [
   new User({
-    username: 'alice',
+    email: 'alice',
     email: 'alice@gmail.com',
     password: bcrypt.hashSync('alice', bcrypt.genSaltSync(bcryptSalt)),
   }),
   new User({
-    username: 'bob',
+    email: 'bob',
     email: 'bob@gmail.com',
     password: bcrypt.hashSync('bob', bcrypt.genSaltSync(bcryptSalt)),
   }),
@@ -62,7 +62,7 @@ let recipes = [
       { qty: 1, unit: 'pinch', item: 'Fleur de Sel' },
       { qty: 1, unit: 'tbs', item: 'olive oil' },
     ],
-    image: '../../public/images/carbonara.jpg',
+    image: '',
     personcount: '4 people',
     duration: '20 minutes',
   }),

@@ -55,11 +55,10 @@ require('./passport')(app)
 app.use('/api', require('./routes/index'))
 app.use('/api', require('./routes/auth'))
 app.use('/api/recipes', require('./routes/recipes'))
-app.use('/api/my-recipes', require('./routes/recipes'))
-app.use('/api/explore', require('./routes/recipes'))
-app.use('/api/recipe-detail', require('./routes/recipes'))
-app.use('/api/edit-recipe', require('./routes/recipes'))
-app.use('/api/create-recipe', require('./routes/recipes'))
+// app.use('/api/explore', require('./routes/recipes'))
+// app.use('/api/recipe-detail', require('./routes/recipes'))
+// app.use('/api/edit-recipe', require('./routes/recipes'))
+// app.use('/api/create-recipe', require('./routes/recipes'))
 
 // For any routes that starts with "/api", catch 404 and forward to error handler
 app.use('/api/*', (req, res, next) => {

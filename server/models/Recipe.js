@@ -30,8 +30,11 @@ const recipeSchema = new Schema(
         item: { type: String, required: true },
       },
     ],
-    image: {
-      image: { type: String, default: '../../images/default-recipe-image.jpg' },
+    picture: {
+      picture: {
+        type: String,
+        default: '../../images/default-recipe-image.jpg',
+      },
     },
     personcount: {
       type: { type: Number, default: 4 },
