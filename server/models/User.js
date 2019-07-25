@@ -8,10 +8,10 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      match: /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+      match: /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
     },
     password: String,
-    image: {type: String, default: "../../images/default-image-cook.png"},
+    image: { type: String, default: '../../images/default-image-cook.png' },
   },
   {
     timestamps: {
@@ -19,8 +19,6 @@ const userSchema = new Schema(
       updatedAt: 'updated_at',
     },
   }
-
-
 )
 
 const User = mongoose.model('User', userSchema)
