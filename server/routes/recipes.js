@@ -80,7 +80,6 @@ router.delete('/my-recipes/:id', isLoggedIn, (req, res, next) => {
         status: 400,
         message: 'There is no recipe with the _id = ' + recipeId,
       })
-      console.log('recipe ownder', recipe._owner.toString())
     } else if (recipe._owner.toString() !== req.user._id.toString()) {
       next({
         status: 403,
