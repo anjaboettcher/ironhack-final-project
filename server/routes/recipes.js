@@ -7,10 +7,10 @@ const { isLoggedIn } = require('../middlewares')
 
 router.get('/my-recipes', isLoggedIn, (req, res, next) => {
   let id = req.user.id
-  let name = req.user.name
+  let name = req.user
   Recipe.find({ _owner: id })
     .then(recipe => {
-      res.json(recipe, name)
+      res.json(recipe)
     })
     .catch(err => next(err))
 })
@@ -27,6 +27,7 @@ router.get('/my-recipes/:recipeId', isLoggedIn, (req, res, next) => {
 
 router.get('/explore', (req, res, next) => {
   Recipe.find()
+    .populate('_owner')
     .then(recipe => {
       res.json(recipe)
     })
@@ -38,6 +39,8 @@ router.post(
   isLoggedIn,
   uploader.single('picture'),
   (req, res, next) => {
+    // let _owner = req.user.id
+    // for the _originalRecipe, I would make a new route that just updates this.ß
     let {
       _owner,
       _originalRecipe,
@@ -69,6 +72,56 @@ router.post(
       .catch(err => next(err))
   }
 )
+
+router.post('/editRecipe/:recipeId', (req, res, next) => {
+  let recipeId = req.params.recipeId
+  let {
+    name,
+    description,
+    qty,
+    unit,
+    item,
+    // picture,
+    // personcount,
+    // duration,
+  } = req.body
+
+  // let ingredients = []
+  // for (let i = 0; i < item.length; i++) {
+  //   ingredients.push({
+  //     qty: qty[i],
+  //     unit: unit[i],
+  //     item: item[i],
+  //   })
+  // }
+
+  let ingredients = [
+    {
+      qty: qty,
+      unit: unit,
+      item: item,
+    },
+  ]
+
+  Recipe.findById(recipeId).then(recipe => {
+    console.log('recipe._owner', recipe._owner)
+    console.log('req.user.id', req.user.id)
+    if (String(recipe._owner) === String(req.user.id)) {
+      console.log('you are here')
+      console.log('recipe.name', recipe.name)
+      console.log('name', name)
+      recipe.name = name
+      recipe.description = description
+      recipe.ingredients = ingredients
+      //recipe.picture = picture
+      //recipe.personcount = personcount
+      //recipe.duration = duration
+      res.json(recipe)
+    } else {
+      res.json({ message: 'You are the wrong user' })
+    }
+  })
+})
 
 router.delete('/my-recipes/:recipeId', isLoggedIn, (req, res, next) => {
   let recipeId = req.params.recipeId
