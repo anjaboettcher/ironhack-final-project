@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import MainNavbar from './MainNavbar'
+import BottomNavbar from '../BottomNavBar'
 import Home from './pages/Home'
 import Countries from './pages/Countries'
 import AddCountry from './pages/AddCountry'
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/secret" component={Secret} />
         <Route render={() => <h2>404</h2>} />
       </Switch>
+      <BottomNavbar />
     </div>
   )
 }

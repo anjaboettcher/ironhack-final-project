@@ -4,6 +4,11 @@
 // Definition of variables
 $primary: #32c3ff;
 
+.BottomNavBar {
+  position: absolute;
+  bottom: 0;
+}
+
 // ----------------------------------------
 // To install Boostrap:
 // 1) Run in the client folder: $ npm i bootstrap
