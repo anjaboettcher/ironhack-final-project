@@ -6,10 +6,16 @@ const { isLoggedIn } = require('../middlewares')
 
 router.get('/my-recipes', isLoggedIn, (req, res, next) => {
   let id = req.user.id
-  let name = req.user
-  // let name = req.user.name
-  console.log('wtf', id)
   Recipe.find({ _owner: id })
+    .then(recipe => {
+      res.json(recipe)
+    })
+    .catch(err => next(err))
+})
+
+router.get('/user-recipes/:userId', (req, res, next) => {
+  let userId = req.params.userId
+  Recipe.find({ _owner: userId })
     .then(recipe => {
       res.json(recipe)
     })
@@ -101,14 +107,8 @@ router.put('/:recipeId', isLoggedIn, (req, res, next) => {
     duration,
     categories,
   } = req.body
-
   Recipe.findById(recipeId).then(recipe => {
-    console.log('recipe._owner', recipe._owner)
-    console.log('req.user.id', req.user.id)
     if (String(recipe._owner) === String(req.user.id)) {
-      console.log('you are here')
-      console.log('recipe.name', recipe.name)
-      console.log('name', name)
       recipe.name = name
       recipe.description = description
       recipe.ingredients = ingredients
