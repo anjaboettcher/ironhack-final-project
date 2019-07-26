@@ -8,6 +8,8 @@ const { isLoggedIn } = require('../middlewares')
 router.get('/my-recipes', isLoggedIn, (req, res, next) => {
   let id = req.user.id
   let name = req.user
+  // let name = req.user.name
+  console.log('wtf', id)
   Recipe.find({ _owner: id })
     .then(recipe => {
       res.json(recipe)
@@ -15,16 +17,7 @@ router.get('/my-recipes', isLoggedIn, (req, res, next) => {
     .catch(err => next(err))
 })
 
-router.get('/my-recipes/:recipeId', isLoggedIn, (req, res, next) => {
-  let id = req.user.id
-  let name = req.user.name
-  Recipe.findById(req.params.id)
-    .then(recipe => {
-      res.json(recipe)
-    })
-    .catch(next)
-})
-
+//we need to add a way to filter out your own recipes in the front-end!
 router.get('/explore', (req, res, next) => {
   Recipe.find()
     .populate('_owner')
@@ -34,74 +27,78 @@ router.get('/explore', (req, res, next) => {
     .catch(err => next(err))
 })
 
-router.post(
-  '/create-recipe',
-  isLoggedIn,
-  uploader.single('picture'),
-  (req, res, next) => {
-    // let _owner = req.user.id
-    // for the _originalRecipe, I would make a new route that just updates this.ß
-    let {
-      _owner,
-      _originalRecipe,
-      name,
-      description,
-      ingredients,
-      picture,
-      personcount,
-      duration,
-      category,
-    } = req.body
-    Recipe.create({
-      _owner,
-      _originalRecipe,
-      name,
-      description,
-      ingredients,
-      picture,
-      personcount,
-      duration,
-      category,
+router.get('/:id', (req, res, next) => {
+  Recipe.findById(req.params.id)
+    .then(recipe => {
+      res.json(recipe)
     })
-      .then(recipe => {
-        res.json({
-          success: true,
-          recipe,
-        })
-      })
-      .catch(err => next(err))
-  }
-)
+    .catch(next)
+})
 
-router.post('/editRecipe/:recipeId', (req, res, next) => {
+router.post('/', isLoggedIn, uploader.single('picture'), (req, res, next) => {
+  let _owner = req.user.id
+  // for the _originalRecipe, I would make a new route that just updates this.ß
+  let {
+    name,
+    description,
+    ingredients,
+    picture,
+    personcount,
+    duration,
+    category,
+  } = req.body
+  Recipe.create({
+    _owner,
+    name,
+    description,
+    ingredients,
+    picture,
+    personcount,
+    duration,
+    category,
+  })
+    .then(recipe => {
+      res.json({
+        success: true,
+        recipe,
+      })
+    })
+    .catch(err => next(err))
+})
+
+router.post('/:recipeId/fork', isLoggedIn, (req, res, next) => {
+  Recipe.findById(req.params.recipeId).then(recipe => {
+    if (!recipe) {
+      next({ status: 400, message: "The recipe doesn't exist" })
+      return // Stop the function
+    }
+    Recipe.create({
+      _owner: req.user._id,
+      _originalRecipe: recipe._id,
+      name: recipe.name,
+      description: recipe.description,
+      ingredients: recipe.ingredients,
+      picture: recipe.picture,
+      personcount: recipe.personcount,
+      duration: recipe.duration,
+      categories: recipe.categories,
+    }).then(newRecipe => {
+      res.json(newRecipe)
+    })
+  })
+})
+
+router.put('/:recipeId', isLoggedIn, (req, res, next) => {
   let recipeId = req.params.recipeId
   let {
     name,
     description,
-    qty,
-    unit,
-    item,
-    // picture,
-    // personcount,
-    // duration,
+    ingredients,
+    // picture, // TODO later
+    personcount,
+    duration,
+    categories,
   } = req.body
-
-  // let ingredients = []
-  // for (let i = 0; i < item.length; i++) {
-  //   ingredients.push({
-  //     qty: qty[i],
-  //     unit: unit[i],
-  //     item: item[i],
-  //   })
-  // }
-
-  let ingredients = [
-    {
-      qty: qty,
-      unit: unit,
-      item: item,
-    },
-  ]
 
   Recipe.findById(recipeId).then(recipe => {
     console.log('recipe._owner', recipe._owner)
@@ -114,32 +111,14 @@ router.post('/editRecipe/:recipeId', (req, res, next) => {
       recipe.description = description
       recipe.ingredients = ingredients
       //recipe.picture = picture
-      //recipe.personcount = personcount
-      //recipe.duration = duration
-      res.json(recipe)
-    } else {
-      res.json({ message: 'You are the wrong user' })
-    }
-  })
-})
-
-router.delete('/my-recipes/:recipeId', isLoggedIn, (req, res, next) => {
-  let recipeId = req.params.recipeId
-  Recipe.findById(recipeId).then(recipe => {
-    if (!recipe) {
-      next({
-        status: 400,
-        message: 'There is no recipe with the _id = ' + recipeId,
-      })
-    } else if (recipe._user.toString() !== req.user._id.toString()) {
-      next({
-        status: 403,
-        message: 'You are have not created this recipe',
+      recipe.personcount = personcount
+      recipe.duration = duration
+      recipe.categories = categories
+      recipe.save().then(() => {
+        res.json(recipe)
       })
     } else {
-      Recipe.findByIdAndDelete(recipeId).then(() => {
-        res.json({ message: 'The recipe was successfully deleted' })
-      })
+      next({ status: 403, message: 'You are the wrong user' })
     }
   })
 })

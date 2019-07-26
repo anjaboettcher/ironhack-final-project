@@ -8,8 +8,8 @@ const bcrypt = require('bcrypt')
 const bcryptSalt = 10
 
 router.post('/signup', (req, res, next) => {
-  const { email, password, uername } = req.body
-  if (!email || !password || !email) {
+  const { email, password, username } = req.body
+  if (!email || !password || !username) {
     res.status(400).json({ message: 'Indicate email and password' })
     return
   }

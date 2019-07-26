@@ -10,19 +10,18 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const User = require('../models/User')
 const Recipe = require('../models/Recipe')
-
 const bcryptSalt = 10
 
 require('../configs/database')
 
 let users = [
   new User({
-    email: 'alice',
+    username: 'alice',
     email: 'alice@gmail.com',
     password: bcrypt.hashSync('alice', bcrypt.genSaltSync(bcryptSalt)),
   }),
   new User({
-    email: 'bob',
+    username: 'bob',
     email: 'bob@gmail.com',
     password: bcrypt.hashSync('bob', bcrypt.genSaltSync(bcryptSalt)),
   }),
@@ -46,6 +45,7 @@ let recipes = [
     image: '../../public/images/carbonara.jpg',
     personcount: '2 people',
     duration: '30 minutes',
+    categories: ['Pasta', 'Pork'],
   }),
   new Recipe({
     _owner: users[0]._id,
@@ -65,6 +65,7 @@ let recipes = [
     image: '',
     personcount: '4 people',
     duration: '20 minutes',
+    categories: ['Salads'],
   }),
 ]
 
@@ -87,6 +88,7 @@ recipes.push(
     image: '../../public/images/carbonara.jpg',
     personcount: '2 people',
     duration: '30 minutes',
+    categories: ['Vegetarian'],
   })
 )
 
