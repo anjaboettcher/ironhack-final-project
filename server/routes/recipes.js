@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const Recipe = require('../models/Recipe')
-const User = require('../models/User')
 const uploader = require('../configs/cloudinary.js')
 const { isLoggedIn } = require('../middlewares')
 
@@ -38,7 +37,10 @@ router.get('/explore', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   Recipe.findById(req.params.id)
     .then(recipe => {
-      res.json(recipe)
+      if (!recipe) {
+        next({ status: 400, message: "The recipe doesn't exist" })
+        return // Stop the function
+      } else res.json(recipe)
     })
     .catch(next)
 })
@@ -133,7 +135,7 @@ router.delete('/my-recipes/:recipeId', isLoggedIn, (req, res, next) => {
         status: 400,
         message: 'There is no recipe with the _id = ' + recipeId,
       })
-    } else if (recipe._user.toString() !== req.user._id.toString()) {
+    } else if (recipe._owner.toString() !== req.user._id.toString()) {
       next({
         status: 403,
         message: 'You are have not created this recipe',
