@@ -7,8 +7,9 @@ const { isLoggedIn } = require('../middlewares')
 router.get('/my-recipes', isLoggedIn, (req, res, next) => {
   let id = req.user.id
   Recipe.find({ _owner: id })
-    .then(recipe => {
-      res.json(recipe)
+    .populate('_owner')
+    .then(recipes => {
+      res.json(recipes)
     })
     .catch(err => next(err))
 })
@@ -16,6 +17,7 @@ router.get('/my-recipes', isLoggedIn, (req, res, next) => {
 router.get('/user-recipes/:userId', (req, res, next) => {
   let userId = req.params.userId
   Recipe.find({ _owner: userId })
+    .populate('_owner')
     .then(recipe => {
       res.json(recipe)
     })

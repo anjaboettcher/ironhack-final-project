@@ -11,6 +11,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import api from '../api'
 import { withRouter } from 'react-router'
+import MyRecipes from './pages/MyRecipes'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
         <Route path="/secret" component={Secret} />
+        <Route path="/recipes/my-recipes" component={MyRecipes} />
         <Route render={() => <h2>404</h2>} />
       </Switch>
       {api.isLoggedIn() && <BottomNav2 />}
