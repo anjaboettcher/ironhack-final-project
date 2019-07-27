@@ -89,9 +89,16 @@ export default {
   //     .catch(errHandler)
   // },
 
-  getRecipes() {
+  getMyRecipes() {
     return service
       .get('/recipes/my-recipes')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  exploreRecipes() {
+    return service
+      .get('recipes/explore')
       .then(res => res.data)
       .catch(errHandler)
   },

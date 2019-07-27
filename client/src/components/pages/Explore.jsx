@@ -5,12 +5,12 @@ import { Container, Row, Col, Button } from 'reactstrap'
 import { MDBCol, MDBIcon } from 'mdbreact'
 import { Link, NavLink as NLink } from 'react-router-dom'
 
-export default function MyRecipes() {
+export default function Explore() {
   const [recipes, setRecipes] = useState([])
   const [search, setSearch] = useState('')
 
   useEffect(() => {
-    api.getMyRecipes().then(info => {
+    api.exploreRecipes().then(info => {
       console.log('TCL: MyRecipes -> info', info)
       //console.log("TCL: CrudTodos -> response", response);
       setRecipes(info)
@@ -31,7 +31,8 @@ export default function MyRecipes() {
         recipe.categories
           .join()
           .toUpperCase()
-          .includes(search.toUpperCase())
+          .includes(search.toUpperCase()) ||
+        recipe._owner.username.toUpperCase().includes(search.toUpperCase())
     )
 
     //Way number 2 of doing it!
@@ -96,7 +97,10 @@ export default function MyRecipes() {
                   // }
                 />
               </Link>
-              <div className="boxText border"> {recipe.name} </div>
+              <div className="boxText border">
+                <div> {recipe.name} </div>
+                <div> cook: {recipe._owner.username} </div>
+              </div>
             </div>
             <div class="buttons">
               <Button color="success" size="sm" block className=" m-0 p-1">

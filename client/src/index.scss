@@ -7,44 +7,36 @@ $danger: #32c3ff;
   border: 1px solid black;
 }
 
-.BottomNavBar {
-  position: absolute;
-  bottom: 0;
-}
-
-.boxcontainer {
+.buttons {
   display: flex;
 }
 
-.image {
-  opacity: 0.35;
+.box {
+  width: 130px;
+  margin-bottom: 20px;
 }
 
-.box {
-  height: 130px;
+.imgBox {
   position: relative;
-  display: inline-block;
-  top: 30px;
-  // object-fit: cover;
-  // background-size: 200px;
-  // background-image: url('https://www.asaucykitchen.com/wp-content/uploads/2019/04/Tomato-Coconut-Curry-Chicken.jpg');
-  // background-repeat: no-repeat;
-  // background-position: center;
-  // background-blend-mode: darken;
+  //display: inline-block;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .boxText {
   position: absolute;
-  z-index: 999;
-  margin: 0 auto;
   left: 0;
   right: 0;
-  top: 40%;
-  /* Adjust this value to move the positioned div up and down */
-  text-align: center;
-  width: 60%;
-  color: black;
-  size: 20px;
+  top: 20%;
+}
+
+.image {
+  object-fit: cover;
+  opacity: 0.35;
 }
 
 .input-group.md-form.form-sm.form-1 input {
