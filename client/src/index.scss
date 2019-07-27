@@ -1,7 +1,7 @@
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 // --------------------
 // Definition of variables
-$primary: #32c3ff;
+$danger: #32c3ff;
 
 .BottomNavBar {
   position: absolute;
@@ -101,4 +101,10 @@ body {
     font-size: 1.2em;
     color: $primary;
   }
+}
+
+.bottom-nav-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
