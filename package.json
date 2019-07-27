@@ -10,5 +10,8 @@
   },
   "engines": {
     "node": "8.9.4"
+  },
+  "dependencies": {
+    "react-dots-loader": "^1.1.4"
   }
 }

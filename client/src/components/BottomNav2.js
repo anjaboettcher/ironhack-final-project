@@ -3,7 +3,7 @@ import api from '../api'
 import { withRouter } from 'react-router'
 import { Navbar, Row, Col } from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Link, NavLink as NLink } from 'react-router-dom'
+import { NavLink as NLink } from 'react-router-dom'
 import {
   faUser,
   faSearch,

@@ -1,10 +1,19 @@
 import React, { useState } from 'react'
 import api from '../../api'
+import {
+  Container,
+  Col,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Button,
+} from 'reactstrap'
 
 export default function Signup(props) {
   const [state, setState] = useState({
     email: '',
-    name: '',
+    username: '',
     password: '',
     message: null,
   })
@@ -20,7 +29,7 @@ export default function Signup(props) {
     e.preventDefault()
     let data = {
       email: state.email,
-      name: state.name,
+      username: state.name,
       password: state.password,
     }
     api
@@ -31,99 +40,98 @@ export default function Signup(props) {
       })
       .catch(err => setState({ message: err.toString() }))
   }
-  return (
-    // <div className="row">
-    //   <div className="col-md-10 col-lg-8 col-xl-5 mb-4">
-    //     <section className="form-elegant scrollbar-light-blue">
-    //       <div className="card">
-    //         <div className="card-body mx-4">
-    //           <div className="text-center">
-    //             <h3 className="dark-grey-text mb-5">
-    //               <strong>Login</strong>
-    //             </h3>
-    //           </div>
-    //           <div className="md-form">
-    //             <input type="text" id="Form-name1" className="form-control" />
-    //             <label for="Form-name1">Your name</label>
-    //           </div>
-    //           <div className="md-form">
-    //             <input
-    //               type="text"
-    //               id="Form-surname1"
-    //               className="form-control"
-    //             />
-    //             <label for="Form-surname1">Your surname</label>
-    //           </div>
-    //           <div className="md-form">
-    //             <input type="text" id="Form-email1" className="form-control" />
-    //             <label for="Form-email1">Your email</label>
-    //           </div>
-    //           <div className="md-form pb-3">
-    //             <input
-    //               type="password"
-    //               id="Form-pass1"
-    //               className="form-control"
-    //             />
-    //             <label for="Form-pass1">Your password</label>
-    //             <p className="font-small blue-text d-flex justify-content-end">
-    //               Forgot{' '}
-    //               <a href="#" className="blue-text ml-1">
-    //                 Password?
-    //               </a>
-    //             </p>
-    //           </div>
-    //           <div className="text-center mb-3">
-    //             <button
-    //               type="button"
-    //               className="btn blue-gradient btn-block btn-rounded z-depth-1a"
-    //             >
-    //               Sign in
-    //             </button>
-    //           </div>
-    //         </div>
-    //         <div className="modal-footer mx-5 pt-3 mb-1">
-    //           <p className="font-small grey-text d-flex justify-content-end">
-    //             Not a member?{' '}
-    //             <a href="#" className="blue-text ml-1">
-    //               Sign Up
-    //             </a>
-    //           </p>
-    //         </div>
-    //       </div>
-    //     </section>
-    //   </div>
-    // </div>
 
-    <div className="Signup">
-      <h2>Signup</h2>
-      <form>
-        Email:{' '}
-        <input
-          type="text"
-          value={state.email}
-          name="email"
-          onChange={handleInputChange}
-        />{' '}
-        <br />
-        Username:{' '}
-        <input
-          type="text"
-          value={state.name}
-          name="name"
-          onChange={handleInputChange}
-        />{' '}
-        <br />
-        Password:{' '}
-        <input
-          type="password"
-          value={state.password}
-          name="password"
-          onChange={handleInputChange}
-        />{' '}
-        <br />
-        <button onClick={e => handleClick(e)}>Signup</button>
-      </form>
+  //Something is off with out signup, error message "please indicate email and password" - I think it might be connected to the passport?
+  return (
+    <Container className="App">
+      <h2>Sign Up</h2>
+      <Form className="form">
+        <Col>
+          <FormGroup>
+            <Label>Email: </Label>
+            <Input
+              className="rounded-pill"
+              type="text"
+              name="email"
+              id="exampleEmail"
+              placeholder="myemail@email.com"
+              value={state.email}
+              onChange={handleInputChange}
+            />
+          </FormGroup>
+        </Col>
+        <Col>
+          <FormGroup>
+            <Label for="examplePassword">Username:</Label>
+            <Input
+              className="rounded-pill"
+              type="text"
+              name="username"
+              id="username"
+              placeholder="my_awesome_username"
+              value={state.username}
+              onChange={handleInputChange}
+            />
+          </FormGroup>
+        </Col>
+        <Col>
+          <FormGroup>
+            <Label for="examplePassword">Password</Label>
+            <Input
+              className="rounded-pill"
+              type="password"
+              name="password"
+              id="examplePassword"
+              placeholder="********"
+              value={state.password}
+              onChange={handleInputChange}
+            />
+          </FormGroup>
+        </Col>
+        <Button
+          className="rounded-pill"
+          outline
+          color="success"
+          onClick={e => handleClick(e)}
+        >
+          Signup
+        </Button>
+      </Form>
       {state.message && <div className="info info-danger">{state.message}</div>}
-    </div>
+    </Container>
   )
 }
+
+//     <div className="Signup">
+//       <h2>Signup</h2>
+//       <form>
+//         Email:{' '}
+//         <input
+//           type="text"
+//           value={state.email}
+//           name="email"
+//           onChange={handleInputChange}
+//         />{' '}
+//         <br />
+//         Username:{' '}
+//         <input
+//           type="text"
+//           value={state.name}
+//           name="name"
+//           onChange={handleInputChange}
+//         />{' '}
+//         <br />
+//         Password:{' '}
+//         <input
+//           type="password"
+//           value={state.password}
+//           name="password"
+//           onChange={handleInputChange}
+//         />{' '}
+//         <br />
+//         <button onClick={e => handleClick(e)}>Signup</button>
+//       </form>
+//       {state.message && <div className="info info-danger">{state.message}</div>}
+//     </div>
+//   )
+// }
