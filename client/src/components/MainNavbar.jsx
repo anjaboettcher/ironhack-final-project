@@ -43,7 +43,7 @@ function MainNavbar(props) {
       expand="sm"
     >
       <NavbarBrand tag={Link} to="/">
-        Foodify
+        {/* {{ title }} */}
       </NavbarBrand>
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>

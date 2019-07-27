@@ -3,6 +3,7 @@ import api from '../api'
 import { withRouter } from 'react-router'
 import { Navbar, Row, Col } from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Link, NavLink as NLink } from 'react-router-dom'
 import {
   faUser,
   faSearch,
@@ -21,7 +22,7 @@ function BottomNav2(props) {
 
   return (
     <Navbar
-      className="bottom-nav-items text-white"
+      className="bottom-nav-items"
       fixed="bottom"
       expand="lg"
       variant="light"
@@ -37,27 +38,46 @@ function BottomNav2(props) {
           width: '100%',
           display: 'flex',
           flexDirection: 'row',
-          alignItems: 'space-between',
+          alignItems: 'space-evenly',
+          alignContent: 'center',
         }}
       >
-        <Col>
-          <FontAwesomeIcon
-            icon={faUser}
-            size="2x"
-            className="icon"
-            //     onClick={this.showEditForm}
-          />
-          <div style={{ fontSize: '55%' }}> YOUR RECIPES </div>
+        <Col
+          tag={NLink}
+          style={{ color: 'white', textDecoration: 'none' }}
+          to="/recipes/my-recipes"
+        >
+          <FontAwesomeIcon icon={faUser} size="2x" />
+          <div
+            style={{
+              fontSize: '55%',
+            }}
+          >
+            {' '}
+            YOUR RECIPES{' '}
+          </div>
         </Col>
-        <Col>
+        <Col
+          tag={NLink}
+          style={{ color: 'white', textDecoration: 'none' }}
+          to="/recipes/explore"
+        >
           <FontAwesomeIcon icon={faSearch} size="2x" className="icon" />
           <div style={{ fontSize: '55%' }}> EXPLORE</div>
         </Col>
-        <Col>
+        <Col
+          tag={NLink}
+          style={{ color: 'white', textDecoration: 'none' }}
+          to="/recipes/new-recipe"
+        >
           <FontAwesomeIcon icon={faPlus} size="2x" className="icon" />
           <div style={{ fontSize: '55%' }}> NEW RECIPE </div>
         </Col>
-        <Col>
+        <Col
+          tag={NLink}
+          style={{ color: 'white', textDecoration: 'none' }}
+          to="/recipes/list"
+        >
           <FontAwesomeIcon icon={faList} size="2x" className="icon" />
           <div style={{ fontSize: '55%' }}> GROCERY LIST </div>
         </Col>

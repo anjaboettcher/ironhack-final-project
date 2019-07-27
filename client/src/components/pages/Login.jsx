@@ -35,6 +35,7 @@ export default function Login(props) {
           <FormGroup>
             <Label>Email</Label>
             <Input
+              className="rounded-pill"
               type="email"
               name="email"
               id="exampleEmail"
@@ -47,6 +48,7 @@ export default function Login(props) {
           <FormGroup>
             <Label for="examplePassword">Password</Label>
             <Input
+              className="rounded-pill"
               type="password"
               name="password"
               id="examplePassword"
@@ -55,7 +57,9 @@ export default function Login(props) {
             />
           </FormGroup>
         </Col>
-        <button>Login</button>
+        <Button className="rounded-pill" outline color="success">
+          Login
+        </Button>
       </Form>
       {message && <div className="info info-danger">{message}</div>}
     </Container>

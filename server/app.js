@@ -22,6 +22,12 @@ const app = express()
 
 app.use(nocache())
 
+app.use((req, res, next) => {
+  res.locals.user = req.user // Define a view variable user equals to req.user
+  res.locals.title = 'Foodify' // Define a view variable title equals to "Politics" => Default title
+  next()
+})
+
 // Set "Access-Control-Allow-Origin" header
 app.use(
   cors({
