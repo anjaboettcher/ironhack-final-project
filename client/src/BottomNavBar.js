@@ -1,6 +1,8 @@
 import React from 'react'
 import { Container, Row, Col } from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Link, NavLink as NLink } from 'react-router-dom'
+
 import {
   faUser,
   faSearch,
@@ -11,11 +13,11 @@ import {
 export default function BottomNavBar() {
   return (
     <Container
-      className="BottomNavBar pt-2"
+      className="BottomNavBar pt-2 pb-2"
       style={{ backgroundColor: '#FD8664' }}
     >
       <Row>
-        <Col>
+        <Col style={{ color: 'black' }} tag={Link} to="/recipes/my-recipes">
           <FontAwesomeIcon
             icon={faUser}
             size="2x"
@@ -24,15 +26,15 @@ export default function BottomNavBar() {
           />
           <div style={{ fontSize: '65%' }}> Profile </div>
         </Col>
-        <Col>
+        <Col style={{ color: 'black' }} tag={Link} to="/">
           <FontAwesomeIcon icon={faSearch} size="2x" className="icon" />
           <div style={{ fontSize: '65%' }}> Search </div>
         </Col>
-        <Col>
+        <Col style={{ color: 'black' }} tag={Link} to="/">
           <FontAwesomeIcon icon={faPlus} size="2x" className="icon" />
           <div style={{ fontSize: '65%' }}> Create Recipe </div>
         </Col>
-        <Col>
+        <Col style={{ color: 'black' }} tag={Link} to="/">
           <FontAwesomeIcon icon={faList} size="2x" className="icon" />
           <div style={{ fontSize: '65%' }}> List </div>
         </Col>

@@ -7,6 +7,40 @@ $primary: #32c3ff;
   position: absolute;
   bottom: 0;
 }
+
+.boxcontainer {
+  display: flex;
+}
+
+.image {
+  opacity: 0.35;
+}
+
+.box {
+  height: 130px;
+  position: relative;
+  display: inline-block;
+  top: 30px;
+  // object-fit: cover;
+  // background-size: 200px;
+  // background-image: url('https://www.asaucykitchen.com/wp-content/uploads/2019/04/Tomato-Coconut-Curry-Chicken.jpg');
+  // background-repeat: no-repeat;
+  // background-position: center;
+  // background-blend-mode: darken;
+}
+
+.boxText {
+  position: absolute;
+  z-index: 999;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: 40%; /* Adjust this value to move the positioned div up and down */
+  text-align: center;
+  width: 60%;
+  color: black;
+  size: 20px;
+}
 // ----------------------------------------
 // To install Boostrap:
 // 1) Run in the client folder: $ npm i bootstrap
@@ -88,4 +122,3 @@ body {
     color: $primary;
   }
 }
-

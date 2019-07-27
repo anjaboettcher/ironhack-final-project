@@ -8,6 +8,7 @@ import AddCountry from './pages/AddCountry'
 import Secret from './pages/Secret'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import MyRecipes from './pages/MyRecipes'
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
         <Route path="/secret" component={Secret} />
+        <Route path="/recipes/my-recipes" component={MyRecipes} />
         <Route render={() => <h2>404</h2>} />
       </Switch>
       <BottomNavbar />
