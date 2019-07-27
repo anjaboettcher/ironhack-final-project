@@ -11,7 +11,7 @@ const userSchema = new Schema(
       match: /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
     },
     password: String,
-    image: { type: String, default: '../../images/default-image-cook.png' },
+    image: { type: String, default: '/images/default-image-cook.png' },
   },
   {
     timestamps: {
