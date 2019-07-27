@@ -2,15 +2,18 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import MainNavbar from './MainNavbar'
 import BottomNavbar from '../BottomNavBar'
+import BottomNav2 from './BottomNav2'
 import Home from './pages/Home'
 import Countries from './pages/Countries'
 import AddCountry from './pages/AddCountry'
 import Secret from './pages/Secret'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import api from '../api'
+import { withRouter } from 'react-router'
 import MyRecipes from './pages/MyRecipes'
 
-export default function App() {
+function App() {
   return (
     <div className="App">
       <MainNavbar />
@@ -24,7 +27,11 @@ export default function App() {
         <Route path="/recipes/my-recipes" component={MyRecipes} />
         <Route render={() => <h2>404</h2>} />
       </Switch>
-      <BottomNavbar />
+      {api.isLoggedIn() && <BottomNav2 />}
+      {/* <BottomNavbar /> */}
     </div>
   )
 }
+
+//withRouter forced the app component to be rendered each time it is being called
+export default withRouter(App)

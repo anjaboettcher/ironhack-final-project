@@ -1,7 +1,7 @@
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 // --------------------
 // Definition of variables
-$primary: #32c3ff;
+$danger: #32c3ff;
 
 .border {
   border: 1px solid black;
@@ -39,19 +39,23 @@ $primary: #32c3ff;
   margin: 0 auto;
   left: 0;
   right: 0;
-  top: 40%; /* Adjust this value to move the positioned div up and down */
+  top: 40%;
+  /* Adjust this value to move the positioned div up and down */
   text-align: center;
   width: 60%;
   color: black;
   size: 20px;
 }
 
+<<<<<<< HEAD
 .input-group.md-form.form-sm.form-1 input {
   border: 1px solid #bdbdbd;
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
 }
 
+=======
+>>>>>>> 7f5f898acaeb50b1f6a45c4f4dcd5c02904a5ae9
 // ----------------------------------------
 // To install Boostrap:
 // 1) Run in the client folder: $ npm i bootstrap
@@ -145,4 +149,10 @@ body {
     font-size: 1.2em;
     color: $primary;
   }
+}
+
+.bottom-nav-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
