@@ -3,6 +3,10 @@
 // Definition of variables
 $danger: #32c3ff;
 
+.border {
+  border: 1px solid black;
+}
+
 .BottomNavBar {
   position: absolute;
   bottom: 0;
@@ -41,6 +45,12 @@ $danger: #32c3ff;
   width: 60%;
   color: black;
   size: 20px;
+}
+
+.input-group.md-form.form-sm.form-1 input {
+  border: 1px solid #bdbdbd;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
 }
 
 // ----------------------------------------
