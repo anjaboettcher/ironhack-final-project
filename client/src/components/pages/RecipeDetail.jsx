@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import api from '../../api'
 import Loader from 'react-dots-loader'
 import 'react-dots-loader/index.css'
-import { ListGroup, ListGroupItem, Button } from 'reactstrap'
+import { ListGroup, ListGroupItem } from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock } from '@fortawesome/free-solid-svg-icons'
 

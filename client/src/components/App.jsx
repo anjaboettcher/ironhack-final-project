@@ -13,6 +13,7 @@ import api from '../api'
 import { withRouter } from 'react-router'
 import MyRecipes from './pages/MyRecipes'
 import RecipeDetail from './pages/RecipeDetail'
+import Explore from './pages/Explore'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/secret" component={Secret} />
         <Route path="/recipes/my-recipes" component={MyRecipes} />
+        <Route path="/recipes/explore" component={Explore} />
         <Route path="/recipes/:recipeId" component={RecipeDetail} />
         <Route render={() => <h2>404</h2>} />
       </Switch>
