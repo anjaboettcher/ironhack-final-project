@@ -6,7 +6,7 @@ import BottomNav2 from './BottomNav2'
 import Home from './pages/Home'
 import Countries from './pages/Countries'
 import AddCountry from './pages/AddCountry'
-import Secret from './pages/Secret'
+import Profile from './pages/Profile'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import api from '../api'
@@ -27,7 +27,7 @@ function App() {
         <Route path="/add-country" component={AddCountry} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
-        <Route path="/secret" component={Secret} />
+        <Route path="/profile" component={Profile} />
         <Route path="/recipes/my-recipes" component={MyRecipes} />
         <Route path="/recipes/explore" component={Explore} />
         <Route path="/recipes/list" component={RecipeList} />

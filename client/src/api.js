@@ -89,6 +89,20 @@ export default {
   //     .catch(errHandler)
   // },
 
+  getProfile() {
+    return service
+      .get('/profile')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  editProfile(uploadData) {
+    return service
+      .post('/profile', uploadData)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   getMyRecipes() {
     return service
       .get('/recipes/my-recipes')
