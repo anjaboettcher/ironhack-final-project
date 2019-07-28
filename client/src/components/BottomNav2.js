@@ -16,7 +16,7 @@ function BottomNav2(props) {
   if (api.isLoggedIn()) {
     links.push({ to: '/my-recipes', text: 'My recipes' })
     links.push({ to: '/explore', text: 'Search' })
-    links.push({ to: '/create-recipe', text: 'Create Recipe' })
+    links.push({ to: '/recipeId/fork', text: 'Create Recipe' })
     links.push({ to: '/list', text: 'List' })
   }
 
@@ -68,7 +68,7 @@ function BottomNav2(props) {
         <Col
           tag={NLink}
           style={{ color: 'white', textDecoration: 'none' }}
-          to="/recipes/new-recipe"
+          to="recipes/recipeId/fork"
         >
           <FontAwesomeIcon icon={faPlus} size="2x" className="icon" />
           <div style={{ fontSize: '55%' }}> NEW RECIPE </div>
