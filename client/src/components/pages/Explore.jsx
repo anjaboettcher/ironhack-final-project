@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 export default function Explore() {
   const [recipes, setRecipes] = useState([])
   const [search, setSearch] = useState('')
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     api.exploreRecipes().then(info => {
@@ -18,14 +19,30 @@ export default function Explore() {
     })
   }, [])
 
+  useEffect(() => {
+    api
+      .getProfile()
+      .then(user => {
+        console.log('i ammmmmm useer ', user._id)
+        setUser(user)
+      })
+      .catch(err => console.log(err))
+  }, [])
+
+  if (!user) return null
+
   function handleChange(e) {
     setSearch(e.target.value)
     console.log('search', search)
   }
 
+  function checkForUser(recipe) {
+    return String(user._id) !== String(recipe._owner._id)
+  }
+
   // This is the search bar
   function filterBySearch(allRecipes) {
-    return allRecipes.filter(
+    return allRecipes.filter(checkForUser).filter(
       recipe =>
         recipe.name.toUpperCase().includes(search.toUpperCase()) ||
         recipe.categories
@@ -111,7 +128,6 @@ export default function Explore() {
         ))}
       </div>
       {/* {JSON.stringify(recipes)} */}
-      cxgdfxgd
     </Col>
   )
 }

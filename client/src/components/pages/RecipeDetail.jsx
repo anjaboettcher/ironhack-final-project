@@ -39,7 +39,15 @@ export default function RecipeDetail(props) {
       .catch(err => console.log('catch: ', err))
   }
 
-  function addRecipe() {}
+  function forkThisRecipe() {
+    console.log('Trying...')
+    api
+      .forkRecipe(recipeId)
+      .then(recipe => {
+        console.log('done...')
+      })
+      .catch(err => console.log('catch: ', err))
+  }
 
   const EditButton = () => <button className="my-4 recipe-button">Edit</button>
   const AddButton = () => (
@@ -51,7 +59,9 @@ export default function RecipeDetail(props) {
     </button>
   )
   const AddToMyListButton = () => (
-    <button className="my-4 recipe-button">Add to my List</button>
+    <button className="my-4 recipe-button" onClick={forkThisRecipe}>
+      Fork this recipe
+    </button>
   )
 
   //if user is logged out, you get an
@@ -85,7 +95,7 @@ export default function RecipeDetail(props) {
   }, [recipeId])
 
   const ButtonType = ({ recipe, user }) => {
-    if (!api.isLoggedIn() || !recipe._owner._id) {
+    if (!api.isLoggedIn() || recipe._owner._id !== user._id) {
       return <AddToMyListButton />
     } else if (recipe._owner._id) {
       return (
@@ -121,6 +131,15 @@ export default function RecipeDetail(props) {
           <CardSubtitle>
             <strong>Created by: </strong>
             <span>{recipe && <>{recipe._owner.username}</>}</span>
+            {recipe._originalRecipe && recipe._originalRecipe._owner.username && (
+              <>
+                {' | '}
+                <strong>Original recipe: </strong>
+                <span>
+                  {recipe && <>{recipe._originalRecipe._owner.username}</>}
+                </span>
+              </>
+            )}
           </CardSubtitle>
           <CardText>
             {recipe &&

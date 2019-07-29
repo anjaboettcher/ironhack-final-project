@@ -60,8 +60,8 @@ export default function MyRecipes() {
     <Col>
       <div class="border">
         <MDBCol md="6">
-          <div className="input-group md-form form-sm form-1 pl-0">
-            <div className="input-group-prepend">
+          <div className="input-group md-form form-sm form-1 pl-0 ">
+            <div className="input-group-prepend rounded-pill">
               <span
                 className="input-group-text green lighten-3"
                 id="basic-text1"
@@ -107,7 +107,6 @@ export default function MyRecipes() {
         ))}
       </div>
       {/* {JSON.stringify(recipes)} */}
-      cxgdfxgd
     </Col>
   )
 }

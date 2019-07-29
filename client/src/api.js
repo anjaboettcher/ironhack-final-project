@@ -131,6 +131,13 @@ export default {
       .catch(errHandler)
   },
 
+  forkRecipe(recipeId) {
+    return service
+      .post(`recipes/fork/${recipeId}`)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   addPicture(file) {
     const formData = new FormData()
     formData.append('picture', file)

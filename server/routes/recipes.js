@@ -8,6 +8,10 @@ router.get('/my-recipes', isLoggedIn, (req, res, next) => {
   let id = req.user.id
   Recipe.find({ _owner: id })
     .populate('_owner')
+    .populate({
+      path: '_originalRecipe',
+      populate: { path: '_owner' },
+    })
     .then(recipes => {
       res.json(recipes)
     })
@@ -18,8 +22,8 @@ router.get('/user-recipes/:userId', (req, res, next) => {
   let userId = req.params.userId
   Recipe.find({ _owner: userId })
     .populate('_owner')
-    .then(recipe => {
-      res.json(recipe)
+    .then(recipes => {
+      res.json(recipes)
     })
     .catch(err => next(err))
 })
@@ -28,14 +32,67 @@ router.get('/user-recipes/:userId', (req, res, next) => {
 router.get('/explore', (req, res, next) => {
   Recipe.find()
     .populate('_owner')
-    .then(recipe => {
-      res.json(recipe)
+    .then(recipes => {
+      res.json(recipes)
     })
     .catch(err => next(err))
 })
 
+router.post('/fork/:id', (req, res, next) => {
+  Recipe.find({
+    _originalRecipe: req.params.id,
+    _owner: req.user._id,
+  }).then(recipes => {
+    console.log(recipes)
+    if (recipes.length) {
+      res.sendStatus(500)
+    } else {
+      console.log('query!', req.params.id)
+      Recipe.findById(req.params.id)
+
+        .then(recipe => {
+          console.log('found', recipe)
+
+          const {
+            name,
+            description,
+            ingredients,
+            picture,
+            personcount,
+            duration,
+            category,
+          } = recipe
+
+          Recipe.create({
+            name,
+            description,
+            ingredients,
+            picture,
+            personcount,
+            duration,
+            category,
+            _originalRecipe: recipe._id,
+            _owner: req.user._id,
+          })
+            .then(recipe => {
+              res.json({
+                success: true,
+                recipe,
+              })
+            })
+            .catch(err => next(err))
+        })
+        .catch(err => next(err))
+    }
+  })
+})
+
 router.get('/:id', (req, res, next) => {
   Recipe.findById(req.params.id)
+    .populate({
+      path: '_originalRecipe',
+      populate: { path: '_owner' },
+    })
     .populate('_owner')
     .then(recipe => {
       if (!recipe) {
@@ -105,7 +162,7 @@ router.put('/:recipeId', isLoggedIn, (req, res, next) => {
     name,
     description,
     ingredients,
-    // picture, // TODO later
+    picture,
     personcount,
     duration,
     categories,
@@ -115,7 +172,7 @@ router.put('/:recipeId', isLoggedIn, (req, res, next) => {
       recipe.name = name
       recipe.description = description
       recipe.ingredients = ingredients
-      //recipe.picture = picture
+      recipe.picture = picture
       recipe.personcount = personcount
       recipe.duration = duration
       recipe.categories = categories
@@ -139,7 +196,7 @@ router.delete('/my-recipes/:recipeId', isLoggedIn, (req, res, next) => {
     } else if (recipe._owner.toString() !== req.user._id.toString()) {
       next({
         status: 403,
-        message: 'You are have not created this recipe',
+        message: 'You are have not the creator of this recipe',
       })
     } else {
       Recipe.findByIdAndDelete(recipeId).then(() => {
