@@ -142,11 +142,11 @@ body {
 }
 
 .category-button {
-  background-color: #94BC71;
+  background-color: #E2E7E8;
   border: none;
-  border-radius: 12px;
-  color: white;
-  padding: 6px 18px;
+  border-radius: 10px;
+  color: black;
+  padding: 4px 16px;
   text-align: center;
   font-size: 16px;
   margin: 4px 2px;
@@ -156,11 +156,27 @@ body {
   text-decoration: none;
 }
 
+.recipe-button {
+  border-radius: 10px;
+  border: 2px solid #8AB661;
+  background-color: white;
+  color: #8AB661;
+  padding: 4px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.recipe-button:hover {
+  opacity: 1;
+  background-color: #8AB661;
+  color: white;
+}
+
+
 .profile-picture {
   image: {
     width: 150;
     height: 150;
-
     overflow: "hidden";
 
   }

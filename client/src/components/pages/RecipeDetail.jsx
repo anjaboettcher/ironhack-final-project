@@ -4,8 +4,7 @@ import Loader from 'react-dots-loader'
 import 'react-dots-loader/index.css'
 import { ListGroup, ListGroupItem } from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClock } from '@fortawesome/free-solid-svg-icons'
-
+import { faClock, faUsers } from '@fortawesome/free-solid-svg-icons'
 import {
   Card,
   CardImg,
@@ -14,12 +13,45 @@ import {
   CardTitle,
   CardSubtitle,
 } from 'reactstrap'
+// import useModal from '../useModal'
+
+const EditButton = () => <button className="my-4 recipe-button">Edit</button>
+const AddButton = () => (
+  <button className="my-4 recipe-button">Add to list</button>
+)
+const DeleteButton = () => (
+  <button className="my-4 recipe-button">Delete</button>
+)
+const AddToMyListButton = () => (
+  <button className="my-4 recipe-button">Add to my List</button>
+)
 
 export default function RecipeDetail(props) {
   const [recipe, setRecipe] = useState(null)
+  const [user, setUser] = useState(null)
+
+  //if user is logged out, you get an
+  // const recipeId = props.match.params.recipeId
+  // useEffect(() => {
+  //   Promise.all([api.getProfile(), api.getRecipe(recipeId)])
+  //     .then(([user, recipe]) => {
+  //       setUser(user)
+  //       setRecipe(recipe)
+  //     })
+  //     .catch(err => console.log(err))
+  // }, [recipeId])
+
+  useEffect(() => {
+    api
+      .getProfile()
+      .then(user => {
+        console.log('i ammmmmm useer ', user._id)
+        setUser(user)
+      })
+      .catch(err => console.log(err))
+  }, [])
 
   const recipeId = props.match.params.recipeId
-  console.log()
 
   useEffect(() => {
     api
@@ -30,25 +62,39 @@ export default function RecipeDetail(props) {
       .catch(err => console.log(err))
   }, [recipeId])
 
-  console.log('recipe', recipe)
+  const ButtonType = ({ recipe, user }) => {
+    if (!api.isLoggedIn() || !recipe._owner._id) {
+      return <AddToMyListButton />
+    } else if (recipe._owner._id === user._id) {
+      return (
+        <div>
+          <EditButton /> <AddButton /> <DeleteButton />
+        </div>
+      )
+    }
+  }
 
-  if (!recipe) return <Loader>Loading...</Loader>
+  if (!recipe) return <Loader size={10}>Loading...</Loader>
+
+  // if recipe_owner id === logged in user id else display the other
+  // button
+  // console.log('recipe', recipe)
+  // console.log('TEST TEST TEST recipe-owner-id', recipe._owner._id)
+  // console.log('TEST TEST TEST user', user._id)
 
   return (
     <div>
-      <Card>
+      <Card className="shadow-none border-0">
         <CardImg
           top
           width="100%"
-          className=""
           src={recipe && recipe.picture}
           height="100%"
           alt="this-recipe-image"
         />
-
         <CardBody>
           <CardTitle>
-            <h5>{recipe && <>{recipe.name}</>}</h5>
+            <h2 style={{ color: '#FD8664' }}>{recipe && <>{recipe.name}</>}</h2>
           </CardTitle>
           <CardSubtitle>
             <strong>Created by: </strong>
@@ -57,37 +103,48 @@ export default function RecipeDetail(props) {
           <CardText>
             {recipe &&
               recipe.categories.map(category => (
-                <div>
-                  <button className="category-button">
-                    {category && <>{category}</>}
-                  </button>
-                </div>
+                <button className="category-button">
+                  {category && <>{category}</>}
+                </button>
               ))}
             <ListGroupItem className="border-0">
-              <strong>How many people? </strong>
-              {recipe && <>{recipe.personcount}</>} |{' '}
-              <FontAwesomeIcon icon={faClock} size="2x" className="icon" />
-              {recipe && <>{recipe.duration}</>}
+              <h6>
+                <FontAwesomeIcon icon={faUsers} className="icon fa-lg" />
+                {'  '}
+                {recipe && <>{recipe.personcount} people </>}
+                {'  '}
+                {'  '}
+                <FontAwesomeIcon icon={faClock} className="icon fa-lg" />
+                {'  '}
+                {recipe && <>{recipe.duration} </>}
+                {'  '}
+              </h6>
             </ListGroupItem>
-
             <ListGroup>
               <ListGroupItem className="border-0">
-                <strong>Ingredients: </strong>
+                <h5 style={{ color: '#8AB661' }}>Ingredients:</h5>
               </ListGroupItem>
-              {recipe &&
-                recipe.ingredients.map(ingredient => (
-                  <div>
-                    <ListGroupItem>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'flex-start',
+                  flexDirection: 'column',
+                }}
+              >
+                {recipe &&
+                  recipe.ingredients.map(ingredient => (
+                    <span>
                       {ingredient.qty} {ingredient.unit} {ingredient.item}
-                    </ListGroupItem>
-                  </div>
-                ))}
+                    </span>
+                  ))}
+              </div>
             </ListGroup>
             <ListGroupItem className="border-0">
-              <strong>Instructions: </strong>
+              <h5 style={{ color: '#8AB661' }}>Preparations:</h5>
               <br />
-              {recipe && <>{recipe.description}</>}
+              <span>{recipe && <>{recipe.description}</>}</span>
             </ListGroupItem>
+            <ButtonType recipe={recipe} user={user} />,
           </CardText>
         </CardBody>
       </Card>

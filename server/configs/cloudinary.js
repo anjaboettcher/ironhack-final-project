@@ -11,7 +11,7 @@ cloudinary.config({
 
 const storage = cloudinaryStorage({
   cloudinary: cloudinary,
-  folder: 'street-art-pictures',
+  folder: 'recipe-pictures',
   allowedFormats: ['jpg', 'png'],
   filename: (req, file, cb) => {
     cb(null, file.originalname) // The file on cloudinary would have the same name as the original file name

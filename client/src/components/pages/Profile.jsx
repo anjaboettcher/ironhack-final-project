@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Button, Col, Input, Label, Row, CardImg, Container } from 'reactstrap'
 import api from '../../api'
 
-export default function NewStreetArt(props) {
+export default function Profile(props) {
   const [profile, setProfile] = useState(null)
   const { formValues, getInputProps } = useForm()
 
@@ -53,7 +53,6 @@ export default function NewStreetArt(props) {
             height: 150,
             borderRadius: 150 / 2,
             overflow: 'hidden',
-            borderWidth: 3,
             borderColor: 'black',
           }}
           src={profile.image}
