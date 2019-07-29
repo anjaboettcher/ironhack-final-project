@@ -124,6 +124,13 @@ export default {
       .catch(errHandler)
   },
 
+  deleteRecipe(recipeId) {
+    return service
+      .delete(`recipes/my-recipes/${recipeId}`)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   addPicture(file) {
     const formData = new FormData()
     formData.append('picture', file)
