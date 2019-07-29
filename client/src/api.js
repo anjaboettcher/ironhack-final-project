@@ -96,6 +96,13 @@ export default {
       .catch(errHandler)
   },
 
+  getRecipe(recipeId) {
+    return service
+      .get(`/recipes/${recipeId}`)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   exploreRecipes() {
     return service
       .get('recipes/explore')

@@ -36,6 +36,7 @@ router.get('/explore', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
   Recipe.findById(req.params.id)
+    .populate('_owner')
     .then(recipe => {
       if (!recipe) {
         next({ status: 400, message: "The recipe doesn't exist" })

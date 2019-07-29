@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 //import axios from 'axios'
 import api from '../../api.js'
-import { Container, Row, Col, Button } from 'reactstrap'
+import { Col, Button } from 'reactstrap'
 import { MDBCol, MDBIcon } from 'mdbreact'
-import { Link, NavLink as NLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function MyRecipes() {
   const [recipes, setRecipes] = useState([])
@@ -84,7 +84,7 @@ export default function MyRecipes() {
         {filterBySearch(recipes).map((recipe, i) => (
           <div className="box">
             <div className="imgBox" tag={Link} to="/">
-              <Link to={'/' + recipe._id}>
+              <Link to={'/recipes/' + recipe._id}>
                 <img
                   className="image"
                   alt="error"
