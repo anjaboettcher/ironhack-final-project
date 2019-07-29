@@ -1,6 +1,15 @@
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 // --------------------
+
+// COLOR PALETTE
+// cold grey #e0e6e6
+// warm grey #ecdec3
+// orange #f18461
+// yellow #f8bd45
+// green #8ab661
+
 // Definition of variables
+$primary: #f18461; // is it working?
 $danger: #32c3ff;
 
 .border {
@@ -142,7 +151,7 @@ body {
 }
 
 .category-button {
-  background-color: #E2E7E8;
+  background-color: #e2e7e8;
   border: none;
   border-radius: 10px;
   color: black;
@@ -158,9 +167,9 @@ body {
 
 .recipe-button {
   border-radius: 10px;
-  border: 2px solid #8AB661;
+  border: 2px solid #8ab661;
   background-color: white;
-  color: #8AB661;
+  color: #8ab661;
   padding: 4px 16px;
   font-size: 16px;
   cursor: pointer;
@@ -168,16 +177,14 @@ body {
 
 .recipe-button:hover {
   opacity: 1;
-  background-color: #8AB661;
+  background-color: #8ab661;
   color: white;
 }
-
 
 .profile-picture {
   image: {
     width: 150;
     height: 150;
-    overflow: "hidden";
-
+    overflow: 'hidden';
   }
 }
