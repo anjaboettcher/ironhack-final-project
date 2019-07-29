@@ -14,6 +14,7 @@ import { withRouter } from 'react-router'
 import MyRecipes from './pages/MyRecipes'
 import RecipeDetail from './pages/RecipeDetail'
 import Explore from './pages/Explore'
+//import NewRecipe from './pages/NewRecipe'
 import RecipeList from './pages/RecipeList'
 import NewRecipes from './pages/NewRecipes'
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/profile" component={Profile} />
         <Route path="/recipes/my-recipes" component={MyRecipes} />
         <Route path="/recipes/explore" component={Explore} />
+        {/* <Route path="/recipes/recipeId/fork" component={NewRecipe} /> */}
         <Route path="/recipes/list" component={RecipeList} />
         <Route path="/recipes/new-recipe" component={NewRecipes} />
         <Route path="/recipes/:recipeId" component={RecipeDetail} />
