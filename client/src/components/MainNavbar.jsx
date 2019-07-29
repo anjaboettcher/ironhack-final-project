@@ -20,6 +20,7 @@ function MainNavbar(props) {
   function handleLogoutClick(e) {
     api.logout()
   }
+
   const links = [{ to: '/news', text: 'News' }]
   if (!api.isLoggedIn()) {
     links.push({ to: '/signup', text: 'Signup' })

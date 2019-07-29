@@ -243,4 +243,8 @@ api
   .catch(err => this.setState({ message: err.toString() }))
 ```
 
+Command
+
+<!-- Run $ npm i --save react-dots-loader to get the loading feature for React -->
+
 <!-- TODO: find a way to check if we are still loggedIn when we load the application -->
