@@ -25,7 +25,7 @@ export default function AddRecipe(props) {
     picture: '',
     personcount: '',
     duration: '',
-    categories: [],
+    categories: null,
   })
   const [message, setMessage] = useState(null)
 
@@ -56,11 +56,21 @@ export default function AddRecipe(props) {
   // }
 
   let categoryOptions = []
+  // =[
+  //   { value: 'chocolate', label: 'Chocolate' },
+  //   { value: 'strawberry', label: 'Strawberry' },
+  //   { value: 'vanilla', label: 'Vanilla' },
+  // ]
+
   for (let i = 0; i < categories.length; i++) {
     categoryOptions.push({ value: categories[i], label: categories[i] })
   }
 
   function changeCategories(e) {
+    let event = e.map(ev => ev.value)
+    console.log('map', event)
+    console.log('state.categories', state.categories)
+
     setState({
       ...state,
       categories: e,
@@ -68,7 +78,7 @@ export default function AddRecipe(props) {
 
     //e.target.value
     //e.target.checked
-    console.log('TCL state', e)
+    console.log('TCL state', state.value)
     console.log('TCL categories', state.categories)
   }
 
