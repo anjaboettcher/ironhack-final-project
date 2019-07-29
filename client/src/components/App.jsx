@@ -16,7 +16,7 @@ import RecipeDetail from './pages/RecipeDetail'
 import Explore from './pages/Explore'
 //import NewRecipe from './pages/NewRecipe'
 import RecipeList from './pages/RecipeList'
-import NewRecipes from './pages/NewRecipes'
+import CreateRecipe from './pages/CreateRecipe'
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
         <Route path="/recipes/explore" component={Explore} />
         {/* <Route path="/recipes/recipeId/fork" component={NewRecipe} /> */}
         <Route path="/recipes/list" component={RecipeList} />
-        <Route path="/recipes/new-recipe" component={NewRecipes} />
+        <Route path="/recipes/create-recipe" component={CreateRecipe} />
         <Route path="/recipes/:recipeId" component={RecipeDetail} />
         <Route render={() => <h2>404</h2>} />
       </Switch>

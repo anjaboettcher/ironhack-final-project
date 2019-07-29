@@ -12,6 +12,7 @@
     "node": "8.9.4"
   },
   "dependencies": {
-    "react-dots-loader": "^1.1.4"
+    "react-dots-loader": "^1.1.4",
+    "react-select": "^3.0.4"
   }
 }
