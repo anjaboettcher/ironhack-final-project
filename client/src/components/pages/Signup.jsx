@@ -29,7 +29,7 @@ export default function Signup(props) {
     e.preventDefault()
     let data = {
       email: state.email,
-      username: state.name,
+      username: state.username,
       password: state.password,
     }
     api

@@ -155,3 +155,13 @@ body {
   display: inline-block;
   text-decoration: none;
 }
+
+.profile-picture {
+  image: {
+    width: 150;
+    height: 150;
+
+    overflow: "hidden";
+
+  }
+}

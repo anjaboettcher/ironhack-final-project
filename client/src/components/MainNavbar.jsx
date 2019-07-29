@@ -29,10 +29,10 @@ function MainNavbar(props) {
     links.push({
       to: '/profile',
       text: 'Profile Settings',
-      onClick: handleLogoutClick,
     })
     links.push({ to: '/', text: 'Logout', onClick: handleLogoutClick })
   }
+
   return (
     <Navbar
       style={{

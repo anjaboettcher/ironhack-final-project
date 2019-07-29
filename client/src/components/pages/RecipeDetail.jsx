@@ -32,11 +32,11 @@ export default function RecipeDetail(props) {
 
   console.log('recipe', recipe)
 
+  if (!recipe) return <Loader>Loading...</Loader>
+
   return (
     <div>
       <Card>
-        {!recipe && <Loader>Loading...</Loader>}
-
         <CardImg
           top
           width="100%"
