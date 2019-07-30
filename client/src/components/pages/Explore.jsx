@@ -4,6 +4,10 @@ import api from '../../api.js'
 import { Col, Button } from 'reactstrap'
 import { MDBCol, MDBIcon } from 'mdbreact'
 import { Link } from 'react-router-dom'
+<<<<<<< HEAD
+=======
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+>>>>>>> 602d4cf3b6be57989287bd5c43e62d436afbc6c7
 
 export default function Explore() {
   const [recipes, setRecipes] = useState([])
