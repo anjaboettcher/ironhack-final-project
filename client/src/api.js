@@ -75,19 +75,19 @@ export default {
   //     .catch(errHandler)
   // },
 
-  // addCountry(body) {
-  //   return service
-  //     .post('/countries', body)
-  //     .then(res => res.data)
-  //     .catch(errHandler)
-  // },
-
   // getSecret() {
   //   return service
   //     .get('/secret')
   //     .then(res => res.data)
   //     .catch(errHandler)
   // },
+
+  addRecipe(body) {
+    return service
+      .post('/recipes', body)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
 
   getProfile() {
     return service

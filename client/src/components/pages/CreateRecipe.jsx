@@ -15,17 +15,16 @@ import {
   InputGroup,
   InputGroupAddon,
   InputGroupText,
+  Table,
 } from 'reactstrap'
 import Select from 'react-select'
 
 export default function AddRecipe(props) {
   const [message, setMessage] = useState(null)
   const [state, setState] = useState({
-    _owner: '',
-    _originalRecipe: '',
     name: '',
     description: '',
-    ingredients: [],
+    // ingredients: [],
     // [qty, unit, item ],
     // unit: null,
     picture: '',
@@ -33,12 +32,37 @@ export default function AddRecipe(props) {
     duration: '',
     categories: null,
   })
-
   const [ingredient, setIngredient] = useState({
     item: '',
     qty: '',
     unit: null,
   })
+  const [ingredientList, setIngredientList] = useState([])
+
+  let categoryOptions = []
+  for (let i = 0; i < categories.length; i++) {
+    categoryOptions.push({ value: categories[i], label: categories[i] })
+  }
+  let unitOptions = []
+  for (let i = 0; i < units.length; i++) {
+    unitOptions.push({ value: units[i], label: units[i] })
+  }
+
+  function handleInputChange(event) {
+    setState({
+      ...state,
+      [event.target.name]: event.target.value,
+    })
+  }
+
+  function changeCategories(e) {
+    setState({
+      ...state,
+      categories: e,
+    })
+  }
+  //e.target.value
+  //e.target.checked
 
   function newIngredient(e) {
     // e.preventDefault()
@@ -51,42 +75,85 @@ export default function AddRecipe(props) {
     console.log('ingredient', ingredient)
   }
 
-  function handleInputChange(event) {
-    setState({
-      ...state,
-      [event.target.name]: event.target.value,
-    })
-  }
-
-  let categoryOptions = []
-  for (let i = 0; i < categories.length; i++) {
-    categoryOptions.push({ value: categories[i], label: categories[i] })
-  }
-
-  function changeCategories(e) {
-    setState({
-      ...state,
-      categories: e,
-    })
-  }
-  //e.target.value
-  //e.target.checked
-
-  let unitOptions = []
-  for (let i = 0; i < units.length; i++) {
-    unitOptions.push({ value: units[i], label: units[i] })
-  }
-
   function changeUnits(e) {
     setIngredient({
       ...ingredient,
-      unit: e.value,
+      unit: e,
     })
     console.log('ingredient', ingredient)
   }
 
+  function addIngredientList(e) {
+    e.preventDefault()
+    console.log('we are here')
+    setIngredientList([
+      ...ingredientList,
+      {
+        item: ingredient.item,
+        qty: ingredient.qty,
+        unit: ingredient.unit.value,
+      },
+    ])
+    // To clear input fields
+    setIngredient({
+      item: '',
+      qty: '',
+      unit: null,
+    })
+
+    console.log('ingredientList', ingredientList)
+  }
+
+  function deleteIngredient(index, e) {
+    e.preventDefault()
+    setIngredientList(ingredientList.filter((ingredient, i) => i !== index))
+  }
+
+  function saveRecipe(e) {
+    e.preventDefault()
+    console.log('state', state)
+    let savedCategories
+    if (state.categories.length === 0) {
+      savedCategories = []
+    } else {
+      savedCategories = state.categories.map(cat => cat.value)
+    }
+    let data = {
+      name: state.name,
+      description: state.description,
+      ingredients: ingredientList,
+      // [qty, unit: item ],
+      // picture: state.picture,
+      personcount: state.personcount,
+      duration: state.duration,
+      categories: savedCategories,
+    }
+    console.log('categories', data.categories)
+
+    if (
+      data.name === '' ||
+      data.description === '' ||
+      data.ingredients === null
+    ) {
+      console.log('You have not filled in the list properly')
+    }
+
+    api
+      .addRecipe(data)
+      .then(result => {
+        console.log('SUCCESS!')
+        props.history.push('/my-recipes')
+        setMessage(`Your recipe has been created!`)
+        setTimeout(() => {
+          setMessage(null)
+        }, 2000)
+      })
+      .catch(err => setState({ message: err.toString() }))
+  }
+
   return (
     <div className="AddRecipe">
+      seb
       <Form>
         <FormGroup>
           <Label for="name">Name</Label>
@@ -108,7 +175,7 @@ export default function AddRecipe(props) {
                 name="duration"
                 id="duration"
                 placeholder="Duration"
-                value={state.personcount}
+                value={state.duration}
                 onChange={handleInputChange}
               />
             </FormGroup>
@@ -161,7 +228,7 @@ export default function AddRecipe(props) {
           <InputGroupAddon addonType="append">
             <InputGroupText
               style={{ backgroundColor: 'green', color: 'white' }}
-              onClick={newIngredient}
+              onClick={addIngredientList}
             >
               Create
             </InputGroupText>
@@ -190,16 +257,58 @@ export default function AddRecipe(props) {
           </Col>
         </Row>
 
+        <Table>
+          <thead>
+            <tr>
+              <th>Ingredient</th>
+              <th>Qty</th>
+              <th>Unit</th>
+              <th>Del</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ingredientList.map((ing, i) => (
+              <tr key={i}>
+                <th scope="row">{ing.item}</th>
+                <td>{ing.qty}</td>
+                <td>{ing.unit}</td>
+                <td>
+                  <button
+                    onClick={() => deleteIngredient(i)}
+                    className="button-ingredient"
+                  >
+                    x
+                  </button>
+                </td>
+              </tr>
+            ))}
+            <tr>
+              <th scope="row">Example ingredient</th>
+              <td>150</td>
+              <td>gr</td>
+              <td>
+                <button className="button-ingredient">x</button>
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+
         <FormGroup row>
-          <Label for="exampleText" sm={2}>
+          <Label for="description" sm={2}>
             Instruction
           </Label>
           <Col sm={10}>
-            <Input type="textarea" name="text" id="exampleText" />
+            <Input
+              type="textarea"
+              name="description"
+              id="description"
+              value={state.description}
+              onChange={handleInputChange}
+            />
           </Col>
         </FormGroup>
 
-        <Button>Save</Button>
+        <Button onClick={e => saveRecipe(e)}>Save</Button>
       </Form>
     </div>
   )
