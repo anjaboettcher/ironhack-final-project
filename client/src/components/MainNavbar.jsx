@@ -21,6 +21,8 @@ function MainNavbar(props) {
     api.logout()
   }
 
+  // {api.isLoggedIn() ? <Route path="/add-library" component={AddLibrary} /> : <Route path="/add-library" component={Login} />}
+
   const links = [{ to: '/news', text: 'News' }]
   if (!api.isLoggedIn()) {
     links.push({ to: '/signup', text: 'Signup' })
@@ -39,6 +41,7 @@ function MainNavbar(props) {
       style={{
         backgroundColor: '#FD8664',
         width: '100%',
+        boxShadow: 'none',
       }}
       dark
       expand="sm"
@@ -48,7 +51,7 @@ function MainNavbar(props) {
       </NavbarBrand>
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
-        <Nav className="ml-auto" navbar>
+        <Nav className="ml-auto" style={{ boxShadow: 'none' }} navbar>
           {links.map(link => (
             <NavItem key={link.to}>
               <NavLink tag={NLink} to={link.to} exact onClick={link.onClick}>
