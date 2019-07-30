@@ -138,6 +138,14 @@ export default {
       .catch(errHandler)
   },
 
+  // new new new new new new
+  // listIngredients(recipeId) {
+  //   return service
+  //     .post(`recipes/list/${recipeId}`)
+  //     .then(res => res.data)
+  //     .catch(errHandler)
+  // },
+
   addPicture(file) {
     const formData = new FormData()
     formData.append('picture', file)

@@ -28,8 +28,8 @@ export default function Login(props) {
   const [message, setMessage] = useState(null)
 
   return (
-    <Container className="App">
-      <h2>Log In</h2>
+    <Container className="App mt-4">
+      <h2 style={{ color: '#8AB661' }}>LOG IN</h2>
       <Form className="form" onSubmit={handleSubmit}>
         <Col>
           <FormGroup>
@@ -57,9 +57,7 @@ export default function Login(props) {
             />
           </FormGroup>
         </Col>
-        <Button className="rounded-pill" outline color="success">
-          Login
-        </Button>
+        <button className="my-4 recipe-button rounded-pill">Login</button>
       </Form>
       {message && <div className="info info-danger">{message}</div>}
     </Container>

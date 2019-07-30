@@ -31,11 +31,10 @@ function App() {
         <Route path="/profile" component={Profile} />
         <Route path="/recipes/my-recipes" component={MyRecipes} />
         <Route path="/recipes/explore" component={Explore} />
-        {/* <Route path="/recipes/recipeId/fork" component={NewRecipe} /> */}
-        <Route path="/recipes/list" component={RecipeList} />
         <Route path="/recipes/create-recipe" component={CreateRecipe} />
         <Route path="/recipes/:recipeId" component={RecipeDetail} />
         <Route path="/fork/:recipeId" component={RecipeDetail} />
+        {/* <Route path="/list/:recipeId" component={RecipeList} /> */}
         <Route render={() => <h2>404</h2>} />
       </Switch>
       {api.isLoggedIn() && <BottomNav2 />}

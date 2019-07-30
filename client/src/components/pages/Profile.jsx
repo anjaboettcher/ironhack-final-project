@@ -42,8 +42,8 @@ export default function Profile(props) {
   }
 
   return (
-    <div>
-      <h1>Profile Settings</h1>
+    <div className="mt-4">
+      <h2 style={{ color: '#8AB661' }}>Profile Settings</h2>
       <Container>
         <CardImg
           top
@@ -104,11 +104,16 @@ export default function Profile(props) {
               <Label for="exampleEmail">Picture</Label>
             </Col>
             <Col>
-              <Input type="file" {...getInputProps('image')} value={null} />
+              <Input
+                className="upload-button"
+                type="file"
+                {...getInputProps('image')}
+                value={null}
+              />
             </Col>
           </Row>
 
-          <button className="my-4" color="danger" block>
+          <button className="my-4 recipe-button" color="danger" block>
             Edit profile
           </button>
         </form>

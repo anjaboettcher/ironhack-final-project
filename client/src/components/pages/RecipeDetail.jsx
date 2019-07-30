@@ -49,6 +49,17 @@ export default function RecipeDetail(props) {
       .catch(err => console.log('catch: ', err))
   }
 
+  // function listAllIngredients() {
+  //   console.log('Trying...')
+  //   api
+  //     .listIngredients(recipeId)
+  //     .then(recipe => {
+  //       console.log('done...')
+  //       console.log('recipeId', recipeId)
+  //     })
+  //     .catch(err => console.log('catch: ', err))
+  // }
+
   const EditButton = () => <button className="my-4 recipe-button">Edit</button>
   const AddButton = () => (
     <button className="my-4 recipe-button">Add to list</button>
@@ -59,9 +70,7 @@ export default function RecipeDetail(props) {
     </button>
   )
   const AddToMyListButton = () => (
-    <button className="my-4 recipe-button" onClick={forkThisRecipe}>
-      Fork this recipe
-    </button>
+    <button onClick={forkThisRecipe}>Fork this recipe</button>
   )
 
   //if user is logged out, you get an
@@ -130,14 +139,14 @@ export default function RecipeDetail(props) {
           </CardTitle>
           <CardSubtitle>
             <strong>Created by: </strong>
+
+            {/* <pre>{JSON.stringify(recipe._owner)}</pre> */}
             <span>{recipe && <>{recipe._owner.username}</>}</span>
-            {recipe._originalRecipe && recipe._originalRecipe._owner.username && (
+            {recipe._originalRecipe && (
               <>
                 {' | '}
                 <strong>Original recipe: </strong>
-                <span>
-                  {recipe && <>{recipe._originalRecipe._owner.username}</>}
-                </span>
+                <span>{recipe._originalRecipe._owner.username}</span>
               </>
             )}
           </CardSubtitle>

@@ -134,27 +134,27 @@ router.post('/', isLoggedIn, uploader.single('picture'), (req, res, next) => {
     .catch(err => next(err))
 })
 
-router.post('/:recipeId/fork', isLoggedIn, (req, res, next) => {
-  Recipe.findById(req.params.recipeId).then(recipe => {
-    if (!recipe) {
-      next({ status: 400, message: "The recipe doesn't exist" })
-      return // Stop the function
-    }
-    Recipe.create({
-      _owner: req.user._id,
-      _originalRecipe: recipe._id,
-      name: recipe.name,
-      description: recipe.description,
-      ingredients: recipe.ingredients,
-      picture: recipe.picture,
-      personcount: recipe.personcount,
-      duration: recipe.duration,
-      categories: recipe.categories,
-    }).then(newRecipe => {
-      res.json(newRecipe)
-    })
-  })
-})
+// router.post('/:recipeId/fork', isLoggedIn, (req, res, next) => {
+//   Recipe.findById(req.params.recipeId).then(recipe => {
+//     if (!recipe) {
+//       next({ status: 400, message: "The recipe doesn't exist" })
+//       return // Stop the function
+//     }
+//     Recipe.create({
+//       _owner: req.user._id,
+//       _originalRecipe: recipe._id,
+//       name: recipe.name,
+//       description: recipe.description,
+//       ingredients: recipe.ingredients,
+//       picture: recipe.picture,
+//       personcount: recipe.personcount,
+//       duration: recipe.duration,
+//       categories: recipe.categories,
+//     }).then(newRecipe => {
+//       res.json(newRecipe)
+//     })
+//   })
+// })
 
 router.put('/:recipeId', isLoggedIn, (req, res, next) => {
   let recipeId = req.params.recipeId
