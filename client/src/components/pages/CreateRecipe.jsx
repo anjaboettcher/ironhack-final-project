@@ -152,9 +152,9 @@ export default function AddRecipe(props) {
   }
 
   return (
-    <div className="AddRecipe">
-      seb
+    <div className="AddRecipe container mt-4">
       <Form>
+        <h2 style={{ color: '#8AB661' }}>Create a new recipe</h2>
         <FormGroup>
           <Label for="name">Name</Label>
           <Input
@@ -308,7 +308,9 @@ export default function AddRecipe(props) {
           </Col>
         </FormGroup>
 
-        <Button onClick={e => saveRecipe(e)}>Save</Button>
+        <button className="recipe-button" onClick={e => saveRecipe(e)}>
+          Save
+        </button>
       </Form>
     </div>
   )

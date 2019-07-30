@@ -70,7 +70,9 @@ export default function RecipeDetail(props) {
     </button>
   )
   const AddToMyListButton = () => (
-    <button onClick={forkThisRecipe}>Fork this recipe</button>
+    <button className="my-4 recipe-button" onClick={forkThisRecipe}>
+      Fork this recipe
+    </button>
   )
 
   //if user is logged out, you get an

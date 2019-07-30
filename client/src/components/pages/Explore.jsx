@@ -125,8 +125,8 @@ export default function Explore() {
               </Link>
             </div>
             <div class="buttons">
-              <Button color="success" size="sm" block className=" m-0 p-1">
-                Add to List
+              <Button color="primary" size="sm" block className=" m-0 p-1">
+                Fork recipe
               </Button>{' '}
             </div>
           </div>
