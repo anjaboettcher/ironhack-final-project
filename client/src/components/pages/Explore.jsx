@@ -4,6 +4,7 @@ import api from '../../api.js'
 import { Col, Button } from 'reactstrap'
 import { MDBCol, MDBIcon } from 'mdbreact'
 import { Link } from 'react-router-dom'
+// import { shoppingList, setShoppingList } from './ShoppingList'
 
 export default function Explore() {
   const [recipes, setRecipes] = useState([])
@@ -57,6 +58,11 @@ export default function Explore() {
     // return recipeList
   }
 
+  function addRecipeToList(recipe) {
+    console.log(recipe)
+    // setShoppingList()
+  }
+
   return (
     <Col>
       <div class="border">
@@ -103,7 +109,13 @@ export default function Explore() {
               </div>
             </div>
             <div class="buttons">
-              <Button color="success" size="sm" block className=" m-0 p-1">
+              <Button
+                onClick={() => addRecipeToList(recipe)}
+                color="success"
+                size="sm"
+                block
+                className=" m-0 p-1"
+              >
                 Add to List
               </Button>{' '}
             </div>
