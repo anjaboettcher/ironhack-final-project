@@ -21,10 +21,28 @@ export default function RecipeDetail(props) {
   const [recipe, setRecipe] = useState(null)
   const [user, setUser] = useState(null)
   const [showModal, hideModal] = useModal(() => (
-    <ReactModal isOpen>
+    <ReactModal
+      isOpen
+      style={{
+        overlay: {
+          backgroundColor: 'papayawhip',
+        },
+        content: {
+          color: 'lightsteelblue',
+        },
+      }}
+    >
       <p>Do you want to delete this recipe?</p>
-      <button onClick={deleteRecipe}>Yes, delete</button>
-      <button onClick={hideModal}>No, keep in my cookbook</button>
+      <button
+        className="recipe-button"
+        style={{ backgroundColor: 'red', color: 'white', border: '0' }}
+        onClick={deleteRecipe}
+      >
+        Yes, delete
+      </button>
+      <button className="recipe-button" onClick={hideModal}>
+        No, keep in my cookbook
+      </button>
     </ReactModal>
   ))
 
