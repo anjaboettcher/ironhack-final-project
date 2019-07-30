@@ -38,6 +38,7 @@ $danger: #32c3ff;
 
 .boxText {
   position: absolute;
+  text-align: center;
   left: 0;
   right: 0;
   top: 20%;
@@ -138,16 +139,13 @@ body {
   }
 }
 
-// --------------------
-// Style for Home component
 .Home {
   p {
     font-size: 1.2em;
   }
 }
 
-// --------------------
-// Style for Secret component
+
 .Secret {
   .result {
     font-size: 1.2em;
@@ -185,6 +183,15 @@ body {
   background-color: #8ab661;
   color: white;
 }
+
+.upload-button {
+  border-radius: 10px;
+  background-color: #E0E6E6;
+  padding: 4px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
 
 .profile-picture {
   image: {

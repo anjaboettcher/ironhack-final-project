@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 export default function Explore() {
   const [recipes, setRecipes] = useState([])
   const [search, setSearch] = useState('')
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     api.exploreRecipes().then(info => {
@@ -18,14 +19,30 @@ export default function Explore() {
     })
   }, [])
 
+  useEffect(() => {
+    api
+      .getProfile()
+      .then(user => {
+        console.log('i ammmmmm useer ', user._id)
+        setUser(user)
+      })
+      .catch(err => console.log(err))
+  }, [])
+
+  if (!user) return null
+
   function handleChange(e) {
     setSearch(e.target.value)
     console.log('search', search)
   }
 
+  function checkForUser(recipe) {
+    return String(user._id) !== String(recipe._owner._id)
+  }
+
   // This is the search bar
   function filterBySearch(allRecipes) {
-    return allRecipes.filter(
+    return allRecipes.filter(checkForUser).filter(
       recipe =>
         recipe.name.toUpperCase().includes(search.toUpperCase()) ||
         recipe.categories
@@ -59,10 +76,10 @@ export default function Explore() {
 
   return (
     <Col>
-      <div class="border">
-        <MDBCol md="6">
+      <div class="border-0 ">
+        <MDBCol>
           <div className="input-group md-form form-sm form-1 pl-0">
-            <div className="input-group-prepend">
+            <div className="input-group-prepend ">
               <span
                 className="input-group-text green lighten-3"
                 id="basic-text1"
@@ -73,7 +90,7 @@ export default function Explore() {
             <input
               className="form-control my-0 py-1"
               type="text"
-              placeholder="Search"
+              placeholder="Search for a recipe..."
               aria-label="Search"
               value={search}
               onChange={handleChange}
@@ -97,10 +114,15 @@ export default function Explore() {
                   // }
                 />
               </Link>
-              <div className="boxText border">
-                <div> {recipe.name} </div>
-                <div> cook: {recipe._owner.username} </div>
-              </div>
+              <Link
+                to={'/recipes/' + recipe._id}
+                style={{ textDecoration: 'none', color: '#696A66' }}
+              >
+                <div className="boxText border">
+                  <div> {recipe.name} </div>
+                  <div> Cook: {recipe._owner.username} </div>
+                </div>
+              </Link>
             </div>
             <div class="buttons">
               <Button color="success" size="sm" block className=" m-0 p-1">
@@ -111,7 +133,6 @@ export default function Explore() {
         ))}
       </div>
       {/* {JSON.stringify(recipes)} */}
-      cxgdfxgd
     </Col>
   )
 }

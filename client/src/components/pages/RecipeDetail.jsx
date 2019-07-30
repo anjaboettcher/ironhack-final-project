@@ -13,22 +13,65 @@ import {
   CardTitle,
   CardSubtitle,
 } from 'reactstrap'
-// import useModal from '../useModal'
-
-const EditButton = () => <button className="my-4 recipe-button">Edit</button>
-const AddButton = () => (
-  <button className="my-4 recipe-button">Add to list</button>
-)
-const DeleteButton = () => (
-  <button className="my-4 recipe-button">Delete</button>
-)
-const AddToMyListButton = () => (
-  <button className="my-4 recipe-button">Add to my List</button>
-)
+import ReactModal from 'react-modal'
+import { useModal } from 'react-modal-hook'
 
 export default function RecipeDetail(props) {
+  const recipeId = props.match.params.recipeId
   const [recipe, setRecipe] = useState(null)
   const [user, setUser] = useState(null)
+  const [showModal, hideModal] = useModal(() => (
+    <ReactModal isOpen>
+      <p>Do you want to delete this recipe?</p>
+      <button onClick={deleteRecipe}>Yes, delete</button>
+      <button onClick={hideModal}>No, keep in my cookbook</button>
+    </ReactModal>
+  ))
+
+  function deleteRecipe() {
+    console.log('props', props.history)
+    api
+      .deleteRecipe(recipeId)
+      .then(recipe => {
+        console.log('deleted')
+        props.history.push('/recipes/my-recipes')
+      })
+      .catch(err => console.log('catch: ', err))
+  }
+
+  function forkThisRecipe() {
+    console.log('Trying...')
+    api
+      .forkRecipe(recipeId)
+      .then(recipe => {
+        console.log('done...')
+      })
+      .catch(err => console.log('catch: ', err))
+  }
+
+  // function listAllIngredients() {
+  //   console.log('Trying...')
+  //   api
+  //     .listIngredients(recipeId)
+  //     .then(recipe => {
+  //       console.log('done...')
+  //       console.log('recipeId', recipeId)
+  //     })
+  //     .catch(err => console.log('catch: ', err))
+  // }
+
+  const EditButton = () => <button className="my-4 recipe-button">Edit</button>
+  const AddButton = () => (
+    <button className="my-4 recipe-button">Add to list</button>
+  )
+  const DeleteButton = props => (
+    <button className="my-4 recipe-button" onClick={showModal}>
+      Delete
+    </button>
+  )
+  const AddToMyListButton = () => (
+    <button onClick={forkThisRecipe}>Fork this recipe</button>
+  )
 
   //if user is logged out, you get an
   // const recipeId = props.match.params.recipeId
@@ -51,8 +94,6 @@ export default function RecipeDetail(props) {
       .catch(err => console.log(err))
   }, [])
 
-  const recipeId = props.match.params.recipeId
-
   useEffect(() => {
     api
       .getRecipe(recipeId)
@@ -63,9 +104,9 @@ export default function RecipeDetail(props) {
   }, [recipeId])
 
   const ButtonType = ({ recipe, user }) => {
-    if (!api.isLoggedIn() || !recipe._owner._id) {
+    if (!api.isLoggedIn() || recipe._owner._id !== user._id) {
       return <AddToMyListButton />
-    } else if (recipe._owner._id === user._id) {
+    } else if (recipe._owner._id) {
       return (
         <div>
           <EditButton /> <AddButton /> <DeleteButton />
@@ -98,7 +139,16 @@ export default function RecipeDetail(props) {
           </CardTitle>
           <CardSubtitle>
             <strong>Created by: </strong>
+
+            {/* <pre>{JSON.stringify(recipe._owner)}</pre> */}
             <span>{recipe && <>{recipe._owner.username}</>}</span>
+            {recipe._originalRecipe && (
+              <>
+                {' | '}
+                <strong>Original recipe: </strong>
+                <span>{recipe._originalRecipe._owner.username}</span>
+              </>
+            )}
           </CardSubtitle>
           <CardText>
             {recipe &&
@@ -144,7 +194,7 @@ export default function RecipeDetail(props) {
               <br />
               <span>{recipe && <>{recipe.description}</>}</span>
             </ListGroupItem>
-            <ButtonType recipe={recipe} user={user} />,
+            <ButtonType recipe={recipe} user={user} />
           </CardText>
         </CardBody>
       </Card>

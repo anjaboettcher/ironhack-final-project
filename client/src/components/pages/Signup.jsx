@@ -43,8 +43,8 @@ export default function Signup(props) {
 
   //Something is off with out signup, error message "please indicate email and password" - I think it might be connected to the passport?
   return (
-    <Container className="App">
-      <h2>Sign Up</h2>
+    <Container className="App mt-4">
+      <h2 style={{ color: '#8AB661' }}>SIGN UP</h2>
       <Form className="form">
         <Col>
           <FormGroup>
@@ -88,14 +88,19 @@ export default function Signup(props) {
             />
           </FormGroup>
         </Col>
-        <Button
-          className="rounded-pill"
-          outline
-          color="success"
+        <p class="form-text text-muted mb-4">
+          {' '}
+          Do you already have an account?{' '}
+          <a style={{ color: '#8AB661' }} href="/login">
+            Login
+          </a>
+        </p>
+        <button
           onClick={e => handleClick(e)}
+          className="my-4 recipe-button rounded-pill"
         >
           Signup
-        </Button>
+        </button>
       </Form>
       {state.message && <div className="info info-danger">{state.message}</div>}
     </Container>
