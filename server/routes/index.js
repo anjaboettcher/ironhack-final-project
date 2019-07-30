@@ -1,6 +1,7 @@
 const express = require('express')
 const { isLoggedIn } = require('../middlewares')
 const User = require('../models/User')
+const Recipe = require('../models/Recipe')
 const uploader = require('../configs/cloudinary.js')
 const router = express.Router()
 
@@ -39,5 +40,9 @@ router.post(
       .catch(err => next(err))
   }
 )
+
+router.get('/my-list', isLoggedIn, (req, res, next) => {
+  res.json(req.user.ingredients)
+})
 
 module.exports = router

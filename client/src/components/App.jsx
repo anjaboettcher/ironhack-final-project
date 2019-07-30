@@ -15,7 +15,7 @@ import MyRecipes from './pages/MyRecipes'
 import RecipeDetail from './pages/RecipeDetail'
 import Explore from './pages/Explore'
 //import NewRecipe from './pages/NewRecipe'
-import RecipeList from './pages/RecipeList'
+// import RecipeList from './pages/RecipeList'
 import CreateRecipe from './pages/CreateRecipe'
 
 function App() {

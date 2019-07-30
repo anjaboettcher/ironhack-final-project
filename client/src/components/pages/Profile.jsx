@@ -1,11 +1,11 @@
 import { useForm } from '../../hooks'
 import React, { useEffect, useState } from 'react'
-import { Button, Col, Input, Label, Row, CardImg, Container } from 'reactstrap'
+import { Col, Input, Label, Row, CardImg, Container } from 'reactstrap'
 import api from '../../api'
 
 export default function Profile(props) {
   const [profile, setProfile] = useState(null)
-  const { formValues, getInputProps } = useForm()
+  const { formValues, setFormValues, getInputProps } = useForm()
 
   useEffect(() => {
     api
@@ -38,6 +38,13 @@ export default function Profile(props) {
     api.editProfile(uploadData).then(profile => {
       console.log(profile)
       props.history.push('/profile')
+    })
+  }
+
+  function handleFileChange(e) {
+    setFormValues({
+      ...formValues,
+      image: e.target.files[0],
     })
   }
 
@@ -107,8 +114,7 @@ export default function Profile(props) {
               <Input
                 className="upload-button"
                 type="file"
-                {...getInputProps('image')}
-                value={null}
+                onChange={handleFileChange}
               />
             </Col>
           </Row>
