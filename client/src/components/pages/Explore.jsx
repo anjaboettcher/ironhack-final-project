@@ -5,8 +5,6 @@ import { Col, Button } from 'reactstrap'
 import { MDBCol, MDBIcon } from 'mdbreact'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Icon, InlineIcon } from '@iconify/react'
-import cutleryIcon from '@iconify/icons-fa/cutlery'
 
 export default function Explore() {
   const [recipes, setRecipes] = useState([])
@@ -129,7 +127,8 @@ export default function Explore() {
             </div>
             <div class="buttons">
               <Button color="primary" size="sm" block className=" m-0 p-1">
-                <Icon icon={cutleryIcon} /> Fork recipe
+                {' '}
+                Fork recipe
               </Button>
             </div>
           </div>
