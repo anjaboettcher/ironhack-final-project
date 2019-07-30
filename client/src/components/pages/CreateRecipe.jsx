@@ -40,6 +40,8 @@ export default function AddRecipe(props) {
     unit: null,
   })
 
+  const [ingredientList, setIngredientList] = useState([])
+
   function newIngredient(e) {
     // e.preventDefault()
     console.log('we are here')
@@ -49,6 +51,28 @@ export default function AddRecipe(props) {
     })
     console.log('e.target.name', e.target.name)
     console.log('ingredient', ingredient)
+  }
+
+  function changeUnits(e) {
+    setIngredient({
+      ...ingredient,
+      unit: e,
+    })
+    console.log('ingredient', ingredient)
+  }
+
+  function addIngredientList(e) {
+    e.preventDefault()
+    console.log('we are here')
+    setIngredientList([
+      ...ingredientList,
+      {
+        item: ingredient.item,
+        qty: ingredient.qty,
+        unit: ingredient.unit.value,
+      },
+    ])
+    console.log('ingredientList', ingredientList)
   }
 
   function handleInputChange(event) {
@@ -75,14 +99,6 @@ export default function AddRecipe(props) {
   let unitOptions = []
   for (let i = 0; i < units.length; i++) {
     unitOptions.push({ value: units[i], label: units[i] })
-  }
-
-  function changeUnits(e) {
-    setIngredient({
-      ...ingredient,
-      unit: e.value,
-    })
-    console.log('ingredient', ingredient)
   }
 
   return (
@@ -161,7 +177,7 @@ export default function AddRecipe(props) {
           <InputGroupAddon addonType="append">
             <InputGroupText
               style={{ backgroundColor: 'green', color: 'white' }}
-              onClick={newIngredient}
+              onClick={addIngredientList}
             >
               Create
             </InputGroupText>
