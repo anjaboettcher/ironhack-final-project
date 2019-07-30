@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 //import axios from 'axios'
 import api from '../../api.js'
-import { Col, Button } from 'reactstrap'
-import { Link } from 'react-router-dom'
+import { Col } from 'reactstrap'
 
 export default function MyRecipes() {
   const [recipes, setRecipes] = useState([])

@@ -42,7 +42,7 @@ let recipes = [
       { qty: 1, unit: 'pinch', item: 'black pepper' },
       { qty: 1, unit: 'tbs', item: 'olive oil' },
     ],
-    image: '../../public/images/carbonara.jpg',
+    image: '/images/carbonara.jpg',
     personcount: 2,
     duration: '30 minutes',
     categories: ['Pasta', 'Pork'],
@@ -85,21 +85,26 @@ recipes.push(
       { qty: 1, unit: 'pinch', item: 'black pepper' },
       { qty: 1, unit: 'tbs', item: 'olive oil' },
     ],
-    image: '../../public/images/carbonara.jpg',
+    image: '/images/carbonara.jpg',
     personcount: 2,
     duration: '30 minutes',
     categories: ['Vegetarian'],
   })
 )
 
-Promise.all([User.deleteMany(), Recipe.deleteMany()])
+Promise.all([User.deleteMany(), Recipe.deleteMany(), List.deleteMany()])
   .then(() => {
     console.log('All users and recipes have been deleted')
-    return Promise.all([User.create(users), Recipe.create(recipes)])
+    return Promise.all([
+      User.create(users),
+      Recipe.create(recipes),
+      List.create(lists),
+    ])
   })
   .then(() => {
     console.log(`${users.length} users created`)
     console.log(`${recipes.length} recipes created`)
+    console.log(`${lists.length} lists created`)
     mongoose.disconnect()
   })
   .catch(err => {

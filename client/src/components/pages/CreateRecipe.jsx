@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react'
+import React, { useState } from 'react'
 import api from '../../api'
 import categories from '../../../src/categories.json'
 import units from '../../../src/units.json'
@@ -229,7 +229,7 @@ export default function AddRecipe(props) {
               style={{ backgroundColor: 'green', color: 'white' }}
               onClick={addIngredientList}
             >
-              Create
+              Add
             </InputGroupText>
           </InputGroupAddon>
         </InputGroup>
@@ -294,7 +294,7 @@ export default function AddRecipe(props) {
 
         <FormGroup row>
           <Label for="description" sm={2}>
-            Instruction
+            Instructions
           </Label>
           <Col sm={10}>
             <Input

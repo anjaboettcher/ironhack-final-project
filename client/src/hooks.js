@@ -53,6 +53,7 @@ export function useForm(initialValues = {}) {
 
   return {
     formValues,
+    setFormValues,
     getInputProps,
     handleChange,
   }
