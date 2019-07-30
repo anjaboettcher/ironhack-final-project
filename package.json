@@ -10,12 +10,5 @@
   },
   "engines": {
     "node": "8.9.4"
-  },
-  "dependencies": {
-    "react-dots-loader": "^1.1.4",
-    "react-modal": "^3.9.1",
-    "react-modal-hook": "^2.0.0",
-    "react-select": "^3.0.4"
-  },
-  "devDependencies": {}
+  }
 }

@@ -92,19 +92,15 @@ recipes.push(
   })
 )
 
-Promise.all([User.deleteMany(), Recipe.deleteMany(), List.deleteMany()])
+Promise.all([User.deleteMany(), Recipe.deleteMany()])
   .then(() => {
     console.log('All users and recipes have been deleted')
-    return Promise.all([
-      User.create(users),
-      Recipe.create(recipes),
-      List.create(lists),
-    ])
+    return Promise.all([User.create(users), Recipe.create(recipes)])
   })
   .then(() => {
     console.log(`${users.length} users created`)
     console.log(`${recipes.length} recipes created`)
-    console.log(`${lists.length} lists created`)
+
     mongoose.disconnect()
   })
   .catch(err => {

@@ -110,6 +110,20 @@ export default {
       .catch(errHandler)
   },
 
+  getMyList() {
+    return service
+      .get('/my-list')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  addIngredients(recipeId) {
+    return service
+      .post(`recipes/${recipeId}/add-ingredients-to-my-list`)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   getRecipe(recipeId) {
     return service
       .get(`/recipes/${recipeId}`)
@@ -127,6 +141,13 @@ export default {
   deleteRecipe(recipeId) {
     return service
       .delete(`recipes/my-recipes/${recipeId}`)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  deleteIngredient(ingredientKey) {
+    return service
+      .put(`/my-list/${ingredientKey}`)
       .then(res => res.data)
       .catch(errHandler)
   },

@@ -88,7 +88,7 @@ export default function Signup(props) {
             />
           </FormGroup>
         </Col>
-        <p class="form-text text-muted mb-4">
+        <p className="form-text text-muted mb-4">
           {' '}
           Do you already have an account?{' '}
           <a style={{ color: '#8AB661' }} href="/login">
