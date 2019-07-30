@@ -56,7 +56,7 @@ router.post('/', isLoggedIn, uploader.single('picture'), (req, res, next) => {
     picture,
     personcount,
     duration,
-    category,
+    categories,
   } = req.body
   Recipe.create({
     _owner,
@@ -66,7 +66,7 @@ router.post('/', isLoggedIn, uploader.single('picture'), (req, res, next) => {
     picture,
     personcount,
     duration,
-    category,
+    categories,
   })
     .then(recipe => {
       res.json({
