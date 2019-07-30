@@ -142,11 +142,11 @@ export default function AddRecipe(props) {
       .addRecipe(data)
       .then(result => {
         console.log('SUCCESS!')
-        props.history.push('/my-recipes')
-        setMessage(`Your recipe has been created!`)
-        setTimeout(() => {
-          setMessage(null)
-        }, 2000)
+        props.history.push('/recipes/my-recipes')
+        // setMessage(`Your recipe has been created!`)
+        // setTimeout(() => {
+        //   setMessage(null)
+        // }, 2000)
       })
       .catch(err => setState({ message: err.toString() }))
   }
