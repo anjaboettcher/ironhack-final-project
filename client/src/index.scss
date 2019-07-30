@@ -55,8 +55,17 @@ $danger: #32c3ff;
   border-bottom-right-radius: 0.25rem;
 }
 
-.button-ingredient {
-  background-color: #e0e6e6;
+.add-ingredient {
+  background: #e0e6e6;
+  align-items: center;
+  border-radius: 3px;
+  height: 30px;
+  width: 60px;
+  margin: 5px;
+}
+
+.delete-ingredient {
+  background: #e0e6e6;
   border-radius: 3px;
 }
 
@@ -145,7 +154,6 @@ body {
   }
 }
 
-
 .Secret {
   .result {
     font-size: 1.2em;
@@ -186,12 +194,11 @@ body {
 
 .upload-button {
   border-radius: 10px;
-  background-color: #E0E6E6;
+  background-color: #e0e6e6;
   padding: 4px 16px;
   font-size: 16px;
   cursor: pointer;
 }
-
 
 .profile-picture {
   image: {
