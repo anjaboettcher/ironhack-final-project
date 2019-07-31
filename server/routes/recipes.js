@@ -32,6 +32,7 @@ router.get('/user-recipes/:userId', (req, res, next) => {
 router.get('/explore', (req, res, next) => {
   Recipe.find()
     .populate('_owner')
+    .populate('_originalRecipe')
     .then(recipes => {
       res.json(recipes)
     })

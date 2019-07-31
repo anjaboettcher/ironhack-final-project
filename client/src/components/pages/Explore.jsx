@@ -40,6 +40,13 @@ export default function Explore() {
     return String(user._id) !== String(recipe._owner._id)
   }
 
+  function addRecipesToGroceryList(recipeId) {
+    api
+      .addIngredients(recipeId)
+      .then(ingredients => {})
+      .catch(err => console.log('catch: ', err))
+  }
+
   // This is the search bar
   function filterBySearch(allRecipes) {
     return allRecipes.filter(checkForUser).filter(
@@ -125,8 +132,14 @@ export default function Explore() {
               </Link>
             </div>
             <div class="buttons">
-              <Button color="primary" size="sm" block className=" m-0 p-1">
-                Fork recipe
+              <Button
+                color="primary"
+                size="sm"
+                block
+                className=" m-0 p-1"
+                onClick={() => addRecipesToGroceryList(recipe._id)}
+              >
+                Add to Grocery List
               </Button>
             </div>
           </div>

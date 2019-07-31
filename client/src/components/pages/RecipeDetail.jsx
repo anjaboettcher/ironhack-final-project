@@ -67,6 +67,17 @@ export default function RecipeDetail(props) {
       .catch(err => console.log('catch: ', err))
   }
 
+  function addRecipesToGroceryList(recipeId) {
+    console.log('TEST11111111', recipeId)
+    api
+      .addIngredients(recipeId)
+      .then(ingredients => {
+        console.log('done...')
+        console.log('recipeId', recipeId, ingredients)
+      })
+      .catch(err => console.log('catch: ', err))
+  }
+
   // function listAllIngredients() {
   //   console.log('Trying...')
   //   api
@@ -80,7 +91,12 @@ export default function RecipeDetail(props) {
 
   const EditButton = () => <button className="my-4 recipe-button">Edit</button>
   const AddButton = () => (
-    <button className="my-4 recipe-button">Add to list</button>
+    <button
+      className="my-4 recipe-button"
+      onClick={() => addRecipesToGroceryList(recipe._id)}
+    >
+      Add to list
+    </button>
   )
   const DeleteButton = props => (
     <button className="my-4 recipe-button" onClick={showModal}>
@@ -125,7 +141,12 @@ export default function RecipeDetail(props) {
 
   const ButtonType = ({ recipe, user }) => {
     if (!api.isLoggedIn() || recipe._owner._id !== user._id) {
-      return <AddToMyListButton />
+      return (
+        <div>
+          <AddToMyListButton />
+          <AddButton />
+        </div>
+      )
     } else if (recipe._owner._id) {
       return (
         <div>

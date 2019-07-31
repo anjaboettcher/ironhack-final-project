@@ -117,9 +117,16 @@ export default {
       .catch(errHandler)
   },
 
+  removeMyList() {
+    return service
+      .put(`/my-list`)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   addIngredients(recipeId) {
     return service
-      .post(`recipes/${recipeId}/add-ingredients-to-my-list`)
+      .put(`recipes/${recipeId}/add-ingredients-to-my-list`)
       .then(res => res.data)
       .catch(errHandler)
   },

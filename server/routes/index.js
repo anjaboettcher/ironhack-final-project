@@ -51,49 +51,63 @@ router.put('/my-list/:ingredientKey', isLoggedIn, (req, res, next) => {
   req.user.save().then(() => {
     res.json(req.user.ingredients)
   })
+})
 
-  //   res.json({
-  //     message: 'The ingredient was successfully deleted',
-  //     ingredients: req.user.ingredients,
-  //   })
-  // })
-  // let userId = req.user.id
-  // let ing = []
-  // console.log('USER-ID', userId)
-  // User.findById(userId).then(user => {
-  //   console.log('ING1', ing)
-  //   console.log('user.ingredients', user.ingredients)
-  //   ing = [...user.ingredients]
-  //   console.log('ING', ing)
-  //   ing.splice(0, 1)
-  //   console.log('ING2', ing)
-  //   user
-  //     .save()
-  //     .then(() => {
-  //       res.json(user, { message: 'The ingredient was successfully deleted' })
-  //     })
-  //     .catch(err => next(err))
-  // })
-
-  // console.log('TEST', ing)
-
-  // User.findById(userId).then(user => {
-  //   if (!recipe) {
-  //     next({
-  //       status: 400,
-  //       message: 'There is no recipe with the _id = ' + recipeId,
-  //     })
-  //   } else if (recipe._owner.toString() !== req.user._id.toString()) {
-  //     next({
-  //       status: 403,
-  //       message: 'You are have not the creator of this recipe',
-  //     })
-  //   } else {
-  //     Recipe.findByIdAndDelete(ing).then(() => {
-  //       res.json({ message: 'The recipe was successfully deleted' })
-  //     })
-  //   }
-  // })
+router.put('/my-list', isLoggedIn, (req, res, next) => {
+  let id = req.user.id
+  console.log('request profile', id)
+  User.findById(id).then(user => {
+    user.ingredients = []
+    user
+      .save()
+      .then(() => {
+        res.json(user)
+      })
+      .catch(err => next(err))
+  })
 })
 
 module.exports = router
+
+//   res.json({
+//     message: 'The ingredient was successfully deleted',
+//     ingredients: req.user.ingredients,
+//   })
+// })
+// let userId = req.user.id
+// let ing = []
+// console.log('USER-ID', userId)
+// User.findById(userId).then(user => {
+//   console.log('ING1', ing)
+//   console.log('user.ingredients', user.ingredients)
+//   ing = [...user.ingredients]
+//   console.log('ING', ing)
+//   ing.splice(0, 1)
+//   console.log('ING2', ing)
+//   user
+//     .save()
+//     .then(() => {
+//       res.json(user, { message: 'The ingredient was successfully deleted' })
+//     })
+//     .catch(err => next(err))
+// })
+
+// console.log('TEST', ing)
+
+// User.findById(userId).then(user => {
+//   if (!recipe) {
+//     next({
+//       status: 400,
+//       message: 'There is no recipe with the _id = ' + recipeId,
+//     })
+//   } else if (recipe._owner.toString() !== req.user._id.toString()) {
+//     next({
+//       status: 403,
+//       message: 'You are have not the creator of this recipe',
+//     })
+//   } else {
+//     Recipe.findByIdAndDelete(ing).then(() => {
+//       res.json({ message: 'The recipe was successfully deleted' })
+//     })
+//   }
+// })
