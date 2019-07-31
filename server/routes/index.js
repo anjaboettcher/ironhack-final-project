@@ -96,4 +96,13 @@ router.put('/my-list/:ingredientKey', isLoggedIn, (req, res, next) => {
   // })
 })
 
+router.post(
+  '/upload-picture',
+  isLoggedIn,
+  uploader.single('picture'),
+  (req, res, next) => {
+    res.json(req.file.secure_url)
+  }
+)
+
 module.exports = router

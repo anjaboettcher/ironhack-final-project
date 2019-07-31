@@ -1,14 +1,6 @@
 import React, { useState } from 'react'
 import api from '../../api'
-import {
-  Container,
-  Col,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Button,
-} from 'reactstrap'
+import { Container, Col, Form, FormGroup, Label, Input } from 'reactstrap'
 
 export default function Signup(props) {
   const [state, setState] = useState({

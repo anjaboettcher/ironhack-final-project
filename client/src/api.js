@@ -167,11 +167,11 @@ export default {
   //     .catch(errHandler)
   // },
 
-  addPicture(file) {
+  uploadPicture(pictureFile) {
     const formData = new FormData()
-    formData.append('picture', file)
+    formData.append('picture', pictureFile)
     return service
-      .post('/endpoint/to/add/a/picture', formData, {
+      .post('/upload-picture', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

@@ -11,25 +11,19 @@ import {
   Label,
   Input,
   CustomInput,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
   Table,
 } from 'reactstrap'
 import Select from 'react-select'
 
 export default function AddRecipe(props) {
-  const [message, setMessage] = useState(null)
   const [state, setState] = useState({
     name: '',
     description: '',
-    // ingredients: [],
-    // [qty, unit, item ],
-    // unit: null,
-    picture: '',
+    picture: '/images/default-recipe-image.jpg',
     personcount: '',
     duration: '',
     categories: null,
+    isPictureLoading: false,
   })
   const [ingredient, setIngredient] = useState({
     item: '',
@@ -51,6 +45,16 @@ export default function AddRecipe(props) {
     setState({
       ...state,
       [event.target.name]: event.target.value,
+    })
+  }
+
+  function handleFileInputChange(event) {
+    let pictureFile = event.target.files[0]
+    api.uploadPicture(pictureFile).then(picture => {
+      setState({
+        ...state,
+        picture,
+      })
     })
   }
 
@@ -159,8 +163,22 @@ export default function AddRecipe(props) {
 
   return (
     <div className="AddRecipe container mt-4">
+      <pre>{JSON.stringify(state, null, 2)}</pre>
       <Form>
         <h2 style={{ color: '#8AB661' }}>Create a new recipe</h2>
+        <img src={state.picture} alt="" />
+        <FormGroup>
+          <Label for="exampleCustomFileBrowser">
+            File Browser with Custom Label
+          </Label>
+          <CustomInput
+            type="file"
+            id="exampleCustomFileBrowser"
+            name="customFile"
+            label="Yo, pick a file!"
+            onChange={handleFileInputChange}
+          />
+        </FormGroup>
         <FormGroup>
           <Label for="name">Name</Label>
           <Input
@@ -200,17 +218,6 @@ export default function AddRecipe(props) {
             </FormGroup>
           </Col>
         </Row>
-        <FormGroup>
-          <Label for="exampleCustomFileBrowser">
-            File Browser with Custom Label
-          </Label>
-          <CustomInput
-            type="file"
-            id="exampleCustomFileBrowser"
-            name="customFile"
-            label="Yo, pick a file!"
-          />
-        </FormGroup>
 
         <FormGroup>
           <Label for="category">Categories</Label>
