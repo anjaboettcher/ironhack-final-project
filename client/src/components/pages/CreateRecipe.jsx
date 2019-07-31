@@ -20,7 +20,7 @@ export default function AddRecipe(props) {
     name: '',
     description: '',
     picture: '/images/default-recipe-image.jpg',
-    personcount: '',
+    personcount: 4,
     duration: '',
     categories: null,
     isPictureLoading: false, // TODO
@@ -33,6 +33,7 @@ export default function AddRecipe(props) {
     qty: '',
     unit: null,
   })
+
   const [ingredientList, setIngredientList] = useState([])
 
   let categoryOptions = []
@@ -54,10 +55,10 @@ export default function AddRecipe(props) {
   function handleFileInputChange(event) {
     let pictureFile = event.target.files[0]
     api.uploadPicture(pictureFile).then(picture => {
-      setState({
+      setState(state => ({
         ...state,
         picture,
-      })
+      }))
     })
   }
 
@@ -66,13 +67,13 @@ export default function AddRecipe(props) {
       ...state,
       categories: e,
     })
+    console.log('setState', setState)
   }
   //e.target.value
   //e.target.checked
 
   function newIngredient(e) {
     // e.preventDefault()
-    console.log('we are here')
     setIngredient({
       ...ingredient,
       [e.target.name]: e.target.value,
@@ -88,11 +89,11 @@ export default function AddRecipe(props) {
 
   function addIngredientList(e) {
     e.preventDefault()
-    console.log('we are here')
     setIngredientList([
       ...ingredientList,
       {
         item: ingredient.item,
+        qtyPerPerson: ingredient.qty / state.personcount,
         qty: ingredient.qty,
         unit: ingredient.unit.value,
       },
@@ -103,6 +104,7 @@ export default function AddRecipe(props) {
       qty: '',
       unit: null,
     })
+    console.log('ingredientList', ingredientList)
   }
 
   function deleteIngredient(index, e) {
@@ -121,6 +123,7 @@ export default function AddRecipe(props) {
     let data = {
       name: state.name,
       description: state.description,
+      picture: state.picture,
       ingredients: ingredientList,
       personcount: state.personcount,
       duration: state.duration,
@@ -172,6 +175,7 @@ export default function AddRecipe(props) {
             id="name"
             placeholder="Recipe name"
             value={state.name}
+            //checked={state.checked}
             onChange={handleInputChange}
           />
         </FormGroup>

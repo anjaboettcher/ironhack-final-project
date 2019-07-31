@@ -4,6 +4,7 @@ import api from '../../api.js'
 import { Col, Button } from 'reactstrap'
 import { MDBCol, MDBIcon } from 'mdbreact'
 import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Explore() {
   const [recipes, setRecipes] = useState([])
@@ -169,71 +170,5 @@ export default function Explore() {
         ))}
       </div>
     </div>
-
-    //OLD VERSION OLD VERSION
-    // <Col>
-    //   <div class="border-0 ">
-    //     <MDBCol>
-    //       <div className="input-group md-form form-sm form-1 pl-0">
-    //         <div className="input-group-prepend ">
-    //           <span
-    //             className="input-group-text green lighten-3"
-    //             id="basic-text1"
-    //           >
-    //             <MDBIcon className="text-white" icon="search" />
-    //           </span>
-    //         </div>
-    //         <input
-    //           className="form-control my-0 py-1"
-    //           type="text"
-    //           placeholder="Search for a recipe..."
-    //           aria-label="Search"
-    //           value={search}
-    //           onChange={handleChange}
-    //         />
-    //       </div>
-    //     </MDBCol>
-    //   </div>
-    //   <div className="grid">
-    //     {filterBySearch(recipes).map((recipe, i) => (
-    //       <div className="box">
-    //         <div className="imgBox" tag={Link} to="/">
-    //           <Link to={'/recipes/' + recipe._id}>
-    //             <img
-    //               className="image"
-    //               alt="error"
-    //               width="130px"
-    //               height="130px"
-    //               src={recipe.picture}
-    //               // src={
-    //               //   'https://www.asaucykitchen.com/wp-content/uploads/2019/04/Tomato-Coconut-Curry-Chicken.jpg'
-    //               // }
-    //             />
-    //           </Link>
-    //           <Link
-    //             to={'/recipes/' + recipe._id}
-    //             style={{ textDecoration: 'none', color: '#696A66' }}
-    //           >
-    //             <div className="boxText border">
-    //               <div> {recipe.name} </div>
-    //               <div> Cook: {recipe._owner.username} </div>
-    //             </div>
-    //           </Link>
-    //         </div>
-    //         <div class="buttons">
-    //           <Button
-    //             color="primary"
-    //             size="sm"
-    //             block
-    //             className=" m-0 p-1"
-    //             onClick={() => addRecipesToGroceryList(recipe._id)}
-    //           >
-    //             Add to Grocery List
-    //           </Button>
-    //         </div>
-    //       </div>
-    //     ))}
-    //   </div>
-    // </Col>
   )
 }
