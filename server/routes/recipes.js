@@ -174,13 +174,14 @@ router.post('/:recipeId/fork', isLoggedIn, (req, res, next) => {
   })
 })
 
-router.put('/:recipeId', isLoggedIn, (req, res, next) => {
+// MODIFIED BY GIULIA
+router.put('my-recipes/:recipeId', isLoggedIn, (req, res, next) => {
   let recipeId = req.params.recipeId
   let {
     name,
     description,
     ingredients,
-    picture,
+    // picture,
     personcount,
     duration,
     categories,
@@ -190,7 +191,7 @@ router.put('/:recipeId', isLoggedIn, (req, res, next) => {
       recipe.name = name
       recipe.description = description
       recipe.ingredients = ingredients
-      recipe.picture = picture
+      // recipe.picture = picture
       recipe.personcount = personcount
       recipe.duration = duration
       recipe.categories = categories

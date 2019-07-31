@@ -66,29 +66,6 @@ export default {
     return service.get('/logout')
   },
 
-  // This is an example on how to use this method in a different file
-  // api.getCountries().then(countries => { /* ... */ })
-  // getCountries() {
-  //   return service
-  //     .get('/countries')
-  //     .then(res => res.data)
-  //     .catch(errHandler)
-  // },
-
-  // getSecret() {
-  //   return service
-  //     .get('/secret')
-  //     .then(res => res.data)
-  //     .catch(errHandler)
-  // },
-
-  addRecipe(body) {
-    return service
-      .post('/recipes', body)
-      .then(res => res.data)
-      .catch(errHandler)
-  },
-
   getProfile() {
     return service
       .get('/profile')
@@ -110,9 +87,9 @@ export default {
       .catch(errHandler)
   },
 
-  getMyList() {
+  addRecipe(body) {
     return service
-      .get('/my-list')
+      .post('/recipes', body)
       .then(res => res.data)
       .catch(errHandler)
   },
@@ -138,6 +115,14 @@ export default {
       .catch(errHandler)
   },
 
+  // NEW GIULIA
+  editRecipe(recipeId, body) {
+    return service
+      .put(`recipes/my-recipes/${recipeId}`, body)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   deleteRecipe(recipeId) {
     return service
       .delete(`recipes/my-recipes/${recipeId}`)
@@ -145,16 +130,23 @@ export default {
       .catch(errHandler)
   },
 
-  deleteIngredient(ingredientKey) {
+  forkRecipe(recipeId) {
     return service
-      .put(`/my-list/${ingredientKey}`)
+      .post(`recipes/fork/${recipeId}`)
       .then(res => res.data)
       .catch(errHandler)
   },
 
-  forkRecipe(recipeId) {
+  getMyList() {
     return service
-      .post(`recipes/fork/${recipeId}`)
+      .get('/my-list')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  deleteIngredient(ingredientKey) {
+    return service
+      .put(`/my-list/${ingredientKey}`)
       .then(res => res.data)
       .catch(errHandler)
   },

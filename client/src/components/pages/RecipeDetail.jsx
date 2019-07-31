@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import api from '../../api'
 import Loader from 'react-dots-loader'
 import 'react-dots-loader/index.css'
@@ -78,7 +79,11 @@ export default function RecipeDetail(props) {
   //     .catch(err => console.log('catch: ', err))
   // }
 
-  const EditButton = () => <button className="my-4 recipe-button">Edit</button>
+  const EditButton = () => (
+    <Link to={`/recipes/${recipeId}/edit-recipe`}>
+      <button className="my-4 recipe-button">Edit</button>
+    </Link>
+  )
   const AddButton = () => (
     <button className="my-4 recipe-button">Add to list</button>
   )
