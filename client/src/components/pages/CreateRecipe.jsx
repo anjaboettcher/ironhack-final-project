@@ -20,7 +20,7 @@ export default function AddRecipe(props) {
     name: '',
     description: '',
     picture: '/images/default-recipe-image.jpg',
-    personcount: '',
+    personcount: 4,
     duration: '',
     categories: null,
     isPictureLoading: false, // TODO
@@ -66,6 +66,7 @@ export default function AddRecipe(props) {
       ...state,
       categories: e,
     })
+    console.log('setState', setState)
   }
   //e.target.value
   //e.target.checked
@@ -93,6 +94,7 @@ export default function AddRecipe(props) {
       ...ingredientList,
       {
         item: ingredient.item,
+        qtyPerPerson: ingredient.qty / state.personcount,
         qty: ingredient.qty,
         unit: ingredient.unit.value,
       },
@@ -103,6 +105,7 @@ export default function AddRecipe(props) {
       qty: '',
       unit: null,
     })
+    console.log('ingredientList', ingredientList)
   }
 
   function deleteIngredient(index, e) {

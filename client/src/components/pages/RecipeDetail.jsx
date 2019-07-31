@@ -21,8 +21,10 @@ import { useModal } from 'react-modal-hook'
 import Select from 'react-select'
 
 export default function RecipeDetail(props) {
+  let personcountVariable
   const recipeId = props.match.params.recipeId
   const [recipe, setRecipe] = useState(null)
+  //const [ingredients, setIngredients] = useState([])
   const [user, setUser] = useState(null)
   const [showModal, hideModal] = useModal(() => (
     <ReactModal
@@ -59,16 +61,29 @@ export default function RecipeDetail(props) {
     { value: 2, label: '2 people' },
     { value: 3, label: '3 people' },
     { value: 4, label: '4 people' },
+    { value: 5, label: '5 person' },
+    { value: 6, label: '6 people' },
+    { value: 7, label: '7 people' },
+    { value: 8, label: '8 people' },
+    { value: 9, label: '8 people' },
+    { value: 10, label: '8 people' },
   ]
 
   function changePersonCount(e) {
     console.log('e', e)
     console.log(recipe)
+    personcountVariable = e
     console.log('recipe.personcount', recipe.personcount)
     recipe.personcount = e.value
+    for (let i = 0; i < recipe.ingredients.length; i++) {
+      recipe.ingredients[i].qty =
+        Math.round(recipe.ingredients[i].qtyPerPerson * e.value * 2) / 2
+    }
     setRecipe({
       ...recipe,
     })
+    //api.
+
     console.log('seb')
     console.log('setRecipe', setRecipe)
   }
@@ -166,6 +181,7 @@ export default function RecipeDetail(props) {
       .getRecipe(recipeId)
       .then(recipe => {
         setRecipe(recipe)
+        // setIngredients(recipe.ingredients)
       })
       .catch(err => console.log(err))
   }, [recipeId])
@@ -248,7 +264,7 @@ export default function RecipeDetail(props) {
               <Select
                 id="perosncount"
                 options={NbrOfPeople}
-                value={recipe.personcount}
+                value={personcountVariable}
                 onChange={changePersonCount}
               />
             </FormGroup>

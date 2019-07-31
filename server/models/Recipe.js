@@ -22,6 +22,7 @@ const recipeSchema = new Schema(
     },
     ingredients: [
       {
+        qtyPerPerson: { type: Number },
         qty: { type: Number },
         unit: {
           type: String,
@@ -30,6 +31,16 @@ const recipeSchema = new Schema(
         item: { type: String, required: true },
       },
     ],
+    // ingredientsPerPerson: [
+    //   {
+    //     qty: { type: Number },
+    //     unit: {
+    //       type: String,
+    //       enum: ['gr', 'ml', 'l', 'kg', 'tbs', 'tsp', 'cup', 'pinch', 'units'],
+    //     },
+    //     item: { type: String, required: true },
+    //   },
+    // ],
     picture: {
       type: String,
       default: '/images/default-recipe-image.jpg',
