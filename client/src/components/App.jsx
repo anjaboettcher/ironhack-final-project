@@ -17,6 +17,7 @@ import Explore from './pages/Explore'
 //import NewRecipe from './pages/NewRecipe'
 import RecipeList from './pages/RecipeList'
 import CreateRecipe from './pages/CreateRecipe'
+import EditRecipe from './pages/EditRecipe'
 
 function App() {
   return (
@@ -32,7 +33,8 @@ function App() {
         <Route path="/recipes/my-recipes" component={MyRecipes} />
         <Route path="/recipes/explore" component={Explore} />
         <Route path="/recipes/create-recipe" component={CreateRecipe} />
-        <Route path="/recipes/:recipeId" component={RecipeDetail} />
+        <Route path="/recipes/:recipeId" exact component={RecipeDetail} />
+        <Route path="/recipes/:recipeId/edit-recipe" component={EditRecipe} />
         <Route path="/fork/:recipeId" component={RecipeDetail} />
         <Route path="/my-list" component={RecipeList} />
         <Route render={() => <h2>404</h2>} />

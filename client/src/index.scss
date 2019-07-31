@@ -56,17 +56,30 @@ $danger: #32c3ff;
 }
 
 .add-ingredient {
-  background: #e0e6e6;
+  background: white;
+  border: solid 2px #8ab661;
+  border-radius: 10px;
+  color: #8ab661;
+  // font-weight: bold;
   align-items: center;
-  border-radius: 3px;
   height: 30px;
   width: 60px;
   margin: 5px;
 }
 
 .delete-ingredient {
-  background: #e0e6e6;
-  border-radius: 3px;
+  background: white;
+  border: solid 2px #8ab661;
+  border-radius: 10px;
+  color: #8ab661;
+  font-weight: bold;
+}
+
+.recipe-picture {
+  height: 150px;
+  width: 150px;
+  border-radius: 100px;
+  margin-bottom: 10px;
 }
 
 // ----------------------------------------

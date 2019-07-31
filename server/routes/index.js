@@ -67,6 +67,16 @@ router.put('/my-list', isLoggedIn, (req, res, next) => {
   })
 })
 
+// To upload the picture of the recipe
+router.post(
+  '/upload-picture',
+  isLoggedIn,
+  uploader.single('picture'),
+  (req, res, next) => {
+    res.json(req.file.secure_url)
+  }
+)
+
 module.exports = router
 
 //   res.json({
