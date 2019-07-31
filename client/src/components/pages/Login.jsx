@@ -1,15 +1,7 @@
 import React, { useState } from 'react'
 import api from '../../api'
 import { useForm } from '../../hooks'
-import {
-  Container,
-  Col,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Button,
-} from 'reactstrap'
+import { Container, Col, Form, FormGroup, Label, Input } from 'reactstrap'
 
 export default function Login(props) {
   const { formValues, getInputProps } = useForm({ lang: 'en' })

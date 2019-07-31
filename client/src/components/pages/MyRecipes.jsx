@@ -33,28 +33,35 @@ export default function MyRecipes() {
           .toUpperCase()
           .includes(search.toUpperCase())
     )
-
-    //Way number 2 of doing it!
-    // let recipeList = []
-    // for (let j = 0; j < allRecipes.length; j++) {
-    //   if( allRecipes[j].name.toUpperCase().includes(search.toUpperCase())) {
-    //     recipeList.push(allRecipes[j])
-    //   }
-    //   else {
-    //   for (let k = 0; k < allRecipes[j].categories.length; k++) {
-    //     if (
-    //       allRecipes[j].categories[k]
-    //         .toUpperCase()
-    //         .includes(search.toUpperCase())
-    //     ) {
-    //       recipeList.push(allRecipes[j])
-    //     }
-    //   }
-    //   }
-    // }
-    // console.log('recipeList', recipeList)
-    // return recipeList
   }
+
+  function addRecipesToGroceryList(recipeId) {
+    api
+      .addIngredients(recipeId)
+      .then(ingredients => {})
+      .catch(err => console.log('catch: ', err))
+  }
+
+  //Way number 2 of doing it!
+  // let recipeList = []
+  // for (let j = 0; j < allRecipes.length; j++) {
+  //   if( allRecipes[j].name.toUpperCase().includes(search.toUpperCase())) {
+  //     recipeList.push(allRecipes[j])
+  //   }
+  //   else {
+  //   for (let k = 0; k < allRecipes[j].categories.length; k++) {
+  //     if (
+  //       allRecipes[j].categories[k]
+  //         .toUpperCase()
+  //         .includes(search.toUpperCase())
+  //     ) {
+  //       recipeList.push(allRecipes[j])
+  //     }
+  //   }
+  //   }
+  // }
+  // console.log('recipeList', recipeList)
+  // return recipeList
 
   return (
     <Col>
@@ -107,7 +114,13 @@ export default function MyRecipes() {
               </Link>
             </div>
             <div class="buttons">
-              <Button color="success" size="sm" block className=" m-0 p-1">
+              <Button
+                color="success"
+                size="sm"
+                block
+                className=" m-0 p-1"
+                onClick={() => addRecipesToGroceryList(recipe._id)}
+              >
                 Add to List
               </Button>{' '}
             </div>

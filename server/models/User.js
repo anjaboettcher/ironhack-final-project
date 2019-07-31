@@ -20,6 +20,7 @@ const userSchema = new Schema(
           enum: ['gr', 'ml', 'l', 'kg', 'tbs', 'tsp', 'cup', 'pinch', 'units'],
         },
         item: { type: String, required: true },
+        checked: { type: Boolean, default: false },
       },
     ],
   },
