@@ -108,7 +108,7 @@ export default function MyRecipes() {
                 to={'/recipes/' + recipe._id}
                 style={{ textDecoration: 'none', color: '#696A66' }}
               >
-                <div className="boxText border">
+                <div className="boxText border-0 text-uppercase">
                   <div> {recipe.name} </div>
                 </div>
               </Link>

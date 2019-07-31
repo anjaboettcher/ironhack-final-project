@@ -54,7 +54,7 @@ function BottomNav2(props) {
             }}
           >
             {' '}
-            YOUR RECIPES{' '}
+            MY RECIPES{' '}
           </div>
         </Col>
         <Col

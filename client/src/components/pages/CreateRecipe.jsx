@@ -226,6 +226,7 @@ export default function AddRecipe(props) {
             />
           </Col>
         </Row>
+        <br />
         <Row form>
           <Col md={5}>
             {/* <Label for="quantity">Quantity</Label> */}
@@ -248,7 +249,7 @@ export default function AddRecipe(props) {
             />
           </Col>
           <Col md={2}>
-            <button className="add-ingredient" onClick={addIngredientList}>
+            <button className="add-ingredient mt-3" onClick={addIngredientList}>
               Add
             </button>
           </Col>
@@ -305,7 +306,7 @@ export default function AddRecipe(props) {
           </Col>
         </FormGroup>
 
-        <button className="recipe-button" onClick={e => saveRecipe(e)}>
+        <button className="recipe-button mb-4" onClick={e => saveRecipe(e)}>
           Save
         </button>
       </Form>

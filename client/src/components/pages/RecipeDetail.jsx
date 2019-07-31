@@ -79,17 +79,6 @@ export default function RecipeDetail(props) {
       .catch(err => console.log('catch: ', err))
   }
 
-  // function listAllIngredients() {
-  //   console.log('Trying...')
-  //   api
-  //     .listIngredients(recipeId)
-  //     .then(recipe => {
-  //       console.log('done...')
-  //       console.log('recipeId', recipeId)
-  //     })
-  //     .catch(err => console.log('catch: ', err))
-  // }
-
   const EditButton = () => (
     <Link to={`/recipes/${recipeId}/edit-recipe`}>
       <button className="my-4 recipe-button">Edit</button>
