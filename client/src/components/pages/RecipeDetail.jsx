@@ -13,13 +13,18 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
+  FormGroup,
+  Label,
 } from 'reactstrap'
 import ReactModal from 'react-modal'
 import { useModal } from 'react-modal-hook'
+import Select from 'react-select'
 
 export default function RecipeDetail(props) {
+  let personcountVariable
   const recipeId = props.match.params.recipeId
   const [recipe, setRecipe] = useState(null)
+  //const [ingredients, setIngredients] = useState([])
   const [user, setUser] = useState(null)
   const [showModal, hideModal] = useModal(() => (
     <ReactModal
@@ -47,6 +52,42 @@ export default function RecipeDetail(props) {
     </ReactModal>
   ))
 
+  // let NbrOfPeople = []
+  // for (let i = 0; i < categories.length; i++) {
+  //   categoryOptions.push({ value: categories[i], label: categories[i] })
+
+  let NbrOfPeople = [
+    { value: 1, label: '1 person' },
+    { value: 2, label: '2 people' },
+    { value: 3, label: '3 people' },
+    { value: 4, label: '4 people' },
+    { value: 5, label: '5 person' },
+    { value: 6, label: '6 people' },
+    { value: 7, label: '7 people' },
+    { value: 8, label: '8 people' },
+    { value: 9, label: '8 people' },
+    { value: 10, label: '8 people' },
+  ]
+
+  function changePersonCount(e) {
+    console.log('e', e)
+    console.log(recipe)
+    personcountVariable = e
+    console.log('recipe.personcount', recipe.personcount)
+    recipe.personcount = e.value
+    for (let i = 0; i < recipe.ingredients.length; i++) {
+      recipe.ingredients[i].qty =
+        Math.round(recipe.ingredients[i].qtyPerPerson * e.value * 2) / 2
+    }
+    setRecipe({
+      ...recipe,
+    })
+    //api.
+
+    console.log('seb')
+    console.log('setRecipe', setRecipe)
+  }
+
   function deleteRecipe() {
     console.log('props', props.history)
     api
@@ -68,6 +109,17 @@ export default function RecipeDetail(props) {
       .catch(err => console.log('catch: ', err))
   }
 
+  function addRecipesToGroceryList(recipeId) {
+    console.log('TEST11111111', recipeId)
+    api
+      .addIngredients(recipeId)
+      .then(ingredients => {
+        console.log('done...')
+        console.log('recipeId', recipeId, ingredients)
+      })
+      .catch(err => console.log('catch: ', err))
+  }
+
   // function listAllIngredients() {
   //   console.log('Trying...')
   //   api
@@ -85,7 +137,12 @@ export default function RecipeDetail(props) {
     </Link>
   )
   const AddButton = () => (
-    <button className="my-4 recipe-button">Add to list</button>
+    <button
+      className="my-4 recipe-button"
+      onClick={() => addRecipesToGroceryList(recipe._id)}
+    >
+      Add to list
+    </button>
   )
   const DeleteButton = props => (
     <button className="my-4 recipe-button" onClick={showModal}>
@@ -124,13 +181,19 @@ export default function RecipeDetail(props) {
       .getRecipe(recipeId)
       .then(recipe => {
         setRecipe(recipe)
+        // setIngredients(recipe.ingredients)
       })
       .catch(err => console.log(err))
   }, [recipeId])
 
   const ButtonType = ({ recipe, user }) => {
     if (!api.isLoggedIn() || recipe._owner._id !== user._id) {
-      return <AddToMyListButton />
+      return (
+        <div>
+          <AddToMyListButton />
+          <AddButton />
+        </div>
+      )
     } else if (recipe._owner._id) {
       return (
         <div>
@@ -170,8 +233,8 @@ export default function RecipeDetail(props) {
             {recipe._originalRecipe && (
               <>
                 {' | '}
-                <strong>Original recipe: </strong>
-                <span>{recipe._originalRecipe._owner.username}</span>
+                {/* <strong>Original recipe: </strong>
+                <span>{recipe._originalRecipe._owner.username}</span> */}
               </>
             )}
           </CardSubtitle>
@@ -195,6 +258,17 @@ export default function RecipeDetail(props) {
                 {'  '}
               </h6>
             </ListGroupItem>
+
+            <FormGroup>
+              <Label for="perosncount">PersonCount</Label>
+              <Select
+                id="perosncount"
+                options={NbrOfPeople}
+                value={personcountVariable}
+                onChange={changePersonCount}
+              />
+            </FormGroup>
+
             <ListGroup>
               <ListGroupItem className="border-0">
                 <h5 style={{ color: '#8AB661' }}>Ingredients:</h5>

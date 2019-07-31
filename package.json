@@ -10,5 +10,13 @@
   },
   "engines": {
     "node": "8.9.4"
+  },
+  "dependencies": {
+    "react-dots-loader": "^1.1.4",
+    "react-modal-hook": "^2.0.0",
+    "react-select": "^3.0.4"
+  },
+  "devDependencies": {
+    "@iconify/icons-fa": "^1.0.0"
   }
 }
