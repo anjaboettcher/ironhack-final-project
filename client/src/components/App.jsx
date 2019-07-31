@@ -34,7 +34,7 @@ function App() {
         <Route path="/recipes/create-recipe" component={CreateRecipe} />
         <Route path="/recipes/:recipeId" component={RecipeDetail} />
         <Route path="/fork/:recipeId" component={RecipeDetail} />
-        {/* <Route path="/list/:recipeId" component={RecipeList} /> */}
+        <Route path="/my-list" component={RecipeList} />
         <Route render={() => <h2>404</h2>} />
       </Switch>
       {api.isLoggedIn() && <BottomNav2 />}

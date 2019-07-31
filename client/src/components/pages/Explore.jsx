@@ -1,44 +1,44 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 //import axios from 'axios'
-import api from '../../api.js'
-import { Col, Button } from 'reactstrap'
-import { MDBCol, MDBIcon } from 'mdbreact'
-import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import api from "../../api.js";
+import { Col, Button } from "reactstrap";
+import { MDBCol, MDBIcon } from "mdbreact";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Explore() {
-  const [recipes, setRecipes] = useState([])
-  const [search, setSearch] = useState('')
-  const [user, setUser] = useState(null)
+  const [recipes, setRecipes] = useState([]);
+  const [search, setSearch] = useState("");
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     api.exploreRecipes().then(info => {
-      console.log('TCL: MyRecipes -> info', info)
+      console.log("TCL: MyRecipes -> info", info);
       //console.log("TCL: CrudTodos -> response", response);
-      setRecipes(info)
-      console.log('TCL: MyRecipes -> setRecipes', setRecipes)
-    })
-  }, [])
+      setRecipes(info);
+      console.log("TCL: MyRecipes -> setRecipes", setRecipes);
+    });
+  }, []);
 
   useEffect(() => {
     api
       .getProfile()
       .then(user => {
-        console.log('i ammmmmm useer ', user._id)
-        setUser(user)
+        console.log("i ammmmmm useer ", user._id);
+        setUser(user);
       })
-      .catch(err => console.log(err))
-  }, [])
+      .catch(err => console.log(err));
+  }, []);
 
-  if (!user) return null
+  if (!user) return null;
 
   function handleChange(e) {
-    setSearch(e.target.value)
-    console.log('search', search)
+    setSearch(e.target.value);
+    console.log("search", search);
   }
 
   function checkForUser(recipe) {
-    return String(user._id) !== String(recipe._owner._id)
+    return String(user._id) !== String(recipe._owner._id);
   }
 
   // This is the search bar
@@ -51,7 +51,7 @@ export default function Explore() {
           .toUpperCase()
           .includes(search.toUpperCase()) ||
         recipe._owner.username.toUpperCase().includes(search.toUpperCase())
-    )
+    );
 
     //Way number 2 of doing it!
     // let recipeList = []
@@ -103,7 +103,7 @@ export default function Explore() {
         {filterBySearch(recipes).map((recipe, i) => (
           <div className="box">
             <div className="imgBox" tag={Link} to="/">
-              <Link to={'/recipes/' + recipe._id}>
+              <Link to={"/recipes/" + recipe._id}>
                 <img
                   className="image"
                   alt="error"
@@ -116,8 +116,8 @@ export default function Explore() {
                 />
               </Link>
               <Link
-                to={'/recipes/' + recipe._id}
-                style={{ textDecoration: 'none', color: '#696A66' }}
+                to={"/recipes/" + recipe._id}
+                style={{ textDecoration: "none", color: "#696A66" }}
               >
                 <div className="boxText border">
                   <div> {recipe.name} </div>
@@ -135,5 +135,5 @@ export default function Explore() {
       </div>
       {/* {JSON.stringify(recipes)} */}
     </Col>
-  )
+  );
 }

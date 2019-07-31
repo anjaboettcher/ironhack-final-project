@@ -17,7 +17,7 @@ function BottomNav2(props) {
     links.push({ to: '/my-recipes', text: 'My recipes' })
     links.push({ to: '/explore', text: 'Search' })
     links.push({ to: '/create-recipe', text: 'Create Recipe' })
-    links.push({ to: '/list', text: 'List' })
+    links.push({ to: '/my-list', text: 'List' })
   }
 
   return (
@@ -76,7 +76,7 @@ function BottomNav2(props) {
         <Col
           tag={NLink}
           style={{ color: 'white', textDecoration: 'none' }}
-          to="/recipes/list"
+          to="/my-list"
         >
           <FontAwesomeIcon icon={faList} size="2x" className="icon" />
           <div style={{ fontSize: '55%' }}> GROCERY LIST </div>

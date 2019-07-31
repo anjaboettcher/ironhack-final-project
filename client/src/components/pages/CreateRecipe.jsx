@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react'
+import React, { useState } from 'react'
 import api from '../../api'
 import categories from '../../../src/categories.json'
 import units from '../../../src/units.json'
@@ -104,8 +104,15 @@ export default function AddRecipe(props) {
   }
 
   function deleteIngredient(index, e) {
-    e.preventDefault()
-    setIngredientList(ingredientList.filter((ingredient, i) => i !== index))
+    // e.preventDefault()
+    // // Solution 1 with SPLICE
+    // let copyIngredientList = [...ingredientList]
+    // copyIngredientList.splice(index, 1) // Remove the element at position indexToRemove
+    // setIngredientList(copyIngredientList) // State Update (setIngredients) MAY BE asynchronous
+    // Solution 2
+    let copyIngredientList = [...ingredientList]
+    setIngredientList(copyIngredientList.filter((ingredient, i) => i !== index))
+    console.log('TCL', ingredientList)
   }
 
   function saveRecipe(e) {
@@ -162,6 +169,7 @@ export default function AddRecipe(props) {
             id="name"
             placeholder="Recipe name"
             value={state.name}
+            //checked={state.checked}
             onChange={handleInputChange}
           />
         </FormGroup>
@@ -217,24 +225,18 @@ export default function AddRecipe(props) {
         </FormGroup>
 
         <Label for="quantity">Ingredients List</Label>
-        <InputGroup>
-          <Input
-            placeholder="Item"
-            name="item"
-            value={ingredient.item}
-            onChange={newIngredient}
-          />
-          <InputGroupAddon addonType="append">
-            <InputGroupText
-              style={{ backgroundColor: 'green', color: 'white' }}
-              onClick={addIngredientList}
-            >
-              Create
-            </InputGroupText>
-          </InputGroupAddon>
-        </InputGroup>
         <Row form>
-          <Col md={3}>
+          <Col md={12}>
+            <Input
+              placeholder="Item"
+              name="item"
+              value={ingredient.item}
+              onChange={newIngredient}
+            />
+          </Col>
+        </Row>
+        <Row form>
+          <Col md={5}>
             {/* <Label for="quantity">Quantity</Label> */}
             <Input
               placeholder="Qty"
@@ -243,7 +245,7 @@ export default function AddRecipe(props) {
               onChange={newIngredient}
             />
           </Col>
-          <Col md={3}>
+          <Col md={5}>
             {/* <Label for="unit">Unit</Label> */}
             <Select
               placeholder="Select unit"
@@ -253,6 +255,11 @@ export default function AddRecipe(props) {
               value={ingredient.unit}
               onChange={changeUnits}
             />
+          </Col>
+          <Col md={2}>
+            <button className="add-ingredient" onClick={addIngredientList}>
+              Add
+            </button>
           </Col>
         </Row>
 
@@ -272,12 +279,12 @@ export default function AddRecipe(props) {
                 <td>{ing.qty}</td>
                 <td>{ing.unit}</td>
                 <td>
-                  <button
+                  <input
+                    type="button"
+                    value="x"
                     onClick={() => deleteIngredient(i)}
-                    className="button-ingredient"
-                  >
-                    x
-                  </button>
+                    className="delete-ingredient"
+                  />
                 </td>
               </tr>
             ))}
@@ -286,7 +293,7 @@ export default function AddRecipe(props) {
               <td>150</td>
               <td>gr</td>
               <td>
-                <button className="button-ingredient">x</button>
+                <button className="delete-ingredient">x</button>
               </td>
             </tr>
           </tbody>
@@ -294,7 +301,7 @@ export default function AddRecipe(props) {
 
         <FormGroup row>
           <Label for="description" sm={2}>
-            Instruction
+            Instructions
           </Label>
           <Col sm={10}>
             <Input

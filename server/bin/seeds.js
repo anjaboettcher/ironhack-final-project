@@ -42,7 +42,7 @@ let recipes = [
       { qty: 1, unit: 'pinch', item: 'black pepper' },
       { qty: 1, unit: 'tbs', item: 'olive oil' },
     ],
-    image: '../../public/images/carbonara.jpg',
+    image: '/images/carbonara.jpg',
     personcount: 2,
     duration: '30 minutes',
     categories: ['Pasta', 'Pork'],
@@ -85,7 +85,7 @@ recipes.push(
       { qty: 1, unit: 'pinch', item: 'black pepper' },
       { qty: 1, unit: 'tbs', item: 'olive oil' },
     ],
-    image: '../../public/images/carbonara.jpg',
+    image: '/images/carbonara.jpg',
     personcount: 2,
     duration: '30 minutes',
     categories: ['Vegetarian'],
@@ -100,6 +100,7 @@ Promise.all([User.deleteMany(), Recipe.deleteMany()])
   .then(() => {
     console.log(`${users.length} users created`)
     console.log(`${recipes.length} recipes created`)
+
     mongoose.disconnect()
   })
   .catch(err => {

@@ -12,6 +12,16 @@ const userSchema = new Schema(
     },
     password: String,
     image: { type: String, default: '/images/default-image-cook.png' },
+    ingredients: [
+      {
+        qty: { type: Number },
+        unit: {
+          type: String,
+          enum: ['gr', 'ml', 'l', 'kg', 'tbs', 'tsp', 'cup', 'pinch', 'units'],
+        },
+        item: { type: String, required: true },
+      },
+    ],
   },
   {
     timestamps: {
