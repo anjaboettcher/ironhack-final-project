@@ -23,8 +23,11 @@ export default function AddRecipe(props) {
     personcount: '',
     duration: '',
     categories: null,
-    isPictureLoading: false,
+    isPictureLoading: false, // TODO
   })
+
+  const [message, setMessage] = useState(null)
+
   const [ingredient, setIngredient] = useState({
     item: '',
     qty: '',
@@ -74,8 +77,6 @@ export default function AddRecipe(props) {
       ...ingredient,
       [e.target.name]: e.target.value,
     })
-    console.log('e.target.name', e.target.name)
-    console.log('ingredient', ingredient)
   }
 
   function changeUnits(e) {
@@ -83,7 +84,6 @@ export default function AddRecipe(props) {
       ...ingredient,
       unit: e,
     })
-    console.log('ingredient', ingredient)
   }
 
   function addIngredientList(e) {
@@ -103,25 +103,15 @@ export default function AddRecipe(props) {
       qty: '',
       unit: null,
     })
-
-    console.log('ingredientList', ingredientList)
   }
 
   function deleteIngredient(index, e) {
-    // e.preventDefault()
-    // // Solution 1 with SPLICE
-    // let copyIngredientList = [...ingredientList]
-    // copyIngredientList.splice(index, 1) // Remove the element at position indexToRemove
-    // setIngredientList(copyIngredientList) // State Update (setIngredients) MAY BE asynchronous
-    // Solution 2
     let copyIngredientList = [...ingredientList]
     setIngredientList(copyIngredientList.filter((ingredient, i) => i !== index))
-    console.log('TCL', ingredientList)
   }
 
   function saveRecipe(e) {
     e.preventDefault()
-    console.log('state', state)
     let savedCategories
     if (state.categories.length === 0) {
       savedCategories = []
@@ -132,21 +122,18 @@ export default function AddRecipe(props) {
       name: state.name,
       description: state.description,
       ingredients: ingredientList,
-      // [qty, unit: item ],
-      // picture: state.picture,
       personcount: state.personcount,
       duration: state.duration,
       categories: savedCategories,
     }
-    console.log('categories', data.categories)
 
-    if (
-      data.name === '' ||
-      data.description === '' ||
-      data.ingredients === null
-    ) {
-      console.log('You have not filled in the list properly')
-    }
+    // if (
+    //   data.name === '' ||
+    //   data.description === '' ||
+    //   data.ingredients === null
+    // ) {
+    //   console.log('You have not filled in the list properly')
+    // }
 
     api
       .addRecipe(data)
@@ -166,16 +153,14 @@ export default function AddRecipe(props) {
       <pre>{JSON.stringify(state, null, 2)}</pre>
       <Form>
         <h2 style={{ color: '#8AB661' }}>Create a new recipe</h2>
-        <img src={state.picture} alt="" />
+        <img className="recipe-picture" src={state.picture} alt="" />
         <FormGroup>
-          <Label for="exampleCustomFileBrowser">
-            File Browser with Custom Label
-          </Label>
+          {/* <Label for="exampleCustomFileBrowser">Picture</Label> */}
           <CustomInput
             type="file"
             id="exampleCustomFileBrowser"
             name="customFile"
-            label="Yo, pick a file!"
+            label="Upload a picture"
             onChange={handleFileInputChange}
           />
         </FormGroup>
@@ -299,7 +284,7 @@ export default function AddRecipe(props) {
               <td>150</td>
               <td>gr</td>
               <td>
-                <button className="delete-ingredient">x</button>
+                <input type="button" value="x" className="delete-ingredient" />
               </td>
             </tr>
           </tbody>
@@ -324,76 +309,7 @@ export default function AddRecipe(props) {
           Save
         </button>
       </Form>
+      {message && <div className="info">{message}</div>}
     </div>
   )
 }
-
-// function addCategoriesFail(e) {
-//   let opts = []
-//   let opt
-//   for (let i = 0; i < e.target.options.length; i++) {
-//     opt = e.target.options[i]
-//     if (opt.selected) {
-//       opts.push(opt.value)
-//     }
-//   }
-//   setState({
-//     ...state,
-//     categories: opts,
-//   })
-//   console.log('TCL state', state.categories)
-// }
-
-// function handleClick(e) {
-//   e.preventDefault()
-//   console.log(state.name, state.description)
-//   let data = {
-//     _owner: state._owner,
-//     _originalRecipe: state._originalRecipe,
-//     name: state.name,
-//     description: state.description,
-//     ingredients: state.ingredients,
-//     // [qty, unit: item ],
-//     picture: state.picture,
-//     personcount: state.personcount,
-//     duration: state.duration,
-//     categories: state.categories,
-//   }
-//   api
-//     .addRecipe(data)
-//     .then(result => {
-//       console.log('SUCCESS!')
-//       setState({
-//         _owner: '',
-//         _originalRecipe: '',
-//         name: '',
-//         description: '',
-//         ingredients: '',
-//         // [qty, unit: item ],
-//         picture: '',
-//         personcount: '',
-//         duration: '',
-//         categories: '',
-//       })
-//       setMessage(`Your recipe '${state.name}' has been created`)
-//       setTimeout(() => {
-//         setMessage(null)
-//       }, 2000)
-//     })
-//     .catch(err => setState({ message: err.toString() }))
-//}
-
-// function addIngredient(e) {
-//   e.preventDefault()
-//   console.log('we are here')
-//   setIngredient([
-//     ...ingredient,
-//     {
-//       item: e.target.name,
-//       qty: '',
-//       unit: '',
-//     },
-//   ])
-//   console.log('e.target.name', e.target.name)
-//   console.log('ingredient', ingredient)
-// }

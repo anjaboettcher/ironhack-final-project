@@ -96,6 +96,7 @@ router.put('/my-list/:ingredientKey', isLoggedIn, (req, res, next) => {
   // })
 })
 
+// To upload the picture of the recipe
 router.post(
   '/upload-picture',
   isLoggedIn,
