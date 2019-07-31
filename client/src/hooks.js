@@ -17,6 +17,7 @@ const { formValues, getInputProps, handleChange } = useForm(initialValues)
 
 // Then to insert a <input>, <textarea> or <select>, it's really easy!
 <input type="text" {...getInputProps('carrot')} />
+
 <select {...getInputProps('lang')}>
   <option value="fr">French</option>
   <option value="en">English</option>

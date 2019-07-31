@@ -33,6 +33,7 @@ export default function AddRecipe(props) {
     qty: '',
     unit: null,
   })
+
   const [ingredientList, setIngredientList] = useState([])
 
   let categoryOptions = []
@@ -54,10 +55,10 @@ export default function AddRecipe(props) {
   function handleFileInputChange(event) {
     let pictureFile = event.target.files[0]
     api.uploadPicture(pictureFile).then(picture => {
-      setState({
+      setState(state => ({
         ...state,
         picture,
-      })
+      }))
     })
   }
 
@@ -72,7 +73,6 @@ export default function AddRecipe(props) {
 
   function newIngredient(e) {
     // e.preventDefault()
-    console.log('we are here')
     setIngredient({
       ...ingredient,
       [e.target.name]: e.target.value,
@@ -88,7 +88,6 @@ export default function AddRecipe(props) {
 
   function addIngredientList(e) {
     e.preventDefault()
-    console.log('we are here')
     setIngredientList([
       ...ingredientList,
       {
@@ -121,6 +120,7 @@ export default function AddRecipe(props) {
     let data = {
       name: state.name,
       description: state.description,
+      picture: state.picture,
       ingredients: ingredientList,
       personcount: state.personcount,
       duration: state.duration,
