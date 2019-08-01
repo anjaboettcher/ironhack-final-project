@@ -45,9 +45,16 @@ router.get('/my-list', isLoggedIn, (req, res, next) => {
   res.json(req.user.ingredients)
 })
 
-router.put('/my-list/:ingredientKey', isLoggedIn, (req, res, next) => {
-  let key = req.params.ingredientKey
-  req.user.ingredients.splice(key, 1)
+router.put('/deleteIngredient', isLoggedIn, (req, res, next) => {
+  let { unit, item } = req.body
+  for (let i = 0; i < req.user.ingredients.length; i++) {
+    if (
+      req.user.ingredients[i].item === item &&
+      req.user.ingredients[i].unit === unit
+    ) {
+      req.user.ingredients.splice(i, 1)
+    }
+  }
   req.user.save().then(() => {
     res.json(req.user.ingredients)
   })

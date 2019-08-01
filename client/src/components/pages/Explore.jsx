@@ -51,9 +51,11 @@ export default function Explore() {
     return String(user._id) !== String(recipe._owner._id)
   }
 
-  function addRecipesToGroceryList(recipeId) {
+  function addRecipesToGroceryList(recipeId, personcount) {
+    //console.log('personcount', personcount)
+    //console.log('recipeId', recipeId)
     api
-      .addIngredients(recipeId)
+      .addIngredients(recipeId, personcount)
       .then(ingredients => {})
       .catch(err => console.log('catch: ', err))
   }
@@ -158,7 +160,9 @@ export default function Explore() {
                       size="sm"
                       block
                       className="recipe-button ml-2"
-                      onClick={() => addRecipesToGroceryList(recipe._id)}
+                      onClick={() =>
+                        addRecipesToGroceryList(recipe._id, recipe.personcount)
+                      }
                     >
                       Add to Grocery List
                     </button>

@@ -17,9 +17,9 @@ export default function MyRecipes() {
     })
   }, [])
 
-  function handleDelete(ingredientKey) {
+  function handleDelete(unit, item) {
     api
-      .deleteIngredient(ingredientKey)
+      .deleteIngredient(unit, item)
       .then(listItems => {
         console.log('TCL: MyRecipes -> info', listItems)
         //console.log("TCL: CrudTodos -> response", response);
@@ -68,6 +68,44 @@ export default function MyRecipes() {
     return result
   }
 
+  function removeDoubles(ingredients) {
+    let newArray = []
+    let mergedcell
+    if (ingredients.length > 0) {
+      mergedcell = ingredients[0]
+    }
+    for (let i = 1; i < ingredients.length; i++) {
+      if (
+        mergedcell.unit === ingredients[i].unit &&
+        mergedcell.item === ingredients[i].item
+      ) {
+        mergedcell = mergedCells(mergedcell, ingredients[i])
+      } else {
+        newArray.push(mergedcell)
+        mergedcell = ingredients[i]
+      }
+    }
+    if (
+      mergedcell.unit !== ingredients[ingredients.length - 1].unit ||
+      mergedcell.item !== ingredients[ingredients.length - 1].item
+    ) {
+      newArray.push(mergedcell)
+    }
+
+    return newArray
+  }
+
+  function mergedCells(cell1, cell2) {
+    let mergedCells
+    mergedCells = {
+      qty: cell1.qty + cell2.qty,
+      unit: cell1.unit,
+      item: cell1.item,
+      checked: cell1.checked,
+    }
+    return mergedCells
+  }
+
   // function sortIngredients(numbers) {
   //   let result = numbers.sort((a, b) => {
   //     if (a.checked < b.checked) {
@@ -102,7 +140,7 @@ export default function MyRecipes() {
         <tbody>
           {!list && <Loader size={10}>Loading...</Loader>}
           {list &&
-            sortIngredients(list)
+            removeDoubles(sortIngredients(list))
               //list
               .map((l, i) => (
                 <tr key={i}>
@@ -122,7 +160,7 @@ export default function MyRecipes() {
                     <Button
                       color="danger"
                       size="sm"
-                      onClick={() => handleDelete(i)}
+                      onClick={() => handleDelete(l.unit, l.item)}
                     >
                       Delete
                     </Button>

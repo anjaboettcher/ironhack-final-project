@@ -35,9 +35,9 @@ export default function MyRecipes() {
     )
   }
 
-  function addRecipesToGroceryList(recipeId) {
+  function addRecipesToGroceryList(recipeId, personcount) {
     api
-      .addIngredients(recipeId)
+      .addIngredients(recipeId, personcount)
       .then(ingredients => {})
       .catch(err => console.log('catch: ', err))
   }
@@ -119,7 +119,9 @@ export default function MyRecipes() {
                 size="sm"
                 block
                 className=" m-0 p-1"
-                onClick={() => addRecipesToGroceryList(recipe._id)}
+                onClick={() =>
+                  addRecipesToGroceryList(recipe._id, recipe.personcount)
+                }
               >
                 Add to List
               </Button>{' '}
