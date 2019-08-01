@@ -4,6 +4,9 @@ import api from '../../api.js'
 
 import { MDBCol } from 'mdbreact'
 import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { faList } from '@fortawesome/free-solid-svg-icons'
 
 export default function Explore() {
   const [recipes, setRecipes] = useState([])
@@ -121,13 +124,16 @@ export default function Explore() {
                 <div class="card-horizontal">
                   <div class="">
                     <Link to={'/recipes/' + recipe._id}>
-                      <img
-                        className=""
-                        alt="error"
-                        width="200px"
-                        height="250px"
-                        src={recipe.picture}
-                      />
+                      <div class="img-square-wrapper">
+                        <img
+                          className=""
+                          alt="error"
+                          width="100%"
+                          max-width="100px"
+                          height="auto"
+                          src={recipe.picture}
+                        />
+                      </div>
                     </Link>
                   </div>
                   <div className="card-body">
@@ -141,34 +147,47 @@ export default function Explore() {
                       <div className="mb-3">
                         <strong>Cook:</strong> {recipe._owner.username}
                         <br />
-                        <strong>Recipe Duration:</strong> {recipe.duration}
+                        <strong>Duration:</strong> {recipe.duration}
                         <br />
                         <strong>Ingredients:</strong>{' '}
                         {recipe.ingredients.length}
                       </div>
                     </Link>
-                    <hr />
-
-                    <button
-                      color="secondary"
-                      block
-                      className="recipe-card-button"
-                      onClick={() => forkThisRecipe(recipe._id)}
-                    >
-                      Fork Recipe
-                    </button>
-                    <button
-                      color="primary"
-                      size="sm"
-                      block
-                      className="recipe-button ml-2"
-                      onClick={() =>
-                        addRecipesToGroceryList(recipe._id, recipe.personcount)
-                      }
-                    >
-                      Grocery List
-                    </button>
                   </div>
+                </div>
+                <div class="card-footer">
+                  <button
+                    color="secondary"
+                    block
+                    className="recipe-card-button mr-2"
+                    onClick={() => forkThisRecipe(recipe._id)}
+                  >
+                    {' '}
+                    <img
+                      src={'../images/fork-green.png'}
+                      alt="fork"
+                      className="img-responsive"
+                      height="20"
+                    />
+                    Fork Recipe
+                  </button>
+                  <button
+                    color="primary"
+                    size="sm"
+                    block
+                    className="recipe-card-button "
+                    onClick={() =>
+                      addRecipesToGroceryList(recipe._id, recipe.personcount)
+                    }
+                  >
+                    {' '}
+                    <FontAwesomeIcon
+                      icon={faList}
+                      size="1x"
+                      className="icon"
+                    />{' '}
+                    Add to grocery list
+                  </button>
                 </div>
               </div>
             </div>
