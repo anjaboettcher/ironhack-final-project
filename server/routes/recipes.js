@@ -93,9 +93,15 @@ router.put(
   isLoggedIn,
   (req, res, next) => {
     let recipeId = req.params.recipeId
+    let { newPersoncount } = req.body
     Recipe.findById(recipeId).then(recipe => {
-      // TODO: improve by merging the ingredients
-      req.user.ingredients.push(...recipe.ingredients)
+      req.user.ingredients.push(
+        ...recipe.ingredients.map(ing => ({
+          qty: ing.qtyPerPerson * newPersoncount,
+          unit: ing.unit,
+          item: ing.item,
+        }))
+      )
       req.user.save().then(() => {
         res.json({
           success: true,
