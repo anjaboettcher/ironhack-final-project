@@ -163,7 +163,6 @@ export default function RecipeDetail(props) {
       .getRecipe(recipeId)
       .then(recipe => {
         setRecipe(recipe)
-        // setIngredients(recipe.ingredients)
       })
       .catch(err => console.log(err))
   }, [recipeId])
@@ -185,13 +184,17 @@ export default function RecipeDetail(props) {
     }
   }
 
-  if (!recipe || !user) return <Loader size={10}>Loading...</Loader>
+  // const ButtonType2 = ({ recipe, user }) => {
+  //   if (!api.isLoggedIn() || recipe._owner._id !== user._id) {
+  //     return (
+  //       <div>
+  //         <AddToMyListButton />
+  //       </div>
+  //     )
+  //   }
+  // }
 
-  // if recipe_owner id === logged in user id else display the other
-  // button
-  // console.log('recipe', recipe)
-  // console.log('TEST TEST TEST recipe-owner-id', recipe._owner._id)
-  // console.log('TEST TEST TEST user', user._id)
+  if (!recipe || !user) return <Loader size={10}>Loading...</Loader>
 
   return (
     <div>
@@ -199,10 +202,10 @@ export default function RecipeDetail(props) {
         <CardImg
           top
           src={recipe && recipe.picture}
-          height="100%"
           max-height="300px"
           width="auto"
           alt="this-recipe-image"
+          className="card-img-top"
         />
         <CardBody>
           <CardTitle>
@@ -243,9 +246,9 @@ export default function RecipeDetail(props) {
             </ListGroupItem>
 
             <FormGroup>
-              <Label for="perosncount">PersonCount</Label>
+              <Label for="personcount">For how many people?</Label>
               <Select
-                id="perosncount"
+                id="personcount"
                 options={NbrOfPeople}
                 value={personcountVariable}
                 onChange={changePersonCount}
@@ -270,6 +273,7 @@ export default function RecipeDetail(props) {
                     </span>
                   ))}
               </div>
+              {/* <ButtonType2 recipe={recipe} user={user} /> */}
             </ListGroup>
             <ListGroupItem className="border-0">
               <h5 style={{ color: '#8AB661' }}>Preparations:</h5>

@@ -21,7 +21,6 @@ export default function Login(props) {
 
   return (
     <Container className="App mt-4">
-      <h2 style={{ color: '#8AB661' }}>LOG IN</h2>
       <Form className="form" onSubmit={handleSubmit}>
         <Col>
           <FormGroup>

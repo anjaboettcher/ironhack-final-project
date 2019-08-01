@@ -20,16 +20,16 @@ export default function Explore() {
   const [user, setUser] = useState(null)
 
   let NbrOfPeople = [
-    { value: 1, label: '1 person' },
-    { value: 2, label: '2 people' },
-    { value: 3, label: '3 people' },
-    { value: 4, label: '4 people' },
-    { value: 5, label: '5 person' },
-    { value: 6, label: '6 people' },
-    { value: 7, label: '7 people' },
-    { value: 8, label: '8 people' },
-    { value: 9, label: '9 people' },
-    { value: 10, label: '10 people' },
+    { value: 1, label: '1' },
+    { value: 2, label: '2' },
+    { value: 3, label: '3' },
+    { value: 4, label: '4' },
+    { value: 5, label: '5' },
+    { value: 6, label: '6' },
+    { value: 7, label: '7' },
+    { value: 8, label: '8' },
+    { value: 9, label: '9' },
+    { value: 10, label: '10' },
   ]
 
   useEffect(() => {
@@ -132,15 +132,6 @@ export default function Explore() {
         </div>
       </MDBCol>
 
-      <FormGroup>
-        <Select
-          id="perosncount"
-          options={NbrOfPeople}
-          value={personcount}
-          onChange={changePersonCount}
-        />
-      </FormGroup>
-
       <div class="container-fluid">
         {filterBySearch(recipes).map((recipe, i) => (
           <div class="row">
@@ -170,6 +161,12 @@ export default function Explore() {
                       <hr />
 
                       <div className="mb-3">
+                        <img
+                          // className="recipe-profile-picture"
+                          alt="error"
+                          src={recipe._owner.image}
+                          style={{ width: '20', height: '20' }}
+                        />
                         <strong>Cook:</strong> {recipe._owner.username}
                         <br />
                         <strong>Duration:</strong> {recipe.duration}
@@ -179,8 +176,8 @@ export default function Explore() {
                       </div>
                     </Link>
                     <hr />
-
-                    <button
+                    {/* DOUBLES */}
+                    {/* <button
                       color="secondary"
                       block
                       className="recipe-card-button"
@@ -198,43 +195,59 @@ export default function Explore() {
                       }
                     >
                       Grocery List
-                    </button>
+                    </button> */}
                   </div>
                 </div>
-                <div class="card-footer">
-                  <button
-                    color="secondary"
-                    block
-                    className="recipe-card-button mr-2"
-                    onClick={() => forkThisRecipe(recipe._id)}
-                  >
-                    {' '}
-                    <img
-                      src={'../images/fork-green.png'}
-                      alt="fork"
-                      className="img-responsive"
-                      height="20"
-                    />
-                    Fork Recipe
-                  </button>
-                  <button
-                    color="primary"
-                    size="sm"
-                    block
-                    className="recipe-card-button "
-                    onClick={() =>
-                      addRecipesToGroceryList(recipe._id, recipe.personcount)
-                    }
-                  >
-                    {' '}
-                    <FontAwesomeIcon
-                      icon={faList}
-                      size="1x"
-                      className="icon"
-                    />{' '}
-                    Add to grocery list
-                  </button>
-                </div>
+                {/* <div class="card-footer">
+                  <div style={{ display: 'flex' }}>
+                    <button
+                      color="secondary"
+                      block
+                      className="recipe-card-button mr-2"
+                      onClick={() => forkThisRecipe(recipe._id)}
+                    >
+                      {' '}
+                      <img
+                        src={'../images/fork-green.png'}
+                        alt="fork"
+                        className="img-responsive"
+                        height="20"
+                      />
+                      Fork Recipe
+                    </button>
+                    <span
+                      className="recipe-card-special-button "
+                      style={{ width: '60px' }}
+                    >
+                      <div style={{}}>
+                        <Select
+                          id="personcount"
+                          options={NbrOfPeople}
+                          value={personcount}
+                          onChange={changePersonCount}
+                        />{' '}
+                      </div>
+                      people
+                    </span>
+                    <button
+                      color="primary"
+                      size="sm"
+                      block
+                      className="recipe-card-button"
+                      onClick={() =>
+                        addRecipesToGroceryList(recipe._id, recipe.personcount)
+                      }
+                    >
+                      {' '}
+                      <FontAwesomeIcon
+                        icon={faList}
+                        size="1x"
+                        className="icon"
+                      />{' '}
+                      Add to grocery list
+                    </button> */}
+                {/* </div> */}
+                {/* </div> */}
               </div>
             </div>
           </div>
