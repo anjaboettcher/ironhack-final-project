@@ -23,7 +23,7 @@ export default function AddRecipe(props) {
     picture: '/images/default-recipe-image.jpg',
     personcount: 4,
     duration: '',
-    categories: null,
+    categories: [],
     isPictureLoading: false, // TODO
   })
 
@@ -32,7 +32,7 @@ export default function AddRecipe(props) {
   const [ingredient, setIngredient] = useState({
     item: '',
     qty: '',
-    unit: null,
+    unit: [],
   })
 
   const [ingredientList, setIngredientList] = useState([])
@@ -68,7 +68,6 @@ export default function AddRecipe(props) {
       ...state,
       categories: e,
     })
-    console.log('setState', setState)
   }
   //e.target.value
   //e.target.checked
@@ -90,6 +89,15 @@ export default function AddRecipe(props) {
 
   function addIngredientList(e) {
     e.preventDefault()
+    if (ingredient.item === '') {
+      setIngredient({ ...ingredient, item: '...' })
+      return
+    }
+    if (ingredient.qty === '' || isNaN(Number(ingredient.qty))) {
+      setIngredient({ ...ingredient, qty: '...' })
+      return
+    }
+
     setIngredientList([
       ...ingredientList,
       {
@@ -103,7 +111,7 @@ export default function AddRecipe(props) {
     setIngredient({
       item: '',
       qty: '',
-      unit: null,
+      unit: [],
     })
     console.log('ingredientList', ingredientList)
   }
@@ -115,6 +123,22 @@ export default function AddRecipe(props) {
 
   function saveRecipe(e) {
     e.preventDefault()
+    if (state.name === '' || state.name === '...') {
+      setState({ ...state, name: '...' })
+      return
+    }
+    if (state.personcount === '' || isNaN(Number(state.personcount))) {
+      setState({ ...state, personcount: '...' })
+      return
+    }
+    if (ingredientList.length === 0) {
+      setIngredient({ ...ingredient, item: '...', qty: '...' })
+      return
+    }
+    if (state.description === '' || state.description === '...') {
+      setState({ ...state, description: '...' })
+      return
+    }
     let savedCategories
     if (state.categories.length === 0) {
       savedCategories = []
@@ -143,6 +167,7 @@ export default function AddRecipe(props) {
       .addRecipe(data)
       .then(result => {
         console.log('SUCCESS!')
+        setMessage(`Your recipe has been created!`)
         props.history.push('/recipes/my-recipes')
         // setMessage(`Your recipe has been created!`)
         // setTimeout(() => {
@@ -169,16 +194,16 @@ export default function AddRecipe(props) {
           />
         </FormGroup>
         <FormGroup>
-          <Label for="name">Name</Label>
+          <Label for="name">Recipe name</Label>
           <Input
             type="text"
             name="name"
             id="name"
-            placeholder="Recipe name"
+            placeholder="es. My awesome recipe!"
             value={state.name}
             //checked={state.checked}
             onChange={handleInputChange}
-            invalid={state.name === ''}
+            invalid={state.name === '...'}
           />
           <FormFeedback>Please choose a name for your recipe</FormFeedback>
         </FormGroup>
@@ -190,10 +215,14 @@ export default function AddRecipe(props) {
                 type="text"
                 name="duration"
                 id="duration"
-                placeholder="Duration"
+                placeholder="es. 45 minutes, half an hour, ..."
                 value={state.duration}
                 onChange={handleInputChange}
+                // invalid={state.duration === ''}
               />
+              <FormFeedback>
+                How long does your recipe take to be cooked?
+              </FormFeedback>
             </FormGroup>
           </Col>
           <Col md={6}>
@@ -203,10 +232,12 @@ export default function AddRecipe(props) {
                 type="text"
                 name="personcount"
                 id="personcount"
-                placeholder="Number of people"
+                placeholder="es. 4"
                 value={state.personcount}
                 onChange={handleInputChange}
+                invalid={state.personcount === '...'}
               />
+              <FormFeedback>Please insert a number</FormFeedback>
             </FormGroup>
           </Col>
         </Row>
@@ -215,6 +246,7 @@ export default function AddRecipe(props) {
           <Label for="category">Categories</Label>
           <Select
             id="category"
+            placeholder="Select categories"
             options={categoryOptions}
             value={state.categories}
             onChange={changeCategories}
@@ -226,11 +258,13 @@ export default function AddRecipe(props) {
         <Row form>
           <Col md={12}>
             <Input
-              placeholder="Item"
+              placeholder="es. Carrots"
               name="item"
               value={ingredient.item}
               onChange={newIngredient}
+              invalid={ingredient.item === '...'}
             />
+            <FormFeedback>Please add your ingredient</FormFeedback>
           </Col>
         </Row>
         <br />
@@ -238,11 +272,13 @@ export default function AddRecipe(props) {
           <Col md={5}>
             {/* <Label for="quantity">Quantity</Label> */}
             <Input
-              placeholder="Qty"
+              placeholder="es. 42"
               name="qty"
               value={ingredient.qty}
               onChange={newIngredient}
+              invalid={ingredient.qty === '...'}
             />
+            <FormFeedback>Please insert a number</FormFeedback>
           </Col>
           <Col md={5}>
             {/* <Label for="unit">Unit</Label> */}
@@ -307,9 +343,12 @@ export default function AddRecipe(props) {
               type="textarea"
               name="description"
               id="description"
+              placeholder="es. De gustibus..."
               value={state.description}
               onChange={handleInputChange}
+              invalid={state.description === '...'}
             />
+            <FormFeedback>Please explain the preparation</FormFeedback>
           </Col>
         </FormGroup>
 

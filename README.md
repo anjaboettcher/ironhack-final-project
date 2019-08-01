@@ -29,18 +29,17 @@ Thanks for reading :fork*and_knife: \_Anja, Giulia and Seb*
 
 ## Useful info
 
-### To install before running
-
-```
-$ npm install dotenv
-$ npm install bootstrap
-$ npm install --save cloudinary multer-storage-cloudinary multer
-```
-
 ### To run the project
+
+To execute the seeds file, run from the root of the project:
 
 ```
 $ node bin/seeds.js
+```
+
+And then, in two different consoles, from the root of the project:
+
+```
 $ npm run dev:server
 $ npm run dev:client
 ```
