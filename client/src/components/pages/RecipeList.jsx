@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 //import axios from 'axios'
 import api from '../../api.js'
-import { Table, Button, Container } from 'reactstrap'
+import { Link } from 'react-router-dom'
+import { Table, Container, Button } from 'reactstrap'
 import Loader from 'react-dots-loader'
 import Checkbox from 'react-simple-checkbox'
 
@@ -17,9 +18,9 @@ export default function MyRecipes() {
     })
   }, [])
 
-  function handleDelete(ingredientKey) {
+  function handleDelete(unit, item) {
     api
-      .deleteIngredient(ingredientKey)
+      .deleteIngredient(unit, item)
       .then(listItems => {
         console.log('TCL: MyRecipes -> info', listItems)
         //console.log("TCL: CrudTodos -> response", response);
@@ -68,6 +69,44 @@ export default function MyRecipes() {
     return result
   }
 
+  function removeDoubles(ingredients) {
+    let newArray = []
+    let mergedcell
+    if (ingredients.length > 0) {
+      mergedcell = ingredients[0]
+    }
+    for (let i = 1; i < ingredients.length; i++) {
+      if (
+        mergedcell.unit === ingredients[i].unit &&
+        mergedcell.item === ingredients[i].item
+      ) {
+        mergedcell = mergedCells(mergedcell, ingredients[i])
+      } else {
+        newArray.push(mergedcell)
+        mergedcell = ingredients[i]
+      }
+    }
+    if (
+      mergedcell.unit !== ingredients[ingredients.length - 1].unit ||
+      mergedcell.item !== ingredients[ingredients.length - 1].item
+    ) {
+      newArray.push(mergedcell)
+    }
+
+    return newArray
+  }
+
+  function mergedCells(cell1, cell2) {
+    let mergedCells
+    mergedCells = {
+      qty: cell1.qty + cell2.qty,
+      unit: cell1.unit,
+      item: cell1.item,
+      checked: cell1.checked,
+    }
+    return mergedCells
+  }
+
   // function sortIngredients(numbers) {
   //   let result = numbers.sort((a, b) => {
   //     if (a.checked < b.checked) {
@@ -78,7 +117,15 @@ export default function MyRecipes() {
   //   return result
   // }
 
-  if (list.length === 0) return <h5>You havent added any ingredients</h5>
+  if (list.length === 0)
+    return (
+      <Container>
+        <h5 className="mt-4">
+          You havent added any ingredients to your grocery list yet.{' '}
+          <Link to={'recipes/explore'}>Start exploring recipes now!</Link>
+        </h5>
+      </Container>
+    )
 
   return (
     <Container>
@@ -102,7 +149,33 @@ export default function MyRecipes() {
         <tbody>
           {!list && <Loader size={10}>Loading...</Loader>}
           {list &&
-            sortIngredients(list)
+            // // sortIngredients(list)
+            // list.map((l, i) => (
+            //   <tr key={i}>
+            //     <th scope="row" className="ClickablePicture">
+            //       <Checkbox
+            //         size="3"
+            //         checked={l.checked}
+            //         color="#8ab661"
+            //         onChange={() => handleClick(i)}
+            //       />
+            //     </th>
+            //     <td className="align-middle">
+            //       {l.qty} {l.unit}
+            //     </td>
+            //     <td className="align-middle">{l.item}</td>
+            //     <td>
+            //       <button
+            //         className="delete-button"
+            //         size="sm"
+            //         onClick={() => handleDelete(i)}
+            //       >
+            //         Delete
+            //       </button>
+            //     </td>
+            //   </tr>
+            // ))}
+            removeDoubles(sortIngredients(list))
               //list
               .map((l, i) => (
                 <tr key={i}>
@@ -122,7 +195,7 @@ export default function MyRecipes() {
                     <Button
                       color="danger"
                       size="sm"
-                      onClick={() => handleDelete(i)}
+                      onClick={() => handleDelete(l.unit, l.item)}
                     >
                       Delete
                     </Button>
@@ -131,9 +204,13 @@ export default function MyRecipes() {
               ))}
         </tbody>
       </Table>
-      <Button color="danger" size="sm" onClick={() => handleDeleteWholeList()}>
+      <button
+        className="delete-button align-center"
+        style={{ width: '50%' }}
+        onClick={() => handleDeleteWholeList()}
+      >
         Delete all
-      </Button>
+      </button>
     </Container>
   )
 }

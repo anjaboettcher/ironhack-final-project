@@ -17,6 +17,7 @@ function MainNavbar(props) {
   function toggle() {
     setIsOpen(!isOpen)
   }
+
   function handleLogoutClick(e) {
     api.logout()
   }
@@ -36,18 +37,51 @@ function MainNavbar(props) {
     links.push({ to: '/', text: 'Logout', onClick: handleLogoutClick })
   }
 
+  const getTitle = () => {
+    const titles = {
+      '/recipes/create-recipe': ' Create recipe',
+      '/recipes/my-recipes': ' My recipes',
+      '/recipes/explore': ' Explore',
+      '/my-list': ' Grocery List',
+      '/news': ' News',
+      '/profile': ' Profile',
+      '/logout': ' Logout',
+      '/signup': ' Sign Up',
+      '/login': ' Log In',
+      '/recipes/*': ' Recipe Detail',
+    }
+
+    const path = window.location.pathname
+    const match = Object.keys(titles).find(key => !!path.match(key))
+    return titles[match]
+  }
+
   return (
     <Navbar
       style={{
-        backgroundColor: '#FD8664',
+        backgroundColor: '#F6F6F1',
         width: '100%',
         boxShadow: 'none',
       }}
-      dark
+      light
       expand="sm"
     >
-      <NavbarBrand tag={Link} to="/">
-        {/* {{ title }} */}
+      <NavbarBrand
+        tag={Link}
+        to="/"
+        style={{
+          fontWeight: 'semi-bold',
+          textTransform: 'uppercase',
+          letterSpacing: '2px',
+        }}
+      >
+        <img
+          src={'../images/fork-test-black.png'}
+          alt="fork"
+          className="img-responsive"
+          height="30"
+        />
+        {getTitle()}
       </NavbarBrand>
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>

@@ -102,7 +102,8 @@ export default {
   },
 
   addIngredients(recipeId, newPersoncount) {
-    console.log('seb2', newPersoncount)
+    console.log('recipeId', recipeId)
+    console.log('newPersoncount', newPersoncount)
     return service
       .put(`recipes/${recipeId}/add-ingredients-to-my-list`, { newPersoncount })
       .then(res => res.data)
@@ -152,9 +153,9 @@ export default {
       .catch(errHandler)
   },
 
-  deleteIngredient(ingredientKey) {
+  deleteIngredient(unit, item) {
     return service
-      .put(`/my-list/${ingredientKey}`)
+      .put(`/deleteIngredient`, { unit, item })
       .then(res => res.data)
       .catch(errHandler)
   },
