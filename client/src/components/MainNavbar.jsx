@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import api from '../api'
 import { Link, NavLink as NLink } from 'react-router-dom'
 import { withRouter } from 'react-router'
+import forkTestBlackImg from '../images/fork-test-black.png'
 import {
   Collapse,
   Navbar,
@@ -76,7 +77,7 @@ function MainNavbar(props) {
         }}
       >
         <img
-          src={'../images/fork-test-black.png'}
+          src={forkTestBlackImg}
           alt="fork"
           className="img-responsive"
           height="30"
