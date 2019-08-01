@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import api from '../api'
 import { Link, NavLink as NLink } from 'react-router-dom'
 import { withRouter } from 'react-router'
@@ -14,14 +14,28 @@ import {
 } from 'reactstrap'
 
 function MainNavbar(props) {
+  const burgerRef = useRef(null)
   const [isOpen, setIsOpen] = useState(false)
   function toggle() {
-    setIsOpen(!isOpen)
+    setTimeout(() => {
+      setIsOpen(!isOpen)
+    }, 1)
   }
 
   function handleLogoutClick(e) {
     api.logout()
   }
+
+  useEffect(() => {
+    window.onclick = e => {
+      let elt = e.target
+      console.log('window.onclick', e, burgerRef.current)
+      setIsOpen(isOpen => {
+        return false
+      })
+    }
+    return () => {}
+  }, [])
 
   // {api.isLoggedIn() ? <Route path="/add-library" component={AddLibrary} /> : <Route path="/add-library" component={Login} />}
 
@@ -85,7 +99,9 @@ function MainNavbar(props) {
         />
         {getTitle()}
       </NavbarBrand>
-      <NavbarToggler onClick={toggle} />
+      <div ref={burgerRef}>
+        <NavbarToggler onClick={toggle} />
+      </div>
       <Collapse isOpen={isOpen} navbar>
         <Nav className="ml-auto" style={{ boxShadow: 'none' }} navbar>
           {links.map(link => (
