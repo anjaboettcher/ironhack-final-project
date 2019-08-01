@@ -1,4 +1,4 @@
-![logo_feed_your_plant](https://i.postimg.cc/MTnPBYQN/plantreminder.png)
+<!-- ![logo_feed_your_plant](https://i.postimg.cc/MTnPBYQN/plantreminder.png) -->
 
 # Foodify / Fork it!
 
@@ -24,7 +24,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 4. Postman
 5. Multer, Cloudinary
 
-Thanks for reading :fork*and_knife: \_Anja, Giulia and Seb*
+Thanks for reading :fork_and_knife: _Anja, Giulia and Seb_
 
 ## Useful info
 
