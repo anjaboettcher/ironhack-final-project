@@ -25,6 +25,16 @@ let users = [
     email: 'bob@gmail.com',
     password: bcrypt.hashSync('bob', bcrypt.genSaltSync(bcryptSalt)),
   }),
+  new User({
+    username: 'Jamie Oliver',
+    email: 'jamie@gmail.com',
+    password: bcrypt.hashSync('jamie', bcrypt.genSaltSync(bcryptSalt)),
+  }),
+  new User({
+    username: 'mum',
+    email: 'mum@gmail.com',
+    password: bcrypt.hashSync('mum', bcrypt.genSaltSync(bcryptSalt)),
+  }),
 ]
 
 let recipes = [
@@ -42,15 +52,6 @@ let recipes = [
       { qtyPerPerson: 0.5, qty: 1, unit: 'pinch', item: 'black pepper' },
       { qtyPerPerson: 0.5, qty: 1, unit: 'tbs', item: 'olive oil' },
     ],
-    // ingredientsPerPerson: [
-    //   { qty: 100, unit: 'gr', item: 'pancetta' },
-    //   { qty: 1, item: 'eggs' },
-    //   { qty: 100, unit: 'gr', item: 'pasta' },
-    //   { qty: 100, unit: 'gr', item: 'parmesan' },
-    //   { qty: 250, unit: 'ml', item: 'water' },
-    //   { qty: 0.5, unit: 'pinch', item: 'black pepper' },
-    //   { qty: 0.5, unit: 'tbs', item: 'olive oil' },
-    // ],
     picture: '/images/carbonara.jpg',
     personcount: 2,
     duration: '30 minutes',
@@ -71,24 +72,11 @@ let recipes = [
       { qtyPerPerson: 0.25, qty: 1, unit: 'pinch', item: 'Fleur de Sel' },
       { qtyPerPerson: 0.25, qty: 1, unit: 'tbs', item: 'olive oil' },
     ],
-    // ingredientsPerPerson: [
-    //   { qty: 250, unit: 'g', item: 'tomatoes' },
-    //   { qty: 0.5, item: 'onions' },
-    //   { qty: 0.25, item: 'dried oregano' },
-    //   { qty: 0.25, item: 'fresh mint' },
-    //   { qty: 0.25, item: 'fresh cilandro' },
-    //   { qty: 50, unit: 'gr', item: 'parmesan' },
-    //   { qty: 0.25, unit: 'pinch', item: 'Fleur de Sel' },
-    //   { qty: 0.25, unit: 'tbs', item: 'olive oil' },
-    // ],
     picture: '/images/alvgarve-mint-salad.jpg',
     personcount: 4,
     duration: '20 minutes',
     categories: ['Salads'],
   }),
-]
-
-recipes.push(
   new Recipe({
     _owner: users[1]._id,
     name: 'Spaghetti Carbonara Vegetarian',
@@ -107,8 +95,205 @@ recipes.push(
     personcount: 2,
     duration: '30 minutes',
     categories: ['Vegetarian'],
-  })
-)
+  }),
+  new Recipe({
+    _owner: users[2]._id,
+    name: 'Broccoli & anchovy orecchiette',
+    description: `Using a small knife, trim round the broccoli to remove the dark green florets from the main stalks and put them to one side. Peel the stalks, trim off the dry end and throw this away. Peel and chop the garlic.
+    Finely chop the broccoli stalk and put into a large pan with the garlic, anchovies and half the butter. Crumble in the chilli, cover with a lid and cook slowly for 8 to 10 minutes while you cook the pasta in boiling salted water according to the packet instructions.
+    Something I like to do which is slightly different (but better, I’d like to think) is to cook the broccoli florets with the pasta for the last 4 minutes – this makes them soft enough to eat but leaves them with great colour and texture.
+    Drain the pasta and broccoli, saving a little of the cooking water, then toss into the other pan. Remove the pan from the heat.
+    Season to taste with sea salt, black pepper, the rest of the butter and finely grate in a large handful of Parmesan. Mix well, adding a little of the cooking water, to loosen, if needed, and make it shine.
+    Serve immediately, sprinkling with another good handful of finely grated Parmesan.`,
+    ingredients: [
+      { qtyPerPerson: 0.3, qty: 2, unit: 'units', item: 'broccoli' },
+      { qtyPerPerson: 1, qty: 2, item: 'garlic' },
+      { qtyPerPerson: 8 / 6, qty: 8, unit: 'gr', item: 'anchovy fillets' },
+      { qtyPerPerson: 4 / 6, qty: 4, unit: 'tsp', item: 'butter' },
+      {
+        qtyPerPerson: 4 / 6,
+        qty: 4,
+        unit: 'units',
+        item: 'dried red chillies',
+      },
+      { qtyPerPerson: 450 / 6, qty: 450, unit: 'pinch', item: 'black pepper' },
+      { qtyPerPerson: 1, qty: 1, unit: 'units', item: 'parmesan cheese' },
+    ],
+    picture: '/images/pastaBroccoli.webp',
+    personcount: 6,
+    duration: '20 minutes',
+    categories: ['Vegetarian', 'Brunch', 'Pasta', 'Italian'],
+  }),
+
+  new Recipe({
+    _owner: users[2]._id,
+    name: 'Chicken noodle stir-fry',
+    description: `Pick the coriander leaves and finely slice the stalks, then keep aside for later. Peel and finely slice the garlic, then peel and matchstick the ginger.
+    Trim and finely slice the spring onions, deseed and finely slice the chilli and cut the lime into wedges. Trim, peel and thinly slice the carrots at an angle.
+    Cut the broccoli into small florets, then finely shred the stalk, discarding any gnarly bits. Cut the chicken into 1cm strips.
+    Cook the noodles according to packet instructions, then drain and refresh under cold water. Drain again, toss in a little oil and put to one side. Lightly toast the cashew nuts in a non-stick frying pan until golden, then tip onto a plate to cool.
+    Heat 1 tablespoon of vegetable oil in a large frying pan or wok. Season the chicken with a pinch of pepper, then add to the pan and stir-fry for 2 to 3 minutes, or until golden. Add the coriander stalks, garlic and ginger and cook for a further minute.
+    Add the spring onions, carrots and broccoli and stir-fry for a further 2 minutes, then add the cooked noodles. Keep stir-frying until the noodles are warm and the chicken is cooked through. Stir through the soy and fish sauces, then remove from the heat.
+    Divide between bowls, sprinkle over the nuts, sliced chilli and the reserved coriander leaves, then serve with the lime wedges for squeezing over.`,
+    ingredients: [
+      { qtyPerPerson: 0.125, qty: 0.5, unit: 'bunch', item: 'coriander' },
+      { qtyPerPerson: 0.75, qty: 3, unit: 'units', item: 'garlic' },
+      { qtyPerPerson: 1.25, qty: 5, unit: 'cm', item: 'ginger' },
+      { qtyPerPerson: 0.25, qty: 1, unit: 'bunch', item: 'spring onions' },
+      { qtyPerPerson: 0.25, qty: 1, unit: 'units', item: 'red chilli' },
+      { qtyPerPerson: 0.25, qty: 1, unit: 'units', item: 'lime' },
+      { qtyPerPerson: 0.5, qty: 2, unit: 'units', item: 'carrots' },
+      { qtyPerPerson: 0.25, qty: 1, unit: 'units', item: 'broccoli' },
+      { qtyPerPerson: 0.5, qty: 2, unit: 'units', item: 'chicken breasts' },
+      { qtyPerPerson: 62.5, qty: 250, unit: 'gr', item: 'egg noodles' },
+      { qtyPerPerson: 12.5, qty: 50, unit: 'gr', item: 'cashew nuts' },
+      { qtyPerPerson: 1.5, qty: 6, unit: 'tsp', item: 'vegetable oil' },
+      { qtyPerPerson: 1.5, qty: 6, unit: 'pinch', item: 'black pepper' },
+      { qtyPerPerson: 0.5, qty: 2, unit: 'tsp', item: 'soy sauce' },
+      { qtyPerPerson: 0.25, qty: 1, unit: 'tsp', item: 'fish sauce' },
+    ],
+    picture: '/images/JamieNoodles.webp',
+    personcount: 4,
+    duration: '40 minutes',
+    categories: ['Vegetarian', 'Noodles', 'Brunch'],
+  }),
+  new Recipe({
+    _owner: users[2]._id,
+    name: 'Asian chicken rice balls & broth',
+    description: `Cook the rice according to the packet instructions. Drain and leave to cool, then chill until needed.
+    Pick half of the coriander leaves, pop them in a bowl of ice-cold water and set aside. Put the remaining leaves in a food processor along with the cooled rice.
+    Thinly slice the spring onions. Roughly chop the chicken, bash and roughly chop the lemongrass, then peel and roughly chop the ginger. Peel the garlic.
+    Place it all into the food processor with the kaffir lime leaves (remove the stems) and pulse until smooth.
+    Tip the mixture onto a board. With wet hands, divide it into 16 pieces and roll each into a ball. Place them on a plate and chill, covered, until needed.
+    Place a large casserole pan over a medium-high heat and add a splash of sunflower oil. Fry the rice balls for 5 minutes, or until golden brown all over.
+    Peel the prawns, using a sharp knife to remove any black bits, then add to the pan and stir-fry for 1 minute. Stir in the miso paste and pour in 1.2 litres of boiling water. Simmer for 10 minutes.
+    Cut each pak choi into 6 pieces, then halve the mangetout lengthways. Add them to the pan for the last 2 minutes. Stir in the beansprouts for the last 30 seconds and season with a splash of soy sauce.
+    Thinly slice the remaining spring onions and finely slice the chilli. Divide the broth, balls, veg and prawns between four warmed bowls. Sprinkle over the spring onions, chilli and drained coriander and serve immediately with lime wedges.`,
+    ingredients: [
+      { qtyPerPerson: 32.5, qty: 130, unit: 'gr', item: 'brown rice' },
+      { qtyPerPerson: 0.25, qty: 1, unit: 'bunch', item: 'coriander' },
+      { qtyPerPerson: 1.5, qty: 6, unit: 'units', item: 'spring onions' },
+      { qtyPerPerson: 0.25, qty: 1, unit: 'units', item: 'lemongrass stick' },
+      { qtyPerPerson: 1.25, qty: 5, unit: 'cm', item: 'ginger' },
+      { qtyPerPerson: 0.5, qty: 2, unit: 'units', item: 'garlic clove' },
+      { qtyPerPerson: 1, qty: 4, unit: 'units', item: 'lime leaves' },
+      { qtyPerPerson: 1, qty: 4, unit: 'tbs', item: 'sunflower oil' },
+      { qtyPerPerson: 2, qty: 8, unit: 'units', item: 'king prawns' },
+      { qtyPerPerson: 0.625, qty: 2.5, unit: 'tbs', item: 'miso paste' },
+      { qtyPerPerson: 0.5, qty: 2, unit: 'units', item: 'pak choi' },
+      { qtyPerPerson: 62.5, qty: 250, unit: 'gr', item: 'mangetout' },
+      { qtyPerPerson: 0.25, qty: 1, unit: 'bunch', item: 'beansprouts' },
+      { qtyPerPerson: 1, qty: 4, unit: 'tbs', item: 'soy sauce' },
+      { qtyPerPerson: 0.25, qty: 1, unit: 'units', item: 'red chilli' },
+      { qtyPerPerson: 0.25, qty: 1, unit: 'units', item: 'lime' },
+    ],
+    picture: '/images/asianGreenSoap.webp',
+    personcount: 4,
+    duration: '45 minutes',
+    categories: ['Vegetarian'],
+  }),
+  new Recipe({
+    _owner: users[2]._id,
+    name: 'Chocolate & salted caramel cake',
+    description: `Preheat the oven to 200C/180C Fan/Gas 6. Grease and line two 20cm/8in round cake tins with baking paper.
+    Place the flour, cocoa, sugar, eggs, milk, butter, melted dark chocolate and vanilla in a large bowl and whisk until smooth.
+    Evenly divide the mixture between the tins and bake for 35–40 minutes, or until cooked through and a skewer inserted into the middle of each cake comes out clean. Leave to cool slightly in the tins before turning out onto wire racks to cool completely.
+    Place the soured cream and melted milk chocolate in a large bowl. Stir to combine and refrigerate for 10 minutes, or until the ganache is a firm, spreadable consistency.
+    Place one of the cakes on a cake stand or plate and trim the top so it is flat. Spread the top of the cake with half of the ganache. Top with the remaining cake and cover the top of that cake with the rest of the ganache. Sprinkle the salt over the top of the cake.`,
+    ingredients: [
+      { qtyPerPerson: 37.5, qty: 375, unit: 'gr', item: 'self-raising flour' },
+      { qtyPerPerson: 0.5, qty: 50, unit: 'gr', item: 'cocoa powder' },
+      { qtyPerPerson: 32.5, qty: 325, unit: 'gr', item: 'castar sugar' },
+      { qtyPerPerson: 0.4, qty: 4, unit: 'units', item: 'eggs' },
+      { qtyPerPerson: 37.5, qty: 375, unit: 'ml', item: 'milk' },
+      { qtyPerPerson: 25, qty: 250, unit: 'gr', item: 'butter' },
+      { qtyPerPerson: 20, qty: 200, unit: 'gr', item: 'dark chocolate' },
+      { qtyPerPerson: 0.2, qty: 2, unit: 'tsp', item: 'vanilla extract' },
+      { qtyPerPerson: 25, qty: 250, unit: 'gr', item: 'soured cream' },
+      { qtyPerPerson: 40, qty: 400, unit: 'gr', item: 'milk chocolate' },
+      { qtyPerPerson: 0.2, qty: 2, unit: 'tsp', item: 'sea salt' },
+    ],
+    picture: '/images/JamieOlliverChocolateCake.jpg',
+    personcount: 10,
+    duration: '30 minutes',
+    categories: ['Desserts'],
+  }),
+  new Recipe({
+    _owner: users[0]._id,
+    name: 'Chilean Sea Bass with Lemon Parmesan Cream Sauce Print This',
+    description: `Begin by seasoning the sea bass on both sides with sea salt, black pepper and Creole seasoning and set to the side.
+    Pre-heat cooking pan to medium heat and add butter. Once the butter melts, add minced garlic and cook garlic for 1 minute. Add the spinach and pour 1/4 cup of heavy cream over the spinach. Cook spinach just until it begins to wilt but do not over cook. Remove from heat.
+    Tear 2 large pieces of foil and add half of the slightly cooked spinach in the center of each sheet. Place the sea bass over the spinach and seal the foil together so the fish can steam.
+    Pre-heat oven to 400 degrees and cook the fish for 12 minutes within the foil on a baking sheet to prevent leakage. Set to the side when done.
+    While the fish is cooking, pre-heat separate cooking pan to medium heat and add butter. Once the butter melts, add flour, minced garlic and allow to cook for 1 to 2 minutes. Add wine and chicken broth and cook for 3 minutes. Add the heavy whipping cream, parmesan cheese, garlic powder, oregano, black pepper and sea salt.
+    Zest the skin of the lemon into the sauce and slice the lemon in half and squeeze both halves of juice into the sauce. Cook on low/medium heat until it binds together.
+    Remove the cooked fish and spinach from the foil. Pour on the sauce. Serve hot.`,
+    ingredients: [
+      { qtyPerPerson: 225, qty: 450, unit: 'gr', item: 'SeaBass' },
+      { qtyPerPerson: 170, qty: 340, unit: `gr`, item: 'Fresh Spinach' },
+      {
+        qtyPerPerson: 1 / 8,
+        qty: 1 / 4,
+        unit: 'cup',
+        item: 'Heavy Whipping Cream',
+      },
+      { qtyPerPerson: 1, qty: 2, unit: 'tsp', item: 'Minced Garlic' },
+      { qtyPerPerson: 0.5, qty: 1, unit: 'tsp', item: 'BlackPepper' },
+      { qtyPerPerson: 0.5, qty: 1, unit: 'tsp', item: 'CreoleSeasoning' },
+      { qtyPerPerson: 0.5, qty: 1, unit: 'tbs', item: 'Salt' },
+      { qtyPerPerson: 1, qty: 2, unit: 'tbs', item: 'Butter' },
+      { qtyPerPerson: 100, qty: 200, unit: 'ml', item: 'Lemon Parmesan Sauce' },
+    ],
+    picture: '/images/Sea_Bass.jpg',
+    personcount: 2,
+    duration: '15 minutes',
+    categories: ['Fish', 'Seefood'],
+  }),
+  new Recipe({
+    _owner: users[0]._id,
+    name: 'Smoked Salmon and Asparagus Linguine',
+    description: `Cook pasta according to directions, Place asparagus in a dish with a small amount of water, cover and microwave on high for 2 minutes. Cut asparagus into pieces. Place cream and chives in frying pan and bring to a gentle simmer, stirring.
+    Add salmon and asparagus, and warm. Fold sauce through pasta and serve with a salad.`,
+    ingredients: [
+      { qtyPerPerson: 75, qty: 300, unit: 'gr', item: 'linguine pasta' },
+      { qtyPerPerson: 3, qty: 12, unit: 'units', item: 'asparagus' },
+      { qtyPerPerson: 0.1875, qty: 3 / 4, unit: 'cup', item: 'light cream' },
+      { qtyPerPerson: 1, qty: 4, unit: 'tbs', item: 'fresh chives' },
+      { qtyPerPerson: 50, qty: 200, unit: 'gr', item: 'smoked salmon' },
+    ],
+    picture: '/images/spagetiSalmon.jpg',
+    personcount: 4,
+    duration: '25 minutes',
+    categories: ['Pasta', 'Seefood'],
+  }),
+  new Recipe({
+    _owner: users[0]._id,
+    name: 'Grilled salmon with avocado, feta and pumpkin seeds',
+    description: `● Preheat your grill to maximum. Drizzle a little olive oil over the skin side of the salmon, place on the grill pan or a baking tray and slide under the hot grill. Cook for 6 minutes on the skin side, before carefully flipping and grilling for a further 4 minutes. Turn the grill off and leave the salmon to keep warm until you’re ready to eat.
+
+    ● While the salmon is cooking, tip the pumpkin seeds into a dry frying pan and toast over a high heat for about 2 minutes, or until they start turning brown and popping. Season with a little salt and leave in the pan.
+    
+    ● Using the back of a fork, break up the avocado in a bowl. Add the onion, sesame oil and coriander. Mix the whole lot together until the ingredients are well combined.
+    
+    ● Slide your salmon on to a plate, removing the skin as you go. Pile up the guacamole, slice and scatter over the feta, and finish with the toasted pumpkin seeds, a pile of watercress and a squeeze of lime juice, if using.`,
+    ingredients: [
+      { qtyPerPerson: 2, qty: 2, unit: 'tbs', item: 'olive oil' },
+      { qtyPerPerson: 2, qty: 2, unit: 'tbs', item: 'pumpkin seeds' },
+      { qtyPerPerson: 1, qty: 1, unit: 'pinch', item: 'salt' },
+      { qtyPerPerson: 1, qty: 1, unit: 'units', item: 'avacado' },
+      { qtyPerPerson: 1 / 4, qty: 1 / 4, unit: 'units', item: 'red onion' },
+      { qtyPerPerson: 2, qty: 2, unit: 'tsp', item: 'sesame oil' },
+      { qtyPerPerson: 1, qty: 1, unit: 'tbs', item: 'chopped coriander' },
+      { qtyPerPerson: 40, qty: 40, unit: 'gr', item: 'feta' },
+      { qtyPerPerson: 1, qty: 1, unit: 'bunch', item: 'watercress' },
+      { qtyPerPerson: 1, qty: 1, unit: 'units', item: 'lime' },
+    ],
+    picture: '/images/salmonSalad.jpg',
+    personcount: 1,
+    duration: '15 minutes',
+    categories: ['Salads', 'Seefood'],
+  }),
+]
 
 Promise.all([User.deleteMany(), Recipe.deleteMany()])
   .then(() => {

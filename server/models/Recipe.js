@@ -26,7 +26,20 @@ const recipeSchema = new Schema(
         qty: { type: Number },
         unit: {
           type: String,
-          enum: ['gr', 'kg', 'ml', 'l', 'tbs', 'tsp', 'cup', 'pinch', 'units'],
+          enum: [
+            'gr',
+            'kg',
+            'ml',
+            'l',
+            'tbs',
+            'tsp',
+            'cup',
+            'pinch',
+            'bunch',
+            'cm',
+            'units',
+            'n/a',
+          ],
         },
         item: {
           type: String,
