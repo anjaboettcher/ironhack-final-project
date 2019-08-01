@@ -101,9 +101,10 @@ export default {
       .catch(errHandler)
   },
 
-  addIngredients(recipeId) {
+  addIngredients(recipeId, newPersoncount) {
+    console.log('seb2', newPersoncount)
     return service
-      .put(`recipes/${recipeId}/add-ingredients-to-my-list`)
+      .put(`recipes/${recipeId}/add-ingredients-to-my-list`, { newPersoncount })
       .then(res => res.data)
       .catch(errHandler)
   },

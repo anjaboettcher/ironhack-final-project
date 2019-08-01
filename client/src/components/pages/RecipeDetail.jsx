@@ -65,8 +65,8 @@ export default function RecipeDetail(props) {
     { value: 6, label: '6 people' },
     { value: 7, label: '7 people' },
     { value: 8, label: '8 people' },
-    { value: 9, label: '8 people' },
-    { value: 10, label: '8 people' },
+    { value: 9, label: '9 people' },
+    { value: 10, label: '10 people' },
   ]
 
   function changePersonCount(e) {
@@ -82,7 +82,11 @@ export default function RecipeDetail(props) {
     setRecipe({
       ...recipe,
     })
-    //api.
+    // let body = {
+    //   ingredients: recipe.ingredientList,
+    //   personcount: recipe.personcount,
+    // }
+    // api.editRecipe(recipe.id, body)
 
     console.log('seb')
     console.log('setRecipe', setRecipe)
@@ -112,7 +116,7 @@ export default function RecipeDetail(props) {
   function addRecipesToGroceryList(recipeId) {
     console.log('TEST11111111', recipeId)
     api
-      .addIngredients(recipeId)
+      .addIngredients(recipeId, recipe.personcount) // Edit here unsure
       .then(ingredients => {
         console.log('done...')
         console.log('recipeId', recipeId, ingredients)
@@ -141,7 +145,7 @@ export default function RecipeDetail(props) {
       className="my-4 recipe-button"
       onClick={() => addRecipesToGroceryList(recipe._id)}
     >
-      Add to list
+      Add to Grocery List
     </button>
   )
   const DeleteButton = props => (

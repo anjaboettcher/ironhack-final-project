@@ -51,6 +51,23 @@ export default function MyRecipes() {
     setList([...list])
   }
 
+  function sortIngredients(numbers) {
+    let result
+    result = numbers
+      .sort((a, b) => {
+        if (String(a.unit) < String(b.unit)) {
+          return -1
+        } else return 1
+      })
+      .sort((a, b) => {
+        if (String(a.item) < String(b.item)) {
+          return -1
+        } else return 1
+      })
+
+    return result
+  }
+
   // function sortIngredients(numbers) {
   //   let result = numbers.sort((a, b) => {
   //     if (a.checked < b.checked) {
@@ -85,32 +102,33 @@ export default function MyRecipes() {
         <tbody>
           {!list && <Loader size={10}>Loading...</Loader>}
           {list &&
-            // sortIngredients(list)
-            list.map((l, i) => (
-              <tr key={i}>
-                <th scope="row" className="ClickablePicture">
-                  <Checkbox
-                    size="3"
-                    checked={l.checked}
-                    color="#8ab661"
-                    onChange={() => handleClick(i)}
-                  />
-                </th>
-                <td>
-                  {l.qty} {l.unit}
-                </td>
-                <td>{l.item}</td>
-                <td>
-                  <Button
-                    color="danger"
-                    size="sm"
-                    onClick={() => handleDelete(i)}
-                  >
-                    Delete
-                  </Button>
-                </td>
-              </tr>
-            ))}
+            sortIngredients(list)
+              //list
+              .map((l, i) => (
+                <tr key={i}>
+                  <th scope="row" className="ClickablePicture">
+                    <Checkbox
+                      size="3"
+                      checked={l.checked}
+                      color="#8ab661"
+                      onChange={() => handleClick(i)}
+                    />
+                  </th>
+                  <td>
+                    {l.qty} {l.unit}
+                  </td>
+                  <td>{l.item}</td>
+                  <td>
+                    <Button
+                      color="danger"
+                      size="sm"
+                      onClick={() => handleDelete(i)}
+                    >
+                      Delete
+                    </Button>
+                  </td>
+                </tr>
+              ))}
         </tbody>
       </Table>
       <Button color="danger" size="sm" onClick={() => handleDeleteWholeList()}>
