@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import api from '../../api'
-import categories from '../../../src/categories.json'
-import units from '../../../src/units.json'
+import categories from '../../categories.json'
+import units from '../../units.json'
 
 import {
   Col,
@@ -201,6 +201,7 @@ export default function EditRecipe(props) {
             placeholder="Recipe name"
             value={state.name}
             onChange={handleInputChange}
+            invalid={state.name === ''}
           />
         </FormGroup>
         <Row form>
