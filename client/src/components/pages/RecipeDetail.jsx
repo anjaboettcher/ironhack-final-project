@@ -198,9 +198,10 @@ export default function RecipeDetail(props) {
       <Card className="shadow-none border-0">
         <CardImg
           top
-          width="100%"
           src={recipe && recipe.picture}
           height="100%"
+          max-height="300px"
+          width="auto"
           alt="this-recipe-image"
         />
         <CardBody>

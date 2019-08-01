@@ -64,6 +64,9 @@ export default function AddRecipe(props) {
   }
 
   function changeCategories(e) {
+    if (!e) {
+      e = []
+    }
     setState({
       ...state,
       categories: e,
@@ -113,7 +116,6 @@ export default function AddRecipe(props) {
       qty: '',
       unit: [],
     })
-    console.log('ingredientList', ingredientList)
   }
 
   function deleteIngredient(index, e) {
@@ -199,7 +201,7 @@ export default function AddRecipe(props) {
             type="text"
             name="name"
             id="name"
-            placeholder="es. My awesome recipe!"
+            placeholder="ex. My awesome recipe!"
             value={state.name}
             //checked={state.checked}
             onChange={handleInputChange}
@@ -215,7 +217,7 @@ export default function AddRecipe(props) {
                 type="text"
                 name="duration"
                 id="duration"
-                placeholder="es. 45 minutes, half an hour, ..."
+                placeholder="ex. 45 minutes, half an hour, ..."
                 value={state.duration}
                 onChange={handleInputChange}
                 // invalid={state.duration === ''}
@@ -232,7 +234,7 @@ export default function AddRecipe(props) {
                 type="text"
                 name="personcount"
                 id="personcount"
-                placeholder="es. 4"
+                placeholder="ex. 4"
                 value={state.personcount}
                 onChange={handleInputChange}
                 invalid={state.personcount === '...'}
@@ -258,7 +260,7 @@ export default function AddRecipe(props) {
         <Row form>
           <Col md={12}>
             <Input
-              placeholder="es. Carrots"
+              placeholder="Ingredient"
               name="item"
               value={ingredient.item}
               onChange={newIngredient}
@@ -272,7 +274,7 @@ export default function AddRecipe(props) {
           <Col md={5}>
             {/* <Label for="quantity">Quantity</Label> */}
             <Input
-              placeholder="es. 42"
+              placeholder="Quantity"
               name="qty"
               value={ingredient.qty}
               onChange={newIngredient}
@@ -343,7 +345,7 @@ export default function AddRecipe(props) {
               type="textarea"
               name="description"
               id="description"
-              placeholder="es. De gustibus..."
+              placeholder="ex. De gustibus..."
               value={state.description}
               onChange={handleInputChange}
               invalid={state.description === '...'}

@@ -4,6 +4,7 @@ import api from '../../api.js'
 import { Col, Button, Container } from 'reactstrap'
 import { MDBCol } from 'mdbreact'
 import { Link } from 'react-router-dom'
+import Loader from 'react-dots-loader'
 
 export default function MyRecipes() {
   const [recipes, setRecipes] = useState([])
@@ -63,7 +64,7 @@ export default function MyRecipes() {
   // console.log('recipeList', recipeList)
   // return recipeList
 
-  if (recipes.length === 0)
+  if (recipes.length === 0) {
     return (
       <Container>
         <h5 className="mt-4">
@@ -72,6 +73,9 @@ export default function MyRecipes() {
         </h5>
       </Container>
     )
+  } else if (recipes.length > 0 && !recipes) {
+    return <Loader size={10}>Loading...</Loader>
+  }
 
   return (
     <Col>

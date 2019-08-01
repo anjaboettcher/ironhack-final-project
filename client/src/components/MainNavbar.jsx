@@ -49,6 +49,7 @@ function MainNavbar(props) {
       '/logout': ' Logout',
       '/signup': ' Sign Up',
       '/login': ' Log In',
+      '/': ' Home',
       '/recipes/*': ' Recipe Detail',
     }
 
@@ -60,7 +61,7 @@ function MainNavbar(props) {
   return (
     <Navbar
       style={{
-        backgroundColor: '#F6F6F1',
+        backgroundColor: '#f7f7f7',
         width: '100%',
         boxShadow: 'none',
       }}
