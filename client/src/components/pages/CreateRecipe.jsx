@@ -33,6 +33,7 @@ export default function AddRecipe(props) {
     qty: '',
     unit: null,
   })
+
   const [ingredientList, setIngredientList] = useState([])
 
   let categoryOptions = []
@@ -54,10 +55,10 @@ export default function AddRecipe(props) {
   function handleFileInputChange(event) {
     let pictureFile = event.target.files[0]
     api.uploadPicture(pictureFile).then(picture => {
-      setState({
+      setState(state => ({
         ...state,
         picture,
-      })
+      }))
     })
   }
 
@@ -73,7 +74,6 @@ export default function AddRecipe(props) {
 
   function newIngredient(e) {
     // e.preventDefault()
-    console.log('we are here')
     setIngredient({
       ...ingredient,
       [e.target.name]: e.target.value,
@@ -89,7 +89,6 @@ export default function AddRecipe(props) {
 
   function addIngredientList(e) {
     e.preventDefault()
-    console.log('we are here')
     setIngredientList([
       ...ingredientList,
       {
@@ -124,6 +123,7 @@ export default function AddRecipe(props) {
     let data = {
       name: state.name,
       description: state.description,
+      picture: state.picture,
       ingredients: ingredientList,
       personcount: state.personcount,
       duration: state.duration,
@@ -230,6 +230,7 @@ export default function AddRecipe(props) {
             />
           </Col>
         </Row>
+        <br />
         <Row form>
           <Col md={5}>
             {/* <Label for="quantity">Quantity</Label> */}
@@ -252,7 +253,7 @@ export default function AddRecipe(props) {
             />
           </Col>
           <Col md={2}>
-            <button className="add-ingredient" onClick={addIngredientList}>
+            <button className="add-ingredient mt-3" onClick={addIngredientList}>
               Add
             </button>
           </Col>
@@ -309,7 +310,7 @@ export default function AddRecipe(props) {
           </Col>
         </FormGroup>
 
-        <button className="recipe-button" onClick={e => saveRecipe(e)}>
+        <button className="recipe-button mb-4" onClick={e => saveRecipe(e)}>
           Save
         </button>
       </Form>

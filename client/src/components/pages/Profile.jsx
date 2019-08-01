@@ -50,7 +50,10 @@ export default function Profile(props) {
 
   return (
     <div className="mt-4">
-      <h2 style={{ color: '#8AB661' }}>Profile Settings</h2>
+      <h2 style={{ color: '#8AB661' }}>
+        Hello {username}! Here you can change your profile settings!
+      </h2>
+
       <Container>
         <CardImg
           top
