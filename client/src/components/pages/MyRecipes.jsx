@@ -5,6 +5,9 @@ import { Col, Button, Container } from 'reactstrap'
 import { MDBCol } from 'mdbreact'
 import { Link } from 'react-router-dom'
 import Loader from 'react-dots-loader'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { faList } from '@fortawesome/free-solid-svg-icons'
 
 export default function MyRecipes() {
   const [recipes, setRecipes] = useState([])
@@ -43,27 +46,6 @@ export default function MyRecipes() {
       .catch(err => console.log('catch: ', err))
   }
 
-  //Way number 2 of doing it!
-  // let recipeList = []
-  // for (let j = 0; j < allRecipes.length; j++) {
-  //   if( allRecipes[j].name.toUpperCase().includes(search.toUpperCase())) {
-  //     recipeList.push(allRecipes[j])
-  //   }
-  //   else {
-  //   for (let k = 0; k < allRecipes[j].categories.length; k++) {
-  //     if (
-  //       allRecipes[j].categories[k]
-  //         .toUpperCase()
-  //         .includes(search.toUpperCase())
-  //     ) {
-  //       recipeList.push(allRecipes[j])
-  //     }
-  //   }
-  //   }
-  // }
-  // console.log('recipeList', recipeList)
-  // return recipeList
-
   if (recipes.length === 0) {
     return (
       <Container>
@@ -82,14 +64,7 @@ export default function MyRecipes() {
       <div className="border-0 search-bar ">
         <MDBCol>
           <div className="input-group md-form form-sm form-1 pl-0  ">
-            <div className="input-group-prepend">
-              {/* <span
-                className="input-group-text green lighten-3 "
-                id="basic-text1"
-              >
-                <MDBIcon className="text-white rounded-right" icon="search" />
-              </span> */}
-            </div>
+            <div className="input-group-prepend" />
             <input
               className="form-control my-0 py-1 rounded-pill"
               type="text"
@@ -112,33 +87,34 @@ export default function MyRecipes() {
                   width="130px"
                   height="130px"
                   src={recipe.picture}
-                  // src={
-                  //   'https://www.asaucykitchen.com/wp-content/uploads/2019/04/Tomato-Coconut-Curry-Chicken.jpg'
-                  // }
                 />
               </Link>
 
               <Link
                 to={'/recipes/' + recipe._id}
-                style={{ textDecoration: 'none', color: '#696A66' }}
+                style={{
+                  textDecoration: 'none',
+                  color: '#242323',
+                  fontWeight: '600',
+                }}
               >
                 <div className="boxText border-0 text-uppercase">
                   <div> {recipe.name} </div>
                 </div>
               </Link>
             </div>
-            <div class="buttons">
-              <Button
-                color="success"
+            <div>
+              <button
                 size="sm"
                 block
-                className=" m-0 p-1"
+                className=" m-0 p-1 my-recipe-button mt-2"
                 onClick={() =>
                   addRecipesToGroceryList(recipe._id, recipe.personcount)
                 }
               >
-                Add to List
-              </Button>
+                <FontAwesomeIcon icon={faList} size="1x" className="icon" /> Add
+                to List
+              </button>
             </div>
           </div>
         ))}

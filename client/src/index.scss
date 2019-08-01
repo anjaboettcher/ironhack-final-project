@@ -56,7 +56,7 @@ $danger: #32c3ff;
 
 .image {
   object-fit: cover;
-  opacity: 0.35;
+  opacity: 0.5;
 }
 
 .input-group.md-form.form-sm.form-1 input {
@@ -92,6 +92,12 @@ $danger: #32c3ff;
   margin-bottom: 10px;
 }
 
+.recipe-profile-picture {
+
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
 // ----------------------------------------
 // To install Boostrap:
 // 1) Run in the client folder: $ npm i bootstrap
@@ -110,7 +116,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  margin-bottom: 80px !important;
+  margin-bottom: 60px !important;
 }
 
 .info {
@@ -210,10 +216,39 @@ body {
   transition: 0.3s;
 }
 
+.my-recipe-button {
+  border-radius: 10px;
+  width: 130px;
+  border: 2px solid #8ab661;
+  background-color: white;
+  color: #8ab661;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.my-recipe-button:hover {
+  opacity: 1;
+  background-color: #8ab661;
+  color: white;
+}
+
+
 .recipe-button:hover {
   opacity: 1;
   background-color: #8ab661;
   color: white;
+}
+
+
+.recipe-card-special-button {
+  border-radius: 10px;
+  border: 2px solid #8ab661;
+  background-color: #f7f7f7;
+  color: #8ab661;
+  // padding: 4px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .recipe-card-button {
@@ -232,7 +267,6 @@ body {
   background-color: #8ab661;
   color: #f7f7f7;
 }
-
 
 
 .delete-button {
@@ -255,7 +289,7 @@ body {
 
 .upload-button {
   border-radius: 10px;
-  background-color: #e0e6e6;
+  background-color: #cad1d1;
   padding: 4px 16px;
   font-size: 16px;
   cursor: pointer;
@@ -270,11 +304,11 @@ body {
 }
 
 
+
 .card-horizontal {
   display: flex;
   flex: 1 1 auto;
 }
-
 
 $parallax-height: 100vh;
 $center-margin: 0px auto;
@@ -313,18 +347,17 @@ body {
   width: 100%;
   height: 100vh;
   perspective: 1px;
-  transform: translateZ(-1px);
+  transform: translateZ(-3px);
   overflow-x: hidden;
   overflow-y: auto;
 
   h1 {
-    transform: translateZ(-2px);
+    transform: translateZ(-3px);
     text-transform: uppercase;
     font-family: 'Hind', sans-serif;
     letter-spacing: 0.06em;
     font-size: 150px;
     color: #FFF;
-
     text-align: center;
   }
 }
@@ -339,7 +372,25 @@ p {
   line-height: 1.4;
 }
 
+footer {
+  background-color: #e0e6e6;
+  color: rgb(29, 28, 28);
+}
+
+.homepage-button {
+  border-radius: 10px;
+  color: #f7f7f7;
+  background-color: #8ab661;
+  padding: 4px 16px;
+  font-size: 16px;
+  position: relative;
+}
+
 .testimonial {
   background-color: #8ab661;
   color: white;
+}
+
+.footer-div {
+  background-color: #8ab661;
 }

@@ -12,7 +12,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 function BottomNav2(props) {
-  const links = [{ to: '/news', text: 'News' }]
+  const links = [{ to: '/', text: 'Home' }, { to: '/explore', text: 'Search' }]
   if (api.isLoggedIn()) {
     links.push({ to: '/my-recipes', text: 'My recipes' })
     links.push({ to: '/explore', text: 'Search' })

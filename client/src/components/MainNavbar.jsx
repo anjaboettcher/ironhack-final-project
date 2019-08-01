@@ -24,7 +24,7 @@ function MainNavbar(props) {
 
   // {api.isLoggedIn() ? <Route path="/add-library" component={AddLibrary} /> : <Route path="/add-library" component={Login} />}
 
-  const links = [{ to: '/news', text: 'News' }]
+  const links = [{ to: '/', text: 'About' }]
   if (!api.isLoggedIn()) {
     links.push({ to: '/signup', text: 'Signup' })
     links.push({ to: '/login', text: 'Login' })
