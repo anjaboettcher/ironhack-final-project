@@ -5,15 +5,17 @@ import { Link } from 'react-router-dom'
 import { Table, Container, Button } from 'reactstrap'
 import Loader from 'react-dots-loader'
 import Checkbox from 'react-simple-checkbox'
+import storage from '../../storage.js'
 
 export default function MyRecipes() {
-  const [list, setList] = useState([])
+  const [list, setList] = useState(storage.getListIngredients())
 
   useEffect(() => {
     api.getMyList().then(listItems => {
       console.log('TCL: MyRecipes -> info', listItems)
       //console.log("TCL: CrudTodos -> response", response);
       setList(listItems)
+      storage.setListIngredients(listItems)
       console.log('TCL: MyRecipes -> setRecipes', setList)
     })
   }, [])
@@ -25,6 +27,7 @@ export default function MyRecipes() {
         console.log('TCL: MyRecipes -> info', listItems)
         //console.log("TCL: CrudTodos -> response", response);
         setList(listItems)
+        storage.setListIngredients(listItems)
         console.log('TCL: MyRecipes -> setRecipes', setList)
       })
       .catch(err => console.log('catch: ', err))
@@ -37,6 +40,7 @@ export default function MyRecipes() {
         console.log('List deleted')
         //console.log("TCL: CrudTodos -> response", response);
         setList([])
+        storage.setListIngredients([])
         console.log('TCL: MyRecipes -> setRecipes', setList)
       })
       .catch(err => console.log('catch: ', err))
@@ -50,6 +54,7 @@ export default function MyRecipes() {
       list[i].checked = true
     }
     setList([...list])
+    storage.setListIngredients([...list])
   }
 
   function sortIngredients(numbers) {

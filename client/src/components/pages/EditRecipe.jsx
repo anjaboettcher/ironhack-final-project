@@ -12,6 +12,7 @@ import {
   Input,
   CustomInput,
   Table,
+  FormFeedback,
 } from 'reactstrap'
 import Select from 'react-select'
 
@@ -23,7 +24,7 @@ export default function EditRecipe(props) {
     picture: '/images/default-recipe-image.jpg',
     personcount: '',
     duration: '',
-    categories: null,
+    categories: [],
     isPictureLoading: false, // TODO
   })
 
@@ -32,7 +33,7 @@ export default function EditRecipe(props) {
   const [ingredient, setIngredient] = useState({
     item: '',
     qty: '',
-    unit: null,
+    unit: [],
   })
 
   const [ingredientList, setIngredientList] = useState([])
@@ -64,6 +65,9 @@ export default function EditRecipe(props) {
   }
 
   function changeCategories(e) {
+    if (!e) {
+      e = []
+    }
     setState({
       ...state,
       categories: e,
@@ -89,6 +93,15 @@ export default function EditRecipe(props) {
 
   function addIngredientList(e) {
     e.preventDefault()
+    if (ingredient.item === '') {
+      setIngredient({ ...ingredient, item: '...' })
+      return
+    }
+    if (ingredient.qty === '' || isNaN(Number(ingredient.qty))) {
+      setIngredient({ ...ingredient, qty: '...' })
+      return
+    }
+
     setIngredientList([
       ...ingredientList,
       {
@@ -101,7 +114,7 @@ export default function EditRecipe(props) {
     setIngredient({
       item: '',
       qty: '',
-      unit: null,
+      unit: [],
     })
   }
 
@@ -112,6 +125,22 @@ export default function EditRecipe(props) {
 
   function saveRecipe(e) {
     e.preventDefault()
+    if (state.name === '' || state.name === '...') {
+      setState({ ...state, name: '...' })
+      return
+    }
+    if (state.personcount === '' || isNaN(Number(state.personcount))) {
+      setState({ ...state, personcount: '...' })
+      return
+    }
+    if (ingredientList.length === 0) {
+      setIngredient({ ...ingredient, item: '...', qty: '...' })
+      return
+    }
+    if (state.description === '' || state.description === '...') {
+      setState({ ...state, description: '...' })
+      return
+    }
     let savedCategories
     if (state.categories.length === 0) {
       savedCategories = []
@@ -173,12 +202,12 @@ export default function EditRecipe(props) {
 
   return (
     <div className="AddRecipe container mt-4">
-      <pre style={{ textAlign: 'left' }}>
+      {/* <pre style={{ textAlign: 'left' }}>
         state = {JSON.stringify(state, null, 2)}
       </pre>
       <pre style={{ textAlign: 'left' }}>
         ingredientList = {JSON.stringify(ingredientList, null, 2)}
-      </pre>
+      </pre> */}
       <Form>
         <h2 style={{ color: '#8AB661' }}>Edit recipe</h2>
         <img className="recipe-picture" src={state.picture} alt="" />
@@ -193,16 +222,17 @@ export default function EditRecipe(props) {
           />
         </FormGroup>
         <FormGroup>
-          <Label for="name">Name</Label>
+          <Label for="name">Recipe name</Label>
           <Input
             type="text"
             name="name"
             id="name"
-            placeholder="Recipe name"
+            placeholder="ex. My awesome recipe!"
             value={state.name}
             onChange={handleInputChange}
-            invalid={state.name === ''}
+            invalid={state.name === '...'}
           />
+          <FormFeedback>Please choose a name for your recipe</FormFeedback>
         </FormGroup>
         <Row form>
           <Col md={6}>
@@ -212,10 +242,14 @@ export default function EditRecipe(props) {
                 type="text"
                 name="duration"
                 id="duration"
-                placeholder="Duration"
+                placeholder="ex. 45 minutes, half an hour, ..."
                 value={state.duration}
                 onChange={handleInputChange}
+                // invalid={state.duration === ''}
               />
+              <FormFeedback>
+                How long does your recipe take to be cooked?
+              </FormFeedback>
             </FormGroup>
           </Col>
           <Col md={6}>
@@ -225,10 +259,12 @@ export default function EditRecipe(props) {
                 type="text"
                 name="personcount"
                 id="personcount"
-                placeholder="Number of people"
+                placeholder="ex. 4"
                 value={state.personcount}
                 onChange={handleInputChange}
+                invalid={state.personcount === '...'}
               />
+              <FormFeedback>Please insert a number</FormFeedback>
             </FormGroup>
           </Col>
         </Row>
@@ -237,6 +273,7 @@ export default function EditRecipe(props) {
           <Label for="category">Categories</Label>
           <Select
             id="category"
+            placeholder="Select categories"
             options={categoryOptions}
             value={state.categories}
             onChange={changeCategories}
@@ -248,22 +285,26 @@ export default function EditRecipe(props) {
         <Row form>
           <Col md={12}>
             <Input
-              placeholder="Item"
+              placeholder="Ingredient"
               name="item"
               value={ingredient.item}
               onChange={newIngredient}
+              invalid={ingredient.item === '...'}
             />
+            <FormFeedback>Please add your ingredient</FormFeedback>
           </Col>
         </Row>
         <Row form>
           <Col md={5}>
             {/* <Label for="quantity">Quantity</Label> */}
             <Input
-              placeholder="Qty"
+              placeholder="Quantity"
               name="qty"
               value={ingredient.qty}
               onChange={newIngredient}
+              invalid={ingredient.qty === '...'}
             />
+            <FormFeedback>Please insert a number</FormFeedback>
           </Col>
           <Col md={5}>
             {/* <Label for="unit">Unit</Label> */}
@@ -328,13 +369,16 @@ export default function EditRecipe(props) {
               type="textarea"
               name="description"
               id="description"
+              placeholder="ex. De gustibus..."
               value={state.description}
               onChange={handleInputChange}
+              invalid={state.description === '...'}
             />
+            <FormFeedback>Please explain the preparation</FormFeedback>
           </Col>
         </FormGroup>
 
-        <button className="recipe-button" onClick={e => saveRecipe(e)}>
+        <button className="recipe-button mb-4" onClick={e => saveRecipe(e)}>
           Save
         </button>
       </Form>

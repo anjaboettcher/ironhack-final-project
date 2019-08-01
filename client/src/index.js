@@ -9,7 +9,7 @@ import App from './components/App.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { ModalProvider } from 'react-modal-hook'
 
-// import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker from './registerServiceWorker'
 
 ReactDOM.render(
   <Router>
@@ -19,3 +19,5 @@ ReactDOM.render(
   </Router>,
   document.getElementById('root')
 )
+
+registerServiceWorker()
