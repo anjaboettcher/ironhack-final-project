@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react'
 import api from '../../api.js'
 import { MDBCol } from 'mdbreact'
 import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { faList } from '@fortawesome/free-solid-svg-icons'
 import { FormGroup, Label } from 'reactstrap'
 import ReactModal from 'react-modal'
 import Select from 'react-select'
@@ -146,13 +149,16 @@ export default function Explore() {
                 <div class="card-horizontal">
                   <div class="">
                     <Link to={'/recipes/' + recipe._id}>
-                      <img
-                        className=""
-                        alt="error"
-                        width="200px"
-                        height="250px"
-                        src={recipe.picture}
-                      />
+                      <div class="img-square-wrapper">
+                        <img
+                          className=""
+                          alt="error"
+                          width="100%"
+                          max-width="100px"
+                          height="auto"
+                          src={recipe.picture}
+                        />
+                      </div>
                     </Link>
                   </div>
                   <div className="card-body">
@@ -166,7 +172,7 @@ export default function Explore() {
                       <div className="mb-3">
                         <strong>Cook:</strong> {recipe._owner.username}
                         <br />
-                        <strong>Recipe Duration:</strong> {recipe.duration}
+                        <strong>Duration:</strong> {recipe.duration}
                         <br />
                         <strong>Ingredients:</strong>{' '}
                         {recipe.ingredients.length}
@@ -194,6 +200,40 @@ export default function Explore() {
                       Grocery List
                     </button>
                   </div>
+                </div>
+                <div class="card-footer">
+                  <button
+                    color="secondary"
+                    block
+                    className="recipe-card-button mr-2"
+                    onClick={() => forkThisRecipe(recipe._id)}
+                  >
+                    {' '}
+                    <img
+                      src={'../images/fork-green.png'}
+                      alt="fork"
+                      className="img-responsive"
+                      height="20"
+                    />
+                    Fork Recipe
+                  </button>
+                  <button
+                    color="primary"
+                    size="sm"
+                    block
+                    className="recipe-card-button "
+                    onClick={() =>
+                      addRecipesToGroceryList(recipe._id, recipe.personcount)
+                    }
+                  >
+                    {' '}
+                    <FontAwesomeIcon
+                      icon={faList}
+                      size="1x"
+                      className="icon"
+                    />{' '}
+                    Add to grocery list
+                  </button>
                 </div>
               </div>
             </div>

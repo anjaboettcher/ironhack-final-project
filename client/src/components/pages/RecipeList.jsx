@@ -192,13 +192,14 @@ export default function MyRecipes() {
                   </td>
                   <td>{l.item}</td>
                   <td>
-                    <Button
+                    <button
+                      className="delete-button"
                       color="danger"
                       size="sm"
                       onClick={() => handleDelete(l.unit, l.item)}
                     >
                       Delete
-                    </Button>
+                    </button>
                   </td>
                 </tr>
               ))}
