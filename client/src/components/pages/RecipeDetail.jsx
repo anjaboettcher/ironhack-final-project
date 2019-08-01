@@ -70,10 +70,7 @@ export default function RecipeDetail(props) {
   ]
 
   function changePersonCount(e) {
-    console.log('e', e)
-    console.log(recipe)
     personcountVariable = e
-    console.log('recipe.personcount', recipe.personcount)
     recipe.personcount = e.value
     for (let i = 0; i < recipe.ingredients.length; i++) {
       recipe.ingredients[i].qty =
@@ -82,14 +79,6 @@ export default function RecipeDetail(props) {
     setRecipe({
       ...recipe,
     })
-    // let body = {
-    //   ingredients: recipe.ingredientList,
-    //   personcount: recipe.personcount,
-    // }
-    // api.editRecipe(recipe.id, body)
-
-    console.log('seb')
-    console.log('setRecipe', setRecipe)
   }
 
   function deleteRecipe() {
