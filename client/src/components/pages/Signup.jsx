@@ -36,7 +36,6 @@ export default function Signup(props) {
   //Something is off with out signup, error message "please indicate email and password" - I think it might be connected to the passport?
   return (
     <Container className="App mt-4">
-      <h2 style={{ color: '#8AB661' }}>SIGN UP</h2>
       <Form className="form">
         <Col>
           <FormGroup>

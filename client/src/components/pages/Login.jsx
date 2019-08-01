@@ -12,7 +12,7 @@ export default function Login(props) {
       .login(formValues.email, formValues.password)
       .then(result => {
         console.log('SUCCESS!')
-        props.history.push('/') // Redirect to the home page
+        props.history.push('/my-recipes') // Redirect to the home page
       })
       .catch(err => setMessage(err.toString()))
   }

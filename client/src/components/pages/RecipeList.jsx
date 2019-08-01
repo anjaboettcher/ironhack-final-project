@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 //import axios from 'axios'
 import api from '../../api.js'
-import { Table, Button, Container } from 'reactstrap'
+import { Link } from 'react-router-dom'
+import { Table, Container } from 'reactstrap'
 import Loader from 'react-dots-loader'
 import Checkbox from 'react-simple-checkbox'
 
@@ -61,7 +62,15 @@ export default function MyRecipes() {
   //   return result
   // }
 
-  if (list.length === 0) return <h5>You havent added any ingredients</h5>
+  if (list.length === 0)
+    return (
+      <Container>
+        <h5 className="mt-4">
+          You havent added any ingredients to your grocery list yet.{' '}
+          <Link to={'recipes/explore'}>Start exploring recipes now!</Link>
+        </h5>
+      </Container>
+    )
 
   return (
     <Container>
@@ -96,26 +105,30 @@ export default function MyRecipes() {
                     onChange={() => handleClick(i)}
                   />
                 </th>
-                <td>
+                <td className="align-middle">
                   {l.qty} {l.unit}
                 </td>
-                <td>{l.item}</td>
+                <td className="align-middle">{l.item}</td>
                 <td>
-                  <Button
-                    color="danger"
+                  <button
+                    className="delete-button"
                     size="sm"
                     onClick={() => handleDelete(i)}
                   >
                     Delete
-                  </Button>
+                  </button>
                 </td>
               </tr>
             ))}
         </tbody>
       </Table>
-      <Button color="danger" size="sm" onClick={() => handleDeleteWholeList()}>
+      <button
+        className="delete-button align-center"
+        style={{ width: '50%' }}
+        onClick={() => handleDeleteWholeList()}
+      >
         Delete all
-      </Button>
+      </button>
     </Container>
   )
 }

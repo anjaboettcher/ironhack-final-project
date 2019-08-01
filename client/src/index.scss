@@ -1,5 +1,15 @@
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/css?family=Hind:400,600&display=swap');
 // --------------------
+
+
+* {
+  font-family: 'Hind', sans-serif;
+}
+
+h5 {
+  letter-spacing: 2px;
+}
 
 // COLOR PALETTE
 // cold grey #e0e6e6
@@ -197,11 +207,49 @@ body {
   padding: 4px 16px;
   font-size: 16px;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .recipe-button:hover {
   opacity: 1;
   background-color: #8ab661;
+  color: white;
+}
+
+.recipe-card-button {
+  border-radius: 10px;
+  border: 2px solid #8ab661;
+  background-color: white;
+  color: #8ab661;
+  // padding: 4px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.recipe-card-button:hover {
+  opacity: 1;
+  background-color: #8ab661;
+  color: white;
+}
+
+
+
+.delete-button {
+  border-radius: 10px;
+  text-align: center;
+  border: 2px solid #aa4141;
+  background-color: white;
+  color: #aa4141;
+  padding: 4px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.delete-button:hover {
+  opacity: 1;
+  background-color: #aa4141;
   color: white;
 }
 

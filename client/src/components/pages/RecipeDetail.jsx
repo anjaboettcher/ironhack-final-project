@@ -192,7 +192,7 @@ export default function RecipeDetail(props) {
     }
   }
 
-  if (!recipe) return <Loader size={10}>Loading...</Loader>
+  if (!recipe || !user) return <Loader size={10}>Loading...</Loader>
 
   // if recipe_owner id === logged in user id else display the other
   // button

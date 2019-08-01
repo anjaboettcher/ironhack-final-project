@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 //import axios from 'axios'
 import api from '../../api.js'
-import { Col, Button } from 'reactstrap'
-import { MDBCol, MDBIcon } from 'mdbreact'
+import { Col, Button, Container } from 'reactstrap'
+import { MDBCol } from 'mdbreact'
 import { Link } from 'react-router-dom'
 
 export default function MyRecipes() {
@@ -63,21 +63,31 @@ export default function MyRecipes() {
   // console.log('recipeList', recipeList)
   // return recipeList
 
+  if (recipes.length === 0)
+    return (
+      <Container>
+        <h5 className="mt-4">
+          You havent forked or created any recipes yet.{' '}
+          <Link to={'recipes/explore'}>Start exploring recipes now</Link>
+        </h5>
+      </Container>
+    )
+
   return (
     <Col>
-      <div className="border-0 search-bar">
+      <div className="border-0 search-bar ">
         <MDBCol>
-          <div className="input-group md-form form-sm form-1 pl-0 ">
-            <div className="input-group-prepend ">
-              <span
-                className="input-group-text green lighten-3"
+          <div className="input-group md-form form-sm form-1 pl-0  ">
+            <div className="input-group-prepend">
+              {/* <span
+                className="input-group-text green lighten-3 "
                 id="basic-text1"
               >
-                <MDBIcon className="text-white" icon="search" />
-              </span>
+                <MDBIcon className="text-white rounded-right" icon="search" />
+              </span> */}
             </div>
             <input
-              className="form-control my-0 py-1"
+              className="form-control my-0 py-1 rounded-pill"
               type="text"
               placeholder="Search for a recipe..."
               aria-label="Search"
@@ -122,7 +132,7 @@ export default function MyRecipes() {
                 onClick={() => addRecipesToGroceryList(recipe._id)}
               >
                 Add to List
-              </Button>{' '}
+              </Button>
             </div>
           </div>
         ))}

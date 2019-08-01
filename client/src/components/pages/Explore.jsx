@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 //import axios from 'axios'
 import api from '../../api.js'
-import { Col, Button } from 'reactstrap'
-import { MDBCol, MDBIcon } from 'mdbreact'
+
+import { MDBCol } from 'mdbreact'
 import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Explore() {
   const [recipes, setRecipes] = useState([])
@@ -97,12 +96,12 @@ export default function Explore() {
       <MDBCol>
         <div className="input-group md-form form-sm form-1 pl-0">
           <div className="input-group-prepend ">
-            <span className="input-group-text green lighten-3" id="basic-text1">
+            {/* <span className="input-group-text green lighten-3" id="basic-text1">
               <MDBIcon className="text-white" icon="search" />
-            </span>
+            </span> */}
           </div>
           <input
-            className="form-control my-0 py-1"
+            className="form-control my-0 py-1 rounded-pill"
             type="text"
             placeholder="Search for a recipe..."
             aria-label="Search"
@@ -118,37 +117,40 @@ export default function Explore() {
             <div class="col-12 mt-3">
               <div class="card">
                 <div class="card-horizontal">
-                  <div class="img-square-wrapper">
+                  <div class="">
                     <Link to={'/recipes/' + recipe._id}>
                       <img
-                        className="image"
+                        className=""
                         alt="error"
                         width="200px"
-                        height="200px"
+                        height="250px"
                         src={recipe.picture}
                       />
                     </Link>
                   </div>
-                  <div class="card-body">
+                  <div className="card-body">
                     <Link
                       to={'/recipes/' + recipe._id}
                       style={{ textDecoration: 'none', color: '#696A66' }}
                     >
-                      <h4 class="card-title">{recipe.name} </h4>
-                      <span className="text-left">
-                        Cook: {recipe._owner.username}
-                      </span>
-                      <br />
-                      <span>Recipe Duration: {recipe.duration}</span>
-                      <br />
-                      <span>Ingredients: {recipe.ingredients.length}</span>
-                      <br />
+                      <h5 className="card-title">{recipe.name}</h5>
+                      <hr />
+
+                      <div className="mb-3">
+                        <strong>Cook:</strong> {recipe._owner.username}
+                        <br />
+                        <strong>Recipe Duration:</strong> {recipe.duration}
+                        <br />
+                        <strong>Ingredients:</strong>{' '}
+                        {recipe.ingredients.length}
+                      </div>
                     </Link>
+                    <hr />
+
                     <button
                       color="secondary"
-                      size="sm"
                       block
-                      className="sm recipe-button"
+                      className="recipe-card-button"
                       onClick={() => forkThisRecipe(recipe._id)}
                     >
                       Fork Recipe
@@ -157,10 +159,10 @@ export default function Explore() {
                       color="primary"
                       size="sm"
                       block
-                      className="recipe-button ml-2"
+                      className="recipe-card-button ml-2"
                       onClick={() => addRecipesToGroceryList(recipe._id)}
                     >
-                      Add to Grocery List
+                      Grocery List
                     </button>
                   </div>
                 </div>
