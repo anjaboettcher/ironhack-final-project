@@ -1,24 +1,40 @@
 import React, { useState, useEffect } from 'react'
 //import axios from 'axios'
 import api from '../../api.js'
-
 import { MDBCol } from 'mdbreact'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { faList } from '@fortawesome/free-solid-svg-icons'
+import { FormGroup, Label } from 'reactstrap'
+import ReactModal from 'react-modal'
+import Select from 'react-select'
 
 export default function Explore() {
+  const [personcount, setPersoncount] = useState({
+    value: 4,
+    label: '4 people',
+  })
   const [recipes, setRecipes] = useState([])
   const [search, setSearch] = useState('')
   const [user, setUser] = useState(null)
 
+  let NbrOfPeople = [
+    { value: 1, label: '1 person' },
+    { value: 2, label: '2 people' },
+    { value: 3, label: '3 people' },
+    { value: 4, label: '4 people' },
+    { value: 5, label: '5 person' },
+    { value: 6, label: '6 people' },
+    { value: 7, label: '7 people' },
+    { value: 8, label: '8 people' },
+    { value: 9, label: '9 people' },
+    { value: 10, label: '10 people' },
+  ]
+
   useEffect(() => {
     api.exploreRecipes().then(info => {
-      console.log('TCL: MyRecipes -> info', info)
-      //console.log("TCL: CrudTodos -> response", response);
       setRecipes(info)
-      console.log('TCL: MyRecipes -> setRecipes', setRecipes)
     })
   }, [])
 
@@ -26,7 +42,6 @@ export default function Explore() {
     api
       .getProfile()
       .then(user => {
-        console.log('i ammmmmm useer ', user._id)
         setUser(user)
       })
       .catch(err => console.log(err))
@@ -34,18 +49,19 @@ export default function Explore() {
 
   if (!user) return null
 
+  function changePersonCount(e) {
+    console.log(e)
+    setPersoncount(e)
+  }
+
   function handleChange(e) {
     setSearch(e.target.value)
-    console.log('search', search)
   }
 
   function forkThisRecipe(recipeId) {
-    console.log('Trying...')
     api
       .forkRecipe(recipeId)
-      .then(recipe => {
-        console.log('done...')
-      })
+      .then(recipe => {})
       .catch(err => console.log('catch: ', err))
   }
 
@@ -116,6 +132,15 @@ export default function Explore() {
         </div>
       </MDBCol>
 
+      <FormGroup>
+        <Select
+          id="perosncount"
+          options={NbrOfPeople}
+          value={personcount}
+          onChange={changePersonCount}
+        />
+      </FormGroup>
+
       <div class="container-fluid">
         {filterBySearch(recipes).map((recipe, i) => (
           <div class="row">
@@ -153,6 +178,27 @@ export default function Explore() {
                         {recipe.ingredients.length}
                       </div>
                     </Link>
+                    <hr />
+
+                    <button
+                      color="secondary"
+                      block
+                      className="recipe-card-button"
+                      onClick={() => forkThisRecipe(recipe._id)}
+                    >
+                      Fork Recipe
+                    </button>
+                    <button
+                      color="primary"
+                      size="sm"
+                      block
+                      className="recipe-button ml-2"
+                      onClick={() =>
+                        addRecipesToGroceryList(recipe._id, personcount.value)
+                      }
+                    >
+                      Grocery List
+                    </button>
                   </div>
                 </div>
                 <div class="card-footer">
