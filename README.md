@@ -20,11 +20,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 1. JavaScript (ES6), Node.js, React
 2. HTML, CSS (Bootstrap and Reactstrap)
-3. MongoDB, Mongoose
-4. Postman
-5. Multer, Cloudinary
+3. Passport
+4. MongoDB, Mongoose
+5. Postman
+6. Multer, Cloudinary
 
-Thanks for reading :fork_and_knife: _Anja, Giulia and Seb_
+Thanks for reading :fork*and_knife: \_Anja, Giulia and Seb*
 
 ## Useful info
 

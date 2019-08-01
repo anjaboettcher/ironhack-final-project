@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import api from '../../api'
-import categories from '../../../src/categories.json'
-import units from '../../../src/units.json'
+import categories from '../../categories.json'
+import units from '../../units.json'
 
 import {
   Col,
@@ -12,6 +12,7 @@ import {
   Input,
   CustomInput,
   Table,
+  FormFeedback,
 } from 'reactstrap'
 import Select from 'react-select'
 
@@ -153,7 +154,7 @@ export default function AddRecipe(props) {
 
   return (
     <div className="AddRecipe container mt-4">
-      <pre>{JSON.stringify(state, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(state, null, 2)}</pre> */}
       <Form>
         <h2 style={{ color: '#8AB661' }}>Create a new recipe</h2>
         <img className="recipe-picture" src={state.picture} alt="" />
@@ -177,7 +178,9 @@ export default function AddRecipe(props) {
             value={state.name}
             //checked={state.checked}
             onChange={handleInputChange}
+            invalid={state.name === ''}
           />
+          <FormFeedback>Please choose a name for your recipe</FormFeedback>
         </FormGroup>
         <Row form>
           <Col md={6}>

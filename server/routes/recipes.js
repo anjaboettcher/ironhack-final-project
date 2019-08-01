@@ -202,9 +202,12 @@ router.put('/my-recipes/:recipeId', isLoggedIn, (req, res, next) => {
       recipe.personcount = personcount
       recipe.duration = duration
       recipe.categories = categories
-      recipe.save().then(() => {
-        res.json(recipe)
-      })
+      recipe
+        .save()
+        .then(() => {
+          res.json(recipe)
+        })
+        .catch(next)
     } else {
       next({ status: 403, message: 'You are the wrong user' })
     }
