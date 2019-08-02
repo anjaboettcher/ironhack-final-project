@@ -20,6 +20,8 @@ import ReactModal from 'react-modal'
 import { useModal } from 'react-modal-hook'
 import Select from 'react-select'
 
+import { faList } from '@fortawesome/free-solid-svg-icons'
+
 export default function RecipeDetail(props) {
   let personcountVariable
   const recipeId = props.match.params.recipeId
@@ -31,14 +33,14 @@ export default function RecipeDetail(props) {
       isOpen
       style={{
         overlay: {
-          backgroundColor: 'papayawhip',
+          backgroundColor: 'white',
         },
         content: {
           color: 'lightsteelblue',
         },
       }}
     >
-      <p>Do you want to delete this recipe?</p>
+      <span>Do you want to delete this recipe?</span>
       <button
         className="recipe-button"
         style={{ backgroundColor: 'red', color: 'white', border: '0' }}
@@ -115,24 +117,25 @@ export default function RecipeDetail(props) {
 
   const EditButton = () => (
     <Link to={`/recipes/${recipeId}/edit-recipe`}>
-      <button className="my-2 recipe-button">Edit</button>
+      <button className="my-2 recipe-button-orange">Edit</button>
     </Link>
   )
   const AddButton = () => (
     <button
-      className="my-2 recipe-button"
+      className="my-2 recipe-button-orange"
       onClick={() => addRecipesToGroceryList(recipe._id)}
     >
-      Add to Grocery List
+      <FontAwesomeIcon icon={faList} size="1x" className="icon" /> Add to
+      Grocery List
     </button>
   )
   const DeleteButton = props => (
-    <button className="my-2 recipe-button" onClick={showModal}>
+    <button className="my-2 delete-button-details-page" onClick={showModal}>
       Delete
     </button>
   )
   const AddToMyListButton = () => (
-    <button className="my-4 recipe-button" onClick={forkThisRecipe}>
+    <button className="my-4 recipe-button-orange" onClick={forkThisRecipe}>
       Fork this recipe
     </button>
   )
@@ -272,7 +275,9 @@ export default function RecipeDetail(props) {
               <ButtonType2 recipe={recipe} user={user} />
             </ListGroup>
             <span className="border-0">
-              <h5 style={{ color: '#8AB661' }}>Preparations:</h5>
+              <h5 className="mt-2" style={{ color: '#8AB661' }}>
+                Preparations:
+              </h5>
               <br />
               {recipe && <>{recipe.description}</>}
             </span>

@@ -19,27 +19,31 @@ let users = [
     username: 'alice',
     email: 'alice@gmail.com',
     password: bcrypt.hashSync('alice', bcrypt.genSaltSync(bcryptSalt)),
+    image: '/images/user_alice_career.jpg',
   }),
   new User({
     username: 'bob',
     email: 'bob@gmail.com',
     password: bcrypt.hashSync('bob', bcrypt.genSaltSync(bcryptSalt)),
+    image: '/images/user_stan_bob.jpg',
   }),
   new User({
     username: 'Jamie Oliver',
     email: 'jamie@gmail.com',
     password: bcrypt.hashSync('jamie', bcrypt.genSaltSync(bcryptSalt)),
+    image: '/images/user_jamie_oliver.jpg',
   }),
   new User({
     username: 'mum',
     email: 'mum@gmail.com',
     password: bcrypt.hashSync('mum', bcrypt.genSaltSync(bcryptSalt)),
+    image: '/images/user_mum.jpg',
   }),
 ]
 
 let recipes = [
   new Recipe({
-    _owner: users[0]._id,
+    _owner: users[0]._id, // Alice
     name: 'Spaghetti Carbonara',
     description:
       "Put a large pot of salted water on to boil. While the water is coming to a boil, heat the olive oil in a large sauté pan over medium heat. Add the bacon or pancetta and cook slowly until crispy. In a small bowl, beat the eggs and mix in about half of the cheese. Once the water has reached a rolling boil, add the dry pasta, and cook, uncovered, at a rolling boil. When the pasta is al dente (still a little firm, not mushy), use tongs to move it to the bowl with the bacon. Let it be dripping wet. Reserve some of the pasta water. Move the pasta from the pot to the bowl quickly, as you want the pasta to be hot. It's the heat of the pasta that will heat the eggs sufficiently to create a creamy sauce. Add the beaten eggs with cheese and toss quickly to combine once more. Add salt to taste. Add some pasta water back to the pasta to keep it from drying out. Serve at once with the rest of the parmesan and freshly ground black pepper. Enjoy!",
@@ -58,7 +62,7 @@ let recipes = [
     categories: ['Pasta', 'Pork'],
   }),
   new Recipe({
-    _owner: users[0]._id,
+    _owner: users[0]._id, // Alice
     name: 'Algarve Tomato Mint Salad',
     description:
       'Dice the tomatoes (for this fresh salad, the cuts may be uneven). Halve the onions and cut into thin slices. Mix everything together and season generously with good olive oil, salt, dried oregano, fresh cilantro, and fresh mint.',
@@ -78,7 +82,7 @@ let recipes = [
     categories: ['Salads'],
   }),
   new Recipe({
-    _owner: users[1]._id,
+    _owner: users[1]._id, // Bob
     name: 'Spaghetti Carbonara Vegetarian',
     description:
       "Put a large pot of salted water on to boil. While the water is coming to a boil, heat the olive oil in a large sauté pan over medium heat. Add the tofu and cook slowly until crispy. In a small bowl, beat the eggs and mix in about half of the cheese. Once the water has reached a rolling boil, add the dry pasta, and cook, uncovered, at a rolling boil. When the pasta is al dente (still a little firm, not mushy), use tongs to move it to the bowl with the bacon. Let it be dripping wet. Reserve some of the pasta water. Move the pasta from the pot to the bowl quickly, as you want the pasta to be hot. It's the heat of the pasta that will heat the eggs sufficiently to create a creamy sauce. Add the beaten eggs with cheese and toss quickly to combine once more. Add salt to taste. Add some pasta water back to the pasta to keep it from drying out. Serve at once with the rest of the parmesan and freshly ground black pepper. Enjoy!",
@@ -97,7 +101,7 @@ let recipes = [
     categories: ['Vegetarian'],
   }),
   new Recipe({
-    _owner: users[2]._id,
+    _owner: users[2]._id, // Jamie Oliver
     name: 'Broccoli & anchovy orecchiette',
     description: `Using a small knife, trim round the broccoli to remove the dark green florets from the main stalks and put them to one side. Peel the stalks, trim off the dry end and throw this away. Peel and chop the garlic.
     Finely chop the broccoli stalk and put into a large pan with the garlic, anchovies and half the butter. Crumble in the chilli, cover with a lid and cook slowly for 8 to 10 minutes while you cook the pasta in boiling salted water according to the packet instructions.
@@ -126,7 +130,7 @@ let recipes = [
   }),
 
   new Recipe({
-    _owner: users[2]._id,
+    _owner: users[2]._id, // Jamie Oliver
     name: 'Chicken noodle stir-fry',
     description: `Pick the coriander leaves and finely slice the stalks, then keep aside for later. Peel and finely slice the garlic, then peel and matchstick the ginger.
     Trim and finely slice the spring onions, deseed and finely slice the chilli and cut the lime into wedges. Trim, peel and thinly slice the carrots at an angle.
@@ -158,7 +162,7 @@ let recipes = [
     categories: ['Vegetarian', 'Noodles', 'Brunch'],
   }),
   new Recipe({
-    _owner: users[2]._id,
+    _owner: users[2]._id, // Jamie Oliver
     name: 'Asian chicken rice balls & broth',
     description: `Cook the rice according to the packet instructions. Drain and leave to cool, then chill until needed.
     Pick half of the coriander leaves, pop them in a bowl of ice-cold water and set aside. Put the remaining leaves in a food processor along with the cooled rice.
@@ -193,7 +197,7 @@ let recipes = [
     categories: ['Vegetarian'],
   }),
   new Recipe({
-    _owner: users[2]._id,
+    _owner: users[2]._id, // Jamie Oliver
     name: 'Chocolate & salted caramel cake',
     description: `Preheat the oven to 200C/180C Fan/Gas 6. Grease and line two 20cm/8in round cake tins with baking paper.
     Place the flour, cocoa, sugar, eggs, milk, butter, melted dark chocolate and vanilla in a large bowl and whisk until smooth.
@@ -219,8 +223,8 @@ let recipes = [
     categories: ['Desserts'],
   }),
   new Recipe({
-    _owner: users[0]._id,
-    name: 'Chilean Sea Bass with Lemon Parmesan Cream Sauce Print This',
+    _owner: users[0]._id, // Alice
+    name: 'Chilean Sea Bass with Lemon Parmesan Cream Sauce',
     description: `Begin by seasoning the sea bass on both sides with sea salt, black pepper and Creole seasoning and set to the side.
     Pre-heat cooking pan to medium heat and add butter. Once the butter melts, add minced garlic and cook garlic for 1 minute. Add the spinach and pour 1/4 cup of heavy cream over the spinach. Cook spinach just until it begins to wilt but do not over cook. Remove from heat.
     Tear 2 large pieces of foil and add half of the slightly cooked spinach in the center of each sheet. Place the sea bass over the spinach and seal the foil together so the fish can steam.
@@ -250,7 +254,7 @@ let recipes = [
     categories: ['Fish', 'Seefood'],
   }),
   new Recipe({
-    _owner: users[0]._id,
+    _owner: users[0]._id, // Jamie Oliver
     name: 'Smoked Salmon and Asparagus Linguine',
     description: `Cook pasta according to directions, Place asparagus in a dish with a small amount of water, cover and microwave on high for 2 minutes. Cut asparagus into pieces. Place cream and chives in frying pan and bring to a gentle simmer, stirring.
     Add salmon and asparagus, and warm. Fold sauce through pasta and serve with a salad.`,
@@ -267,7 +271,7 @@ let recipes = [
     categories: ['Pasta', 'Seefood'],
   }),
   new Recipe({
-    _owner: users[0]._id,
+    _owner: users[0]._id, // Jamie Oliver
     name: 'Grilled salmon with avocado, feta and pumpkin seeds',
     description: `● Preheat your grill to maximum. Drizzle a little olive oil over the skin side of the salmon, place on the grill pan or a baking tray and slide under the hot grill. Cook for 6 minutes on the skin side, before carefully flipping and grilling for a further 4 minutes. Turn the grill off and leave the salmon to keep warm until you’re ready to eat.
 
@@ -294,8 +298,8 @@ let recipes = [
     categories: ['Salads', 'Seefood'],
   }),
   new Recipe({
-    _owner: users[3]._id,
-    name: 'SummerZucchini Bolognese',
+    _owner: users[3]._id, // Mum
+    name: 'Summer Zucchini Bolognese',
     description: `Gently heat up the olive oil in a heavy-bottomed pan. Add the diced onion and sauté on a low heat until translucent, stirring frequently.
     Meanwhile, if using fresh tomatoes, remove the skins by making a shallow cris-cross incision at the top of each tomato and plunging them into a pot with boiling water for a few seconds. Chop the peeled tomatoes quite finely.
     Add chopped garlic to the onion and sauté for another 2-3 minutes. Finally add the diced red pepper. Sauté, stirring frequently, for another 5 minutes or so.
@@ -326,7 +330,7 @@ let recipes = [
     categories: ['Pasta', 'Healthy', 'Italian'],
   }),
   new Recipe({
-    _owner: users[3]._id,
+    _owner: users[3]._id, // Mum
     name: 'Chorizo Pasta with Mushrooms and Sun-dried Tomatoes',
     description: `Boil a large pot of salted water for the pasta. You can make the sauce while the pasta cooks. Cook penne al dente according to package directions.
     Heat olive oil in skillet on medium heat.
@@ -361,7 +365,7 @@ let recipes = [
     categories: ['Pasta'],
   }),
   new Recipe({
-    _owner: users[3]._id,
+    _owner: users[3]._id, // Mum
     name: 'Veggie paella',
     description: `Heat the oil in a large deep, lidded sauté pan or paella pan. Add the onion, cover and cook for 5 minutes until soft. Stir in the smoked paprika spice mix.
     Add a little stock to a bowl with the saffron; leave to infuse for a minute. Add the rice to the pan and stir well. Increase the heat, pour over the saffron water and the rest of the stock. Finely grate in the zest from half the lemon. Bring to the boil, reduce the heat and simmer, uncovered, for 10 minutes, stirring occasionally. Stir in the sliced peppers and mixed veg, cover and cook for 3-4 minutes until just tender.
@@ -398,7 +402,7 @@ let recipes = [
     categories: ['Vegetarian', 'Spanish', 'Gluten-free', 'Main'],
   }),
   new Recipe({
-    _owner: users[3]._id,
+    _owner: users[3]._id, // Mum
     name: 'Dover Sole a la Meunière',
     description: `Season the Dover soles with salt and white pepper. Dip on both sides into flour and then pat off the excess.
 
@@ -426,7 +430,7 @@ let recipes = [
     _owner: users[2]._id, // Jamie Oliver
     name: 'Chocolate Bundt Cake',
     description:
-      "Preheat the oven to 180ºC or 350ºF. Spray generously a bundt pan with cooking spray or grease with butter. Combine the water and the cocoa powder until it's completely dissolved. Let it cool. Whisk the sugar and flour together and make a hole in the center. Then add the egg yolks, cocoa mixture, oil, salt and the baking powder and beat for 8 minutes in a stand mixer at medium speed. Meanwhile, beat the egg whites to stiff peaks with the remaining sugar. Using a rubber spatula, fold the egg whites into the chocolate batter slowly, until completely combined. Pour into the bundt pan and bake for 40 minutes or until a toothpick comes out almost clean. Don't let it dry too much. For the ganache just microwave the heavy cream, in a heatproof bowl, until it's hot. Then add the chocolate in pieces and cover with a lid (I used a plate). After a minute or so, remove the lid and stir with a rubber spatula until all the chocolate bits have melted and are well mixed. When the cake is cold, pour over it and have fun with some sprinkles. Enjoy!",
+      "Preheat the oven to 180ºC. Spray generously a bundt pan with cooking spray or grease with butter. Combine the water and the cocoa powder until it's completely dissolved. Let it cool. Whisk the sugar and flour together and make a hole in the center. Then add the egg yolks, cocoa mixture, oil, salt and the baking powder and beat for 8 minutes in a stand mixer at medium speed. Meanwhile, beat the egg whites to stiff peaks with the remaining sugar. Using a rubber spatula, fold the egg whites into the chocolate batter slowly, until completely combined. Pour into the bundt pan and bake for 40 minutes or until a toothpick comes out almost clean. Don't let it dry too much. For the ganache just microwave the heavy cream, in a heatproof bowl, until it's hot. Then add the chocolate in pieces and cover with a lid (I used a plate). After a minute or so, remove the lid and stir with a rubber spatula until all the chocolate bits have melted and are well mixed. When the cake is cold, pour over it and have fun with some sprinkles. Enjoy!",
     ingredients: [
       { qtyPerPerson: 0.6, qty: 6, unit: 'units', item: 'eggs' },
       { qtyPerPerson: 7.5, qty: 75, unit: 'gr', item: 'cocoa powder' },

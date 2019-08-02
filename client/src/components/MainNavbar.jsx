@@ -63,8 +63,8 @@ function MainNavbar(props) {
       '/logout': ' Logout',
       '/signup': ' Sign Up',
       '/login': ' Log In',
-      '/': ' Home',
       '/recipes/*': ' Recipe Detail',
+      '/': ' Home',
     }
 
     const path = window.location.pathname
