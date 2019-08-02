@@ -53,7 +53,7 @@ function BottomNav2(props) {
           <FontAwesomeIcon icon={faUser} size="1.5x" />
           <div
             style={{
-              fontSize: '45%',
+              fontSize: '50%',
             }}
           >
             {' '}
@@ -66,7 +66,11 @@ function BottomNav2(props) {
           to="/recipes/explore"
         >
           <FontAwesomeIcon icon={faSearch} size="1.5x" className="icon" />
+<<<<<<< HEAD
           <div style={{ fontSize: '45%' }}> EXPLORE</div>
+=======
+          <div style={{ fontSize: '50%' }}> EXPLORE</div>
+>>>>>>> a55371cf752e27cc0fec41d751836fa483b7631b
         </Col>
         <Col
           tag={NLink}
@@ -74,7 +78,7 @@ function BottomNav2(props) {
           to="/recipes/create-recipe"
         >
           <FontAwesomeIcon icon={faPlus} size="1.5x" className="icon" />
-          <div style={{ fontSize: '45%' }}> NEW RECIPE </div>
+          <div style={{ fontSize: '50%' }}> NEW RECIPE </div>
         </Col>
         <Col
           tag={NLink}
@@ -82,7 +86,7 @@ function BottomNav2(props) {
           to="/my-list"
         >
           <FontAwesomeIcon icon={faList} size="1.5x" className="icon" />
-          <div style={{ fontSize: '45%' }}> GROCERY LIST </div>
+          <div style={{ fontSize: '50%' }}> GROCERY LIST </div>
         </Col>
       </Row>
     </Navbar>

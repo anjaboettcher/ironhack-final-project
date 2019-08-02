@@ -102,7 +102,11 @@ export default function MyRecipes() {
                   className="boxText border-0 text-uppercase"
                   style={{ opacity: '0.8' }}
                 >
-                  <div> {recipe.name} </div>
+                  <div>
+                    {recipe.name.length < 40
+                      ? recipe.name
+                      : recipe.name.slice(0, 38) + '...'}
+                  </div>
                 </div>
               </Link>
             </div>

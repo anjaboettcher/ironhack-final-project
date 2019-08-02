@@ -2,9 +2,9 @@
 @import url('https://fonts.googleapis.com/css?family=Hind:400,600&display=swap');
 // --------------------
 
-
 * {
   font-family: 'Hind', sans-serif;
+  // border: red solid 1px;
 }
 
 h5 {
@@ -101,7 +101,7 @@ $danger: #32c3ff;
   height: 40px;
   border-radius: 50%;
   overflow: hidden;
-  object-fit: cover,
+  object-fit: cover;
 }
 
 // ----------------------------------------
@@ -232,9 +232,6 @@ body {
   transition: 0.3s;
 }
 
-
-
-
 .recipe-button-orange {
   border-radius: 10px;
   text-align: center;
@@ -248,21 +245,17 @@ body {
   transition: 0.3s;
 }
 
-
-
 .my-recipe-button:hover {
   opacity: 1;
   background-color: #8ab661;
   color: white;
 }
 
-
 .recipe-button:hover {
   opacity: 1;
   background-color: #8ab661;
   color: white;
 }
-
 
 .recipe-card-special-button {
   border-radius: 10px;
@@ -292,7 +285,6 @@ body {
   color: #f7f7f7;
 }
 
-
 .delete-button-details-page {
   border-radius: 10px;
   text-align: center;
@@ -304,7 +296,6 @@ body {
   cursor: pointer;
   transition: 0.3s;
 }
-
 
 .delete-button {
   border-radius: 10px;
@@ -340,8 +331,6 @@ body {
   }
 }
 
-
-
 .card-horizontal {
   display: flex;
   flex: 1 1 auto;
@@ -350,7 +339,7 @@ body {
 $parallax-height: 100vh;
 $center-margin: 0px auto;
 
-@mixin parallax-background ($file) {
+@mixin parallax-background($file) {
   background: url($file) no-repeat center center fixed;
   @include background-size(cover);
 }
@@ -370,13 +359,16 @@ body {
   font-family: 'Hind', sans-serif;
 }
 
-
 #table-food {
-  @include parallax-background('/images/bread-cheese-cheese-platter-1893609.jpg');
+  @include parallax-background(
+    '/images/bread-cheese-cheese-platter-1893609.jpg'
+  );
 }
 
 #food-photography {
-  @include parallax-background('/images/blur-blurred-background-brunch-693267.jpg');
+  @include parallax-background(
+    '/images/blur-blurred-background-brunch-693267.jpg'
+  );
 }
 
 #table-food,
@@ -394,7 +386,7 @@ body {
     font-family: 'Hind', sans-serif;
     letter-spacing: 0.06em;
     font-size: 150px;
-    color: #FFF;
+    color: #fff;
     text-align: center;
   }
 }
