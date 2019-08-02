@@ -98,7 +98,7 @@ let recipes = [
     picture: '/images/vegan-spaghetti-carbonara.jpg',
     personcount: 2,
     duration: '30 minutes',
-    categories: ['Vegetarian'],
+    categories: ['Vegetarian', 'Pasta'],
   }),
   new Recipe({
     _owner: users[2]._id, // Jamie Oliver

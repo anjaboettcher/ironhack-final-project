@@ -214,6 +214,11 @@ export default function RecipeDetail(props) {
           <CardTitle>
             <h2 style={{ color: '#FD8664' }}>{recipe && <>{recipe.name}</>}</h2>
           </CardTitle>
+          <Container>
+            {message && <div className="info mb-4">{message}</div>}
+            {/* <pre>{JSON.stringify(message, null, 2)}</pre> */}
+            <ButtonType recipe={recipe} user={user} />
+          </Container>
           <CardSubtitle>
             <strong>Created by: </strong>
 
@@ -297,3 +302,4 @@ export default function RecipeDetail(props) {
     </div>
   )
 }
+// hello
