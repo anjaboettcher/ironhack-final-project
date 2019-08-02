@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react'
 import api from '../../api.js'
 import { MDBCol } from 'mdbreact'
 import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { faList } from '@fortawesome/free-solid-svg-icons'
-import { FormGroup, Label } from 'reactstrap'
-import ReactModal from 'react-modal'
-import Select from 'react-select'
+// import { faList } from '@fortawesome/free-solid-svg-icons'
+// import { FormGroup, Label } from 'reactstrap'
+// import ReactModal from 'react-modal'
+// import Select from 'react-select'
 
 export default function Explore() {
   const [personcount, setPersoncount] = useState({
@@ -69,14 +69,14 @@ export default function Explore() {
     return String(user._id) !== String(recipe._owner._id)
   }
 
-  function addRecipesToGroceryList(recipeId, personcount) {
-    //console.log('personcount', personcount)
-    //console.log('recipeId', recipeId)
-    api
-      .addIngredients(recipeId, personcount)
-      .then(ingredients => {})
-      .catch(err => console.log('catch: ', err))
-  }
+  // function addRecipesToGroceryList(recipeId, personcount) {
+  //   //console.log('personcount', personcount)
+  //   //console.log('recipeId', recipeId)
+  //   api
+  //     .addIngredients(recipeId, personcount)
+  //     .then(ingredients => {})
+  //     .catch(err => console.log('catch: ', err))
+  // }
 
   // This is the search bar
   function filterBySearch(allRecipes) {

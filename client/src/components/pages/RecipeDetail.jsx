@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import api from '../../api'
 import Loader from 'react-dots-loader'
 import 'react-dots-loader/index.css'
-import { ListGroup, ListGroupItem } from 'reactstrap'
+import { ListGroup, ListGroupItem, Container } from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faUsers } from '@fortawesome/free-solid-svg-icons'
 import {
@@ -28,6 +28,7 @@ export default function RecipeDetail(props) {
   const [recipe, setRecipe] = useState(null)
   //const [ingredients, setIngredients] = useState([])
   const [user, setUser] = useState(null)
+  const [message, setMessage] = useState(null)
   const [showModal, hideModal] = useModal(() => (
     <ReactModal
       isOpen
@@ -99,6 +100,10 @@ export default function RecipeDetail(props) {
     api
       .forkRecipe(recipeId)
       .then(recipe => {
+        setMessage(`Recipe successfully forked!`)
+        setTimeout(() => {
+          setMessage(null)
+        }, 4000)
         console.log('done...')
       })
       .catch(err => console.log('catch: ', err))
@@ -117,12 +122,12 @@ export default function RecipeDetail(props) {
 
   const EditButton = () => (
     <Link to={`/recipes/${recipeId}/edit-recipe`}>
-      <button className="my-2 recipe-button-orange">Edit</button>
+      <button className="my-3 recipe-button-orange">Edit</button>
     </Link>
   )
   const AddButton = () => (
     <button
-      className="my-2 recipe-button-orange"
+      className="my-3 recipe-button-orange"
       onClick={() => addRecipesToGroceryList(recipe._id)}
     >
       <FontAwesomeIcon icon={faList} size="1x" className="icon" /> Add to
@@ -130,12 +135,12 @@ export default function RecipeDetail(props) {
     </button>
   )
   const DeleteButton = props => (
-    <button className="my-2 delete-button-details-page" onClick={showModal}>
+    <button className="my-3 delete-button-details-page" onClick={showModal}>
       Delete
     </button>
   )
   const AddToMyListButton = () => (
-    <button className="my-4 recipe-button-orange" onClick={forkThisRecipe}>
+    <button className="my-3 recipe-button-orange" onClick={forkThisRecipe}>
       Fork this recipe
     </button>
   )
@@ -179,13 +184,13 @@ export default function RecipeDetail(props) {
   const ButtonType = ({ recipe, user }) => {
     if (!api.isLoggedIn() || recipe._owner._id !== user._id) {
       return (
-        <div>
+        <div className="border-0">
           <AddToMyListButton />
         </div>
       )
     } else if (recipe._owner._id) {
       return (
-        <div>
+        <div className="border-0">
           <EditButton /> <DeleteButton />
         </div>
       )
@@ -222,7 +227,7 @@ export default function RecipeDetail(props) {
               </>
             )}
           </CardSubtitle>
-          <CardText>
+          <Container>
             {recipe &&
               recipe.categories.map(category => (
                 <button className="category-button">
@@ -281,8 +286,12 @@ export default function RecipeDetail(props) {
               <br />
               {recipe && <>{recipe.description}</>}
             </span>
-            <ButtonType recipe={recipe} user={user} />
-          </CardText>
+            <div>
+              {message && <div className="info mb-4">{message}</div>}
+              {/* <pre>{JSON.stringify(message, null, 2)}</pre> */}
+              <ButtonType recipe={recipe} user={user} />
+            </div>
+          </Container>
         </CardBody>
       </Card>
     </div>

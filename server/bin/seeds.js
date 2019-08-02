@@ -273,13 +273,10 @@ let recipes = [
   new Recipe({
     _owner: users[0]._id, // Jamie Oliver
     name: 'Grilled salmon with avocado, feta and pumpkin seeds',
-    description: `● Preheat your grill to maximum. Drizzle a little olive oil over the skin side of the salmon, place on the grill pan or a baking tray and slide under the hot grill. Cook for 6 minutes on the skin side, before carefully flipping and grilling for a further 4 minutes. Turn the grill off and leave the salmon to keep warm until you’re ready to eat.
-
-    ● While the salmon is cooking, tip the pumpkin seeds into a dry frying pan and toast over a high heat for about 2 minutes, or until they start turning brown and popping. Season with a little salt and leave in the pan.
-    
-    ● Using the back of a fork, break up the avocado in a bowl. Add the onion, sesame oil and coriander. Mix the whole lot together until the ingredients are well combined.
-    
-    ● Slide your salmon on to a plate, removing the skin as you go. Pile up the guacamole, slice and scatter over the feta, and finish with the toasted pumpkin seeds, a pile of watercress and a squeeze of lime juice, if using.`,
+    description: `Preheat your grill to maximum. Drizzle a little olive oil over the skin side of the salmon, place on the grill pan or a baking tray and slide under the hot grill. Cook for 6 minutes on the skin side, before carefully flipping and grilling for a further 4 minutes. 
+    Turn the grill off and leave the salmon to keep warm until you’re ready to eat. While the salmon is cooking, tip the pumpkin seeds into a dry frying pan and toast over a high heat for about 2 minutes, or until they start turning brown and popping. Season with a little salt and leave in the pan. 
+    Using the back of a fork, break up the avocado in a bowl. Add the onion, sesame oil and coriander. Mix the whole lot together until the ingredients are well combined. 
+    Slide your salmon on to a plate, removing the skin as you go. Pile up the guacamole, slice and scatter over the feta, and finish with the toasted pumpkin seeds, a pile of watercress and a squeeze of lime juice, if using.`,
     ingredients: [
       { qtyPerPerson: 2, qty: 2, unit: 'tbs', item: 'olive oil' },
       { qtyPerPerson: 2, qty: 2, unit: 'tbs', item: 'pumpkin seeds' },
