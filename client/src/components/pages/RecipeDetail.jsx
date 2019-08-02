@@ -217,8 +217,8 @@ export default function RecipeDetail(props) {
             {recipe._originalRecipe && (
               <>
                 {' | '}
-                {/* <strong>Original recipe: </strong>
-                <span>{recipe._originalRecipe._owner.username}</span> */}
+                <strong>Forked from: </strong>
+                <span>{recipe._originalRecipe._owner.username}</span>
               </>
             )}
           </CardSubtitle>
