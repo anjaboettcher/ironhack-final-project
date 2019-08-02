@@ -79,13 +79,13 @@ export default function Signup(props) {
             />
           </FormGroup>
         </Col>
-        <p className="form-text text-muted mb-4">
+        <span className="form-text text-muted">
           {' '}
           Do you already have an account?{' '}
           <a style={{ color: '#8AB661' }} href="/login">
             Login
           </a>
-        </p>
+        </span>
         <button
           onClick={e => handleClick(e)}
           className="my-4 recipe-button rounded-pill"

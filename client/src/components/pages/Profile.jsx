@@ -60,6 +60,7 @@ export default function Profile(props) {
             borderRadius: 150 / 2,
             overflow: 'hidden',
             borderColor: 'black',
+            objectFit: 'cover',
           }}
           src={profile.image}
           alt={profile.image}

@@ -93,9 +93,15 @@ $danger: #32c3ff;
 }
 
 .recipe-profile-picture {
-
-  border-radius: 10px;
-  margin-bottom: 10px;
+  // height: 40px;
+  // width: 40px;
+  // border-radius: 50%;
+  // object-fit: 'cover'
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: cover,
 }
 
 // ----------------------------------------
@@ -393,4 +399,14 @@ footer {
 
 .footer-div {
   background-color: #8ab661;
+}
+
+.img-square-wrapper {
+  width: 50%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.card-body {
+  flex: 1;
 }

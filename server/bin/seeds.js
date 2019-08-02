@@ -422,6 +422,33 @@ let recipes = [
     duration: '25 minutes',
     categories: ['Fish', 'Seefood'],
   }),
+  new Recipe({
+    _owner: users[2]._id, // Jamie Oliver
+    name: 'Chocolate Bundt Cake',
+    description:
+      "Preheat the oven to 180ºC or 350ºF. Spray generously a bundt pan with cooking spray or grease with butter. Combine the water and the cocoa powder until it's completely dissolved. Let it cool. Whisk the sugar and flour together and make a hole in the center. Then add the egg yolks, cocoa mixture, oil, salt and the baking powder and beat for 8 minutes in a stand mixer at medium speed. Meanwhile, beat the egg whites to stiff peaks with the remaining sugar. Using a rubber spatula, fold the egg whites into the chocolate batter slowly, until completely combined. Pour into the bundt pan and bake for 40 minutes or until a toothpick comes out almost clean. Don't let it dry too much. For the ganache just microwave the heavy cream, in a heatproof bowl, until it's hot. Then add the chocolate in pieces and cover with a lid (I used a plate). After a minute or so, remove the lid and stir with a rubber spatula until all the chocolate bits have melted and are well mixed. When the cake is cold, pour over it and have fun with some sprinkles. Enjoy!",
+    ingredients: [
+      { qtyPerPerson: 0.6, qty: 6, unit: 'units', item: 'eggs' },
+      { qtyPerPerson: 7.5, qty: 75, unit: 'gr', item: 'cocoa powder' },
+      { qtyPerPerson: 20, qty: 200, unit: 'ml', item: 'warm water' },
+      { qtyPerPerson: 25, qty: 250, unit: 'gr', item: 'all-purpose flour' },
+      { qtyPerPerson: 30, qty: 300, unit: 'gr', item: 'white sugar' },
+      { qtyPerPerson: 11, qty: 110, unit: 'ml', item: 'sunflower oil' },
+      { qtyPerPerson: 0.1, qty: 1, unit: 'pinch', item: 'table salt' },
+      { qtyPerPerson: 0.3, qty: 3, unit: 'tbs', item: 'white sugar' },
+      {
+        qtyPerPerson: 20,
+        qty: 200,
+        unit: 'gr',
+        item: 'semisweet or 50% dark chocolate',
+      },
+      { qtyPerPerson: 20, qty: 200, unit: 'ml', item: 'heavy cream' },
+    ],
+    picture: '/images/chocolate-bundt-cake.jpg',
+    personcount: 10,
+    duration: '1 hour',
+    categories: ['Desserts', 'Baking'],
+  }),
 ]
 
 Promise.all([User.deleteMany(), Recipe.deleteMany()])

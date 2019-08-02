@@ -115,19 +115,19 @@ export default function RecipeDetail(props) {
 
   const EditButton = () => (
     <Link to={`/recipes/${recipeId}/edit-recipe`}>
-      <button className="my-4 recipe-button">Edit</button>
+      <button className="my-2 recipe-button">Edit</button>
     </Link>
   )
   const AddButton = () => (
     <button
-      className="my-4 recipe-button"
+      className="my-2 recipe-button"
       onClick={() => addRecipesToGroceryList(recipe._id)}
     >
       Add to Grocery List
     </button>
   )
   const DeleteButton = props => (
-    <button className="my-4 recipe-button" onClick={showModal}>
+    <button className="my-2 recipe-button" onClick={showModal}>
       Delete
     </button>
   )
@@ -167,32 +167,27 @@ export default function RecipeDetail(props) {
       .catch(err => console.log(err))
   }, [recipeId])
 
+  const ButtonType2 = ({ recipe, user }) => {
+    if (recipe._owner._id) {
+      return <AddButton />
+    }
+  }
+
   const ButtonType = ({ recipe, user }) => {
     if (!api.isLoggedIn() || recipe._owner._id !== user._id) {
       return (
         <div>
           <AddToMyListButton />
-          <AddButton />
         </div>
       )
     } else if (recipe._owner._id) {
       return (
         <div>
-          <EditButton /> <AddButton /> <DeleteButton />
+          <EditButton /> <DeleteButton />
         </div>
       )
     }
   }
-
-  // const ButtonType2 = ({ recipe, user }) => {
-  //   if (!api.isLoggedIn() || recipe._owner._id !== user._id) {
-  //     return (
-  //       <div>
-  //         <AddToMyListButton />
-  //       </div>
-  //     )
-  //   }
-  // }
 
   if (!recipe || !user) return <Loader size={10}>Loading...</Loader>
 
@@ -273,13 +268,14 @@ export default function RecipeDetail(props) {
                     </span>
                   ))}
               </div>
-              {/* <ButtonType2 recipe={recipe} user={user} /> */}
+
+              <ButtonType2 recipe={recipe} user={user} />
             </ListGroup>
-            <ListGroupItem className="border-0">
+            <span className="border-0">
               <h5 style={{ color: '#8AB661' }}>Preparations:</h5>
               <br />
-              <span>{recipe && <>{recipe.description}</>}</span>
-            </ListGroupItem>
+              {recipe && <>{recipe.description}</>}
+            </span>
             <ButtonType recipe={recipe} user={user} />
           </CardText>
         </CardBody>

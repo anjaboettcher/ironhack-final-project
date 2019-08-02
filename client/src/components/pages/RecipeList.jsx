@@ -184,7 +184,7 @@ export default function MyRecipes() {
               //list
               .map((l, i) => (
                 <tr key={i}>
-                  <th scope="row" className="ClickablePicture">
+                  <th scope="row">
                     <Checkbox
                       size="3"
                       checked={l.checked}
@@ -210,9 +210,10 @@ export default function MyRecipes() {
               ))}
         </tbody>
       </Table>
+
       <button
         className="delete-button align-center"
-        style={{ width: '50%' }}
+        style={{ width: '50%', marginBottom: '20px' }}
         onClick={() => handleDeleteWholeList()}
       >
         Delete all

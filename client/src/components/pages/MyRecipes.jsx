@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 //import axios from 'axios'
 import api from '../../api.js'
-import { Col, Button, Container } from 'reactstrap'
+import { Col, Container } from 'reactstrap'
 import { MDBCol } from 'mdbreact'
 import { Link } from 'react-router-dom'
 import Loader from 'react-dots-loader'
@@ -98,7 +98,10 @@ export default function MyRecipes() {
                   fontWeight: '600',
                 }}
               >
-                <div className="boxText border-0 text-uppercase">
+                <div
+                  className="boxText border-0 text-uppercase"
+                  style={{ opacity: '0.8' }}
+                >
                   <div> {recipe.name} </div>
                 </div>
               </Link>
