@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Container } from 'reactstrap'
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
         }}
       >
         <h1
-          class="title"
+          className="title"
           style={{
             color: 'black',
             opacity: '0.5',
@@ -56,9 +57,9 @@ export default function Home() {
         your shopping list. All in one place.
       </p>
 
-      <section class="testimonial">
-        <div class="container">
-          <blockquote class="testimonial" style={{ marginBottom: 0 }}>
+      <section className="testimonial">
+        <div>
+          <blockquote className="testimonial" style={{ marginBottom: 0 }}>
             <p style={{ marginBottom: 0 }}>
               "Finally a social network where I can create and share my favorite
               recipes in one place! Love it!"
@@ -81,8 +82,8 @@ export default function Home() {
       </div>
 
       <footer>
-        <container>
-          <div class="footer-copyright text-center py-3 container">
+        <Container>
+          <div className="footer-copyright text-center py-3">
             © 2019 Copyright | Created with ♡ by Giulia Gallorini, Anja Böttcher
             and Sebastien Morelle
             <a href="https://mdbootstrap.com/education/bootstrap/">
@@ -90,7 +91,7 @@ export default function Home() {
               @ Ironhack
             </a>
           </div>
-        </container>
+        </Container>
       </footer>
     </div>
   )

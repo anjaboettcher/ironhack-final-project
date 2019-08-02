@@ -89,39 +89,11 @@ export default function MyRecipes() {
                   src={recipe.picture}
                 />
               </Link>
-
-              <Link
-                to={'/recipes/' + recipe._id}
-                style={{
-                  textDecoration: 'none',
-                  color: '#242323',
-                  fontWeight: '600',
-                }}
-              >
-                <div
-                  className="boxText border-0 text-uppercase"
-                  style={{ opacity: '0.8' }}
-                >
-                  <div>
-                    {recipe.name.length < 40
-                      ? recipe.name
-                      : recipe.name.slice(0, 38) + '...'}
-                  </div>
-                </div>
-              </Link>
             </div>
-            <div>
-              <button
-                size="sm"
-                block
-                className=" m-0 p-1 my-recipe-button mt-2"
-                onClick={() =>
-                  addRecipesToGroceryList(recipe._id, recipe.personcount)
-                }
-              >
-                <FontAwesomeIcon icon={faList} size="1x" className="icon" /> Add
-                to List
-              </button>
+            <div className="my-recipe-text">
+              {recipe.name.length < 40
+                ? recipe.name
+                : recipe.name.slice(0, 40) + '...'}
             </div>
           </div>
         ))}
