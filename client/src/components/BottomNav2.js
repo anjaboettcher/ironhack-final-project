@@ -66,7 +66,7 @@ function BottomNav2(props) {
           to="/recipes/explore"
         >
           <FontAwesomeIcon icon={faSearch} size="1.5x" className="icon" />
-          <div style={{ fontSize: '45%' }}> EXPLORE ddff</div>
+          <div style={{ fontSize: '45%' }}> EXPLORE</div>
         </Col>
         <Col
           tag={NLink}

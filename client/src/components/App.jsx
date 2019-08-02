@@ -25,8 +25,12 @@ function App() {
       <MainNavbar />
       <Switch>
         <Route path="/" exact component={Home} />
-        <Route path="/countries" component={Countries} />
-        <Route path="/add-country" component={AddCountry} />
+        {api.isLoggedIn() ? (
+          <Route path="/recipes/explore" component={Explore} />
+        ) : (
+          <Route path="/add-library" component={Login} />
+        )}
+
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
         <Route path="/profile" component={Profile} />

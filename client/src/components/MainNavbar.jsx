@@ -37,7 +37,8 @@ function MainNavbar(props) {
     return () => {}
   }, [])
 
-  // {api.isLoggedIn() ? <Route path="/add-library" component={AddLibrary} /> : <Route path="/add-library" component={Login} />}
+  // {api.isLoggedIn() ? <Route path="/add-library" component={AddLibrary} />
+  // : <Route path="/add-library" component={Login} />}
 
   const links = [{ to: '/', text: 'About' }]
   if (!api.isLoggedIn()) {
