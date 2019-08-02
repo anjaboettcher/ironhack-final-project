@@ -105,6 +105,7 @@ export default function EditRecipe(props) {
     setIngredientList([
       ...ingredientList,
       {
+        qtyPerPerson: ingredient.qty / state.personcount,
         item: ingredient.item,
         qty: ingredient.qty,
         unit: ingredient.unit.value,

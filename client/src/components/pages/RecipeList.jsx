@@ -183,7 +183,15 @@ export default function MyRecipes() {
             removeDoubles(sortIngredients(list))
               //list
               .map((l, i) => (
-                <tr key={i}>
+                <tr
+                  key={i}
+                  // style={{
+                  //   display: 'flex',
+                  //   alignItems: 'center',
+                  //   alignContent: 'center',
+                  //   border: '3px solid black',
+                  // }}
+                >
                   <th scope="row">
                     <Checkbox
                       size="3"
@@ -192,10 +200,22 @@ export default function MyRecipes() {
                       onChange={() => handleClick(i)}
                     />
                   </th>
-                  <td>
+
+                  <td
+                    style={{
+                      padding: '25px 12px 0px 12px',
+                    }}
+                  >
                     {l.qty} {l.unit}
                   </td>
-                  <td>{l.item}</td>
+
+                  <td
+                    style={{
+                      padding: '25px 12px 0px 12px',
+                    }}
+                  >
+                    {l.item}
+                  </td>
                   <td>
                     <button
                       className="delete-button"
