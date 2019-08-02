@@ -90,6 +90,7 @@ $danger: #32c3ff;
   width: 150px;
   border-radius: 100px;
   margin-bottom: 10px;
+  object-fit: cover;
 }
 
 .recipe-profile-picture {
@@ -364,12 +365,14 @@ body {
 }
 
 #table-food {
-  @include parallax-background('/images/bread-cheese-cheese-platter-1893609.jpg'
+  @include parallax-background(
+    '/images/bread-cheese-cheese-platter-1893609.jpg'
   );
 }
 
 #food-photography {
-  @include parallax-background('/images/blur-blurred-background-brunch-693267.jpg'
+  @include parallax-background(
+    '/images/blur-blurred-background-brunch-693267.jpg'
   );
 }
 
@@ -436,8 +439,8 @@ footer {
   flex: 1;
 }
 
-
 .card-body-explore {
-  flex: 1;
   width: 50%;
+  margin: 20px auto 0px;
+  padding: 0px 15px;
 }

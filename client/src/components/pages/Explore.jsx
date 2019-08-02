@@ -160,7 +160,11 @@ export default function Explore() {
                     {/* </div> */}
 
                     <div className="card-body-explore">
-                      <h5 className="card-title">{recipe.name}</h5>
+                      <h5 className="card-title">
+                        {recipe.name.length < 30
+                          ? recipe.name
+                          : recipe.name.slice(0, 30) + '...'}
+                      </h5>
                       <hr />
                       <img
                         className="recipe-profile-picture"
@@ -172,7 +176,7 @@ export default function Explore() {
                       <strong>Duration:</strong> {recipe.duration}
                       <br />
                       <strong>Ingredients:</strong> {recipe.ingredients.length}
-                      <hr />
+                      <hr style={{ marginBottom: '0px' }} />
                     </div>
                   </div>
                 </div>
