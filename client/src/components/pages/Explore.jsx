@@ -141,12 +141,24 @@ export default function Explore() {
                 style={{ textDecoration: 'none', color: '#696A66' }}
               >
                 <div class="card">
-                  <div class="card-horizontal">
-                    <img
-                      className="img-square-wrapper"
-                      alt="error"
-                      src={recipe.picture}
-                    />
+                  <div class="card-horizontal border">
+                    {/* <div style={{ height: '100%', objectFit: 'cover' }}> */}
+                    <div
+                      style={{
+                        width: '50%',
+                        height: '100%',
+                        display: 'flex',
+                        flex: '1 1 auto',
+                      }}
+                    >
+                      <img
+                        className="img-square-wrapper"
+                        alt="error"
+                        src={recipe.picture}
+                      />
+                    </div>
+                    {/* </div> */}
+
                     <div className="card-body">
                       <h5 className="card-title">{recipe.name}</h5>
                       <hr />
@@ -161,78 +173,8 @@ export default function Explore() {
                       <br />
                       <strong>Ingredients:</strong> {recipe.ingredients.length}
                       <hr />
-                      {/* DOUBLES */}
-                      {/* <button
-                      color="secondary"
-                      block
-                      className="recipe-card-button"
-                      onClick={() => forkThisRecipe(recipe._id)}
-                    >
-                      Fork Recipe
-                    </button>
-                    <button
-                      color="primary"
-                      size="sm"
-                      block
-                      className="recipe-button ml-2"
-                      onClick={() =>
-                        addRecipesToGroceryList(recipe._id, personcount.value)
-                      }
-                    >
-                      Grocery List
-                    </button> */}
                     </div>
                   </div>
-                  {/* <div class="card-footer">
-                  <div style={{ display: 'flex' }}>
-                    <button
-                      color="secondary"
-                      block
-                      className="recipe-card-button mr-2"
-                      onClick={() => forkThisRecipe(recipe._id)}
-                    >
-                      {' '}
-                      <img
-                        src={'../images/fork-green.png'}
-                        alt="fork"
-                        className="img-responsive"
-                        height="20"
-                      />
-                      Fork Recipe
-                    </button>
-                    <span
-                      className="recipe-card-special-button "
-                      style={{ width: '60px' }}
-                    >
-                      <div style={{}}>
-                        <Select
-                          id="personcount"
-                          options={NbrOfPeople}
-                          value={personcount}
-                          onChange={changePersonCount}
-                        />{' '}
-                      </div>
-                      people
-                    </span>
-                    <button
-                      color="primary"
-                      size="sm"
-                      block
-                      className="recipe-card-button"
-                      onClick={() =>
-                        addRecipesToGroceryList(recipe._id, recipe.personcount)
-                      }
-                    >
-                      {' '}
-                      <FontAwesomeIcon
-                        icon={faList}
-                        size="1x"
-                        className="icon"
-                      />{' '}
-                      Add to grocery list
-                    </button> */}
-                  {/* </div> */}
-                  {/* </div> */}
                 </div>
               </Link>
             </div>
