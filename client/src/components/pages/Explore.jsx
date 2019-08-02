@@ -159,7 +159,7 @@ export default function Explore() {
                     </div>
                     {/* </div> */}
 
-                    <div className="card-body">
+                    <div className="card-body-explore">
                       <h5 className="card-title">{recipe.name}</h5>
                       <hr />
                       <img
