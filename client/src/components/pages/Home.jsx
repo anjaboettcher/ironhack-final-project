@@ -50,7 +50,7 @@ export default function Home() {
       </div>
 
       <p>
-        Foodify is for food lovers. It is a social recipe book. Follow your
+        Forkify is for food lovers. It is a social recipe book. Follow your
         friends and explore the recipe database to see what your friends have
         been cooking lately. Create and save new recipes and add ingredients to
         your shopping list. All in one place.
