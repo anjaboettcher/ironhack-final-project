@@ -28,6 +28,7 @@ export default function RecipeDetail(props) {
   const [recipe, setRecipe] = useState(null)
   //const [ingredients, setIngredients] = useState([])
   const [user, setUser] = useState(null)
+  const [message, setMessage] = useState(null)
   const [showModal, hideModal] = useModal(() => (
     <ReactModal
       isOpen
@@ -99,6 +100,10 @@ export default function RecipeDetail(props) {
     api
       .forkRecipe(recipeId)
       .then(recipe => {
+        setMessage(`Recipe successfully forked!`)
+        setTimeout(() => {
+          setMessage(null)
+        }, 4000)
         console.log('done...')
       })
       .catch(err => console.log('catch: ', err))
@@ -282,6 +287,8 @@ export default function RecipeDetail(props) {
               {recipe && <>{recipe.description}</>}
             </span>
             <ButtonType recipe={recipe} user={user} />
+            {message && <div className="info">{message}</div>}
+            {/* <pre>{JSON.stringify(message, null, 2)}</pre> */}
           </CardText>
         </CardBody>
       </Card>
