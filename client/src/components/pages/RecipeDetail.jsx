@@ -28,7 +28,10 @@ export default function RecipeDetail(props) {
   const [recipe, setRecipe] = useState(null)
   //const [ingredients, setIngredients] = useState([])
   const [user, setUser] = useState(null)
-  const [message, setMessage] = useState(null)
+  const [message, setMessage] = useState({
+    fork: null,
+    add: null,
+  })
   const [showModal, hideModal] = useModal(() => (
     <ReactModal
       isOpen
@@ -100,10 +103,10 @@ export default function RecipeDetail(props) {
     api
       .forkRecipe(recipeId)
       .then(recipe => {
-        setMessage(`Recipe successfully forked!`)
+        setMessage({ ...message, fork: `Recipe successfully forked!` })
         setTimeout(() => {
-          setMessage(null)
-        }, 4000)
+          setMessage({ ...message, fork: null })
+        }, 10000)
         console.log('done...')
       })
       .catch(err => console.log('catch: ', err))
@@ -114,8 +117,13 @@ export default function RecipeDetail(props) {
     api
       .addIngredients(recipeId, recipe.personcount) // Edit here unsure
       .then(ingredients => {
-        console.log('done...')
-        console.log('recipeId', recipeId, ingredients)
+        setMessage({
+          ...message,
+          add: `Ingredients have been added to grocery list`,
+        })
+        setTimeout(() => {
+          setMessage({ ...message, add: null })
+        }, 10000)
       })
       .catch(err => console.log('catch: ', err))
   }
@@ -215,7 +223,7 @@ export default function RecipeDetail(props) {
             <h2 style={{ color: '#FD8664' }}>{recipe && <>{recipe.name}</>}</h2>
           </CardTitle>
           <Container>
-            {message && <div className="info mb-4">{message}</div>}
+            {message.fork && <div className="info mb-4">{message.fork}</div>}
             {/* <pre>{JSON.stringify(message, null, 2)}</pre> */}
             <ButtonType recipe={recipe} user={user} />
           </Container>
@@ -282,8 +290,11 @@ export default function RecipeDetail(props) {
                   ))}
               </div>
 
+              {message.add && <div className="info mb-4">{message.add}</div>}
+              {/* <pre>{JSON.stringify(message, null, 2)}</pre> */}
               <ButtonType2 recipe={recipe} user={user} />
             </ListGroup>
+
             <span className="border-0">
               <h5 className="mt-2" style={{ color: '#8AB661' }}>
                 Preparations:
@@ -292,7 +303,7 @@ export default function RecipeDetail(props) {
               {recipe && <>{recipe.description}</>}
             </span>
             <div>
-              {message && <div className="info mb-4">{message}</div>}
+              {message.fork && <div className="info">{message.fork}</div>}
               {/* <pre>{JSON.stringify(message, null, 2)}</pre> */}
               <ButtonType recipe={recipe} user={user} />
             </div>
