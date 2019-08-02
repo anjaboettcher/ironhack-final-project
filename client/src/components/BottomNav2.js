@@ -30,6 +30,9 @@ function BottomNav2(props) {
       style={{
         backgroundColor: '#FD8664',
         width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        padding: '5px 0px',
       }}
     >
       <Row
@@ -47,10 +50,10 @@ function BottomNav2(props) {
           style={{ color: 'white', textDecoration: 'none' }}
           to="/recipes/my-recipes"
         >
-          <FontAwesomeIcon icon={faUser} size="2x" />
+          <FontAwesomeIcon icon={faUser} size="1.5x" />
           <div
             style={{
-              fontSize: '55%',
+              fontSize: '45%',
             }}
           >
             {' '}
@@ -62,24 +65,24 @@ function BottomNav2(props) {
           style={{ color: 'white', textDecoration: 'none' }}
           to="/recipes/explore"
         >
-          <FontAwesomeIcon icon={faSearch} size="2x" className="icon" />
-          <div style={{ fontSize: '55%' }}> EXPLORE</div>
+          <FontAwesomeIcon icon={faSearch} size="1.5x" className="icon" />
+          <div style={{ fontSize: '45%' }}> EXPLORE ddff</div>
         </Col>
         <Col
           tag={NLink}
           style={{ color: 'white', textDecoration: 'none' }}
           to="/recipes/create-recipe"
         >
-          <FontAwesomeIcon icon={faPlus} size="2x" className="icon" />
-          <div style={{ fontSize: '55%' }}> NEW RECIPE </div>
+          <FontAwesomeIcon icon={faPlus} size="1.5x" className="icon" />
+          <div style={{ fontSize: '45%' }}> NEW RECIPE </div>
         </Col>
         <Col
           tag={NLink}
           style={{ color: 'white', textDecoration: 'none' }}
           to="/my-list"
         >
-          <FontAwesomeIcon icon={faList} size="2x" className="icon" />
-          <div style={{ fontSize: '55%' }}> GROCERY LIST </div>
+          <FontAwesomeIcon icon={faList} size="1.5x" className="icon" />
+          <div style={{ fontSize: '45%' }}> GROCERY LIST </div>
         </Col>
       </Row>
     </Navbar>
