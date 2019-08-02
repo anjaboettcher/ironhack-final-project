@@ -65,7 +65,7 @@ function BottomNav2(props) {
           style={{ color: 'white', textDecoration: 'none' }}
           to="/recipes/explore"
         >
-          <FontAwesomeIcon icon={faSearch} size="fa-sm" className="icon" />
+          <FontAwesomeIcon icon={faSearch} size="1.5x" className="icon" />
           <div style={{ fontSize: '50%' }}> EXPLORE</div>
         </Col>
         <Col
