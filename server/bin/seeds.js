@@ -293,6 +293,135 @@ let recipes = [
     duration: '15 minutes',
     categories: ['Salads', 'Seefood'],
   }),
+  new Recipe({
+    _owner: users[3]._id,
+    name: 'SummerZucchini Bolognese',
+    description: `Gently heat up the olive oil in a heavy-bottomed pan. Add the diced onion and sauté on a low heat until translucent, stirring frequently.
+    Meanwhile, if using fresh tomatoes, remove the skins by making a shallow cris-cross incision at the top of each tomato and plunging them into a pot with boiling water for a few seconds. Chop the peeled tomatoes quite finely.
+    Add chopped garlic to the onion and sauté for another 2-3 minutes. Finally add the diced red pepper. Sauté, stirring frequently, for another 5 minutes or so.
+    Coat the onion / garlic / pepper mixture in nutmeg, smoked paprika, chilli flakes and dry thyme.
+    Add the tomatoes and about a cup (240 ml) of liquid (water or stock + a splash of wine works well too).
+    Simmer on a medium heat until the tomatoes fully break down and all of the excess moisture cooks out. If the sauce gets dry, but the tomatoes are still very chunky, add a bit more liquid and carry on simmering. Remember to give the sauce a good stir from time to time.
+    Once the sauce has reduced, season and add grated zucchini. Simmer the sauce with the zucchini for another 5-10 minutes. Taste and adjust the seasoning – I like to under-season slightly and top my pasta with chopped capers at the end (which adds a bit more saltiness).
+    Stir the cooked pasta into the sauce, top with chopped walnuts and capers.`,
+    ingredients: [
+      { qtyPerPerson: 1, qty: 2, unit: 'tsp', item: 'olive oil' },
+      { qtyPerPerson: 0.25, qty: 1 / 2, unit: 'units', item: 'onion' },
+      { qtyPerPerson: 200, qty: 400, unit: 'gr', item: 'chopped tomatoes' },
+      { qtyPerPerson: 1, qty: 2, unit: 'cloves', item: 'garlic' },
+      { qtyPerPerson: 0.5, qty: 1, unit: 'units', item: 'grated nutmeg' },
+      { qtyPerPerson: 0.125, qty: 0.25, unit: 'tsp', item: 'smoked paprika' },
+      { qtyPerPerson: 0.5, qty: 1, unit: 'pinch', item: 'chilli flakes' },
+      { qtyPerPerson: 0.5, qty: 1, unit: 'pinch', item: 'dry thyme' },
+      { qtyPerPerson: 0.5, qty: 1, unit: 'units', item: 'courgette' },
+      { qtyPerPerson: 0.5, qty: 1, unit: 'pinch', item: 'salt' },
+      { qtyPerPerson: 0.5, qty: 1, unit: 'pinch', item: 'black pepper' },
+      { qtyPerPerson: 0.5, qty: 1, unit: 'tbs', item: 'capers' },
+      { qtyPerPerson: 1, qty: 2, unit: 'tbs', item: 'dry-roasted walnuts' },
+      { qtyPerPerson: 125, qty: 250, unit: 'gr', item: 'dry pasta' },
+    ],
+    picture: '/images/zucchini-bolognese.jpg',
+    personcount: 2,
+    duration: '45 minutes',
+    categories: ['Pasta', 'Healthy', 'Italian'],
+  }),
+  new Recipe({
+    _owner: users[3]._id,
+    name: 'Chorizo Pasta with Mushrooms and Sun-dried Tomatoes',
+    description: `Boil a large pot of salted water for the pasta. You can make the sauce while the pasta cooks. Cook penne al dente according to package directions.
+    Heat olive oil in skillet on medium heat.
+    Chop onion and add it to skillet.
+    Meanwhile, cut chorizo into desired size pieces. Add it to skillet. 
+    While onions are chorizo are cooking, chop portobello mushrooms to desired size (I like mine roughly chopped). Add to skillet. Stir.
+    Add sun-dried tomatoes, garlic, and Italian seasoning to skillet, followed by the cream. Let it cook for about 5 minutes.
+    Once sauce and penne are cooked, drain penne and add to skillet, mixing it together. Drizzle olive oil, sprinkle chopped parsley, and add parmesan cheese and extra salt & pepper if desired. Serve immediately`,
+    ingredients: [
+      { qtyPerPerson: 85, qty: 340, unit: 'gr', item: 'penne' },
+      { qtyPerPerson: 1, qty: 1, unit: 'tsp', item: 'olive oil' },
+      { qtyPerPerson: 0.125, qty: 0.5, unit: 'units', item: 'onion' },
+      { qtyPerPerson: 75, qty: 300, unit: 'gr', item: 'chorizo sausage' },
+      {
+        qtyPerPerson: 0.5,
+        qty: 2,
+        unit: 'units',
+        item: 'portobello mushrooms',
+      },
+      { qtyPerPerson: 0.75, qty: 3, unit: 'tbs', item: 'sun-dried tomatoes' },
+      { qtyPerPerson: 0.75, qty: 3, unit: 'cloves', item: 'garlic' },
+      { qtyPerPerson: 0.75, qty: 3, unit: 'pinch', item: 'Italian seasoning' },
+      { qtyPerPerson: 0.125, qty: 0.5, unit: 'cup', item: 'whipping cream' },
+      { qtyPerPerson: 0.5, qty: 2, unit: 'pinch', item: 'Salt' },
+      { qtyPerPerson: 0.5, qty: 2, unit: 'pinch', item: 'Pepper' },
+      { qtyPerPerson: 2, qty: 8, unit: 'tbs', item: 'Parmesan' },
+      { qtyPerPerson: 0.25, qty: 1, unit: 'bunch', item: 'Parsley' },
+    ],
+    picture: '/images/chorizopenne.jpg',
+    personcount: 4,
+    duration: '30 minutes',
+    categories: ['Pasta'],
+  }),
+  new Recipe({
+    _owner: users[3]._id,
+    name: 'Veggie paella',
+    description: `Heat the oil in a large deep, lidded sauté pan or paella pan. Add the onion, cover and cook for 5 minutes until soft. Stir in the smoked paprika spice mix.
+    Add a little stock to a bowl with the saffron; leave to infuse for a minute. Add the rice to the pan and stir well. Increase the heat, pour over the saffron water and the rest of the stock. Finely grate in the zest from half the lemon. Bring to the boil, reduce the heat and simmer, uncovered, for 10 minutes, stirring occasionally. Stir in the sliced peppers and mixed veg, cover and cook for 3-4 minutes until just tender.
+    Remove from the heat, add a good squeeze of lemon (from the zested half) and most of the parsley, stir with a fork and season to taste. Cover and leave to stand for 2 minutes.
+    Tip If you’d like this to be a gluten-free recipe, please ensure your stock is guaranteed gluten-free.
+    Scatter with the remaining parsley and serve with the remaining lemon half, cut into wedges to squeeze over.`,
+    ingredients: [
+      { qtyPerPerson: 0.5, qty: 2, unit: 'tbs', item: 'olive oil' },
+      { qtyPerPerson: 0.25, qty: 1, unit: 'units', item: 'onion' },
+      { qtyPerPerson: 0.25, qty: 1, unit: 'tbs', item: 'paprika' },
+      { qtyPerPerson: 0.25, qty: 1, unit: 'tbs', item: 'thyme' },
+      { qtyPerPerson: 0.25, qty: 1, unit: 'tbs', item: 'garlic' },
+      { qtyPerPerson: 200, qty: 800, unit: 'ml', item: 'vegetable stock' },
+      { qtyPerPerson: 0.25, qty: 1, unit: 'pinch', item: 'saffron' },
+      { qtyPerPerson: 62.5, qty: 250, unit: 'gr', item: 'paella rice' },
+      { qtyPerPerson: 0.125, qty: 0.5, unit: 'units', item: 'lemon' },
+      {
+        qtyPerPerson: 70,
+        qty: 280,
+        unit: 'gr',
+        item: 'chargrilled peppers antipasto',
+      },
+      {
+        qtyPerPerson: 50,
+        qty: 200,
+        unit: 'gr',
+        item: 'mixed asparagus, sugarsnaps, tenderstem',
+      },
+      { qtyPerPerson: 0.25, qty: 1, unit: 'bunch', item: 'parsley' },
+    ],
+    picture: '/images/Veggie-paella.jpg',
+    personcount: 4,
+    duration: '30 minutes',
+    categories: ['Vegetarian', 'Spanish', 'Gluten-free', 'Main'],
+  }),
+  new Recipe({
+    _owner: users[3]._id,
+    name: 'Dover Sole a la Meunière',
+    description: `Season the Dover soles with salt and white pepper. Dip on both sides into flour and then pat off the excess.
+
+    Heat the oil in a large well-seasoned or non-stick frying pan. Add one of the soles, lower the heat slightly and add a small piece of the butter. Fry over a moderate heat for 4–5 minutes, without moving, until richly golden. Carefully turn the fish over and cook for a further 4–5 minutes until golden brown and cooked through. Lift on to a serving plate and keep warm. Repeat with the second fish.
+    
+    Remove the bones as described in my Rick Stein's Fish & Shellfish video skills guide.
+    
+    Discard the frying oil and wipe the pan clean. Add the remaining butter and allow it to melt over a moderate heat. When the butter starts to smell nutty and turn light brown, add the lemon juice, parsley and some seasoning. Pour some of this beurre noisette over each fish and serve with the lemon wedges.`,
+    ingredients: [
+      { qtyPerPerson: 1, qty: 2, unit: 'units', item: 'Dover soles' },
+      { qtyPerPerson: 1, qty: 2, unit: 'pinch', item: 'sea salt' },
+      { qtyPerPerson: 0.5, qty: 1, unit: 'pinch', item: 'pepper' },
+      { qtyPerPerson: 12.5, qty: 25, unit: 'gr', item: 'flour' },
+      { qtyPerPerson: 2, qty: 4, unit: 'tbs', item: 'vegetable oil' },
+      { qtyPerPerson: 1, qty: 2, unit: 'tbs', item: 'lemmon juice' },
+      { qtyPerPerson: 0.5, qty: 1, unit: 'tbs', item: 'chopped parsley' },
+      { qtyPerPerson: 0.5, qty: 1, unit: 'units', item: 'lemmon' },
+    ],
+    picture: '/images/soleimage.jpg',
+    personcount: 2,
+    duration: '25 minutes',
+    categories: ['Fish', 'Seefood'],
+  }),
 ]
 
 Promise.all([User.deleteMany(), Recipe.deleteMany()])
