@@ -9,7 +9,6 @@ import { faClock, faUsers } from '@fortawesome/free-solid-svg-icons'
 import {
   Card,
   CardImg,
-  CardText,
   CardBody,
   CardTitle,
   CardSubtitle,

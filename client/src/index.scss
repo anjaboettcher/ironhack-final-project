@@ -104,6 +104,14 @@ $danger: #32c3ff;
   object-fit: cover;
 }
 
+.my-recipes-profile-picture {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: cover;
+}
+
 // ----------------------------------------
 // To install Boostrap:
 // 1) Run in the client folder: $ npm i bootstrap
@@ -356,14 +364,12 @@ body {
 }
 
 #table-food {
-  @include parallax-background(
-    '/images/bread-cheese-cheese-platter-1893609.jpg'
+  @include parallax-background('/images/bread-cheese-cheese-platter-1893609.jpg'
   );
 }
 
 #food-photography {
-  @include parallax-background(
-    '/images/blur-blurred-background-brunch-693267.jpg'
+  @include parallax-background('/images/blur-blurred-background-brunch-693267.jpg'
   );
 }
 

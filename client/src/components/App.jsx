@@ -4,8 +4,6 @@ import MainNavbar from './MainNavbar'
 // import BottomNavbar from '../BottomNavBar'
 import BottomNav2 from './BottomNav2'
 import Home from './pages/Home'
-import Countries from './pages/Countries'
-import AddCountry from './pages/AddCountry'
 import Profile from './pages/Profile'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
@@ -19,6 +17,9 @@ import RecipeList from './pages/RecipeList'
 import CreateRecipe from './pages/CreateRecipe'
 import EditRecipe from './pages/EditRecipe'
 
+// {api.isLoggedIn() ? <Route path="/add-library" component={AddLibrary} />
+// : <Route path="/add-library" component={Login} />}
+
 function App() {
   return (
     <div className="App">
@@ -28,19 +29,54 @@ function App() {
         {api.isLoggedIn() ? (
           <Route path="/recipes/explore" component={Explore} />
         ) : (
-          <Route path="/add-library" component={Login} />
+          <Route path="/recipes/explore" component={Login} />
         )}
 
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/recipes/my-recipes" component={MyRecipes} />
-        <Route path="/recipes/explore" component={Explore} />
-        <Route path="/recipes/create-recipe" component={CreateRecipe} />
-        <Route path="/recipes/:recipeId" exact component={RecipeDetail} />
-        <Route path="/recipes/:recipeId/edit-recipe" component={EditRecipe} />
-        <Route path="/fork/:recipeId" component={RecipeDetail} />
-        <Route path="/my-list" component={RecipeList} />
+        {api.isLoggedIn() ? (
+          <Route path="/profile" component={Profile} />
+        ) : (
+          <Route path="/profile" component={Login} />
+        )}
+        {api.isLoggedIn() ? (
+          <Route path="/recipes/my-recipes" component={MyRecipes} />
+        ) : (
+          <Route path="/recipes/my-recipes" component={Login} />
+        )}
+        {api.isLoggedIn() ? (
+          <Route path="/recipes/explore" component={Explore} />
+        ) : (
+          <Route path="/recipes/explore" component={Login} />
+        )}
+        {api.isLoggedIn() ? (
+          <Route path="/recipes/create-recipe" component={CreateRecipe} />
+        ) : (
+          <Route path="/recipes/create-recipe" component={Login} />
+        )}
+        {api.isLoggedIn() ? (
+          <Route path="/recipes/:recipeId" component={RecipeDetail} />
+        ) : (
+          <Route path="/recipes/:recipeId" component={Login} />
+        )}
+        {api.isLoggedIn() ? (
+          <Route path="/recipes/:recipeId/edit-recipe" component={EditRecipe} />
+        ) : (
+          <Route path="/recipes/:recipeId" component={Login} />
+        )}
+
+        {api.isLoggedIn() ? (
+          <Route path="/fork/:recipeId" component={RecipeDetail} />
+        ) : (
+          <Route path="/fork/:recipeId" component={Login} />
+        )}
+
+        {api.isLoggedIn() ? (
+          <Route path="/my-list" component={RecipeList} />
+        ) : (
+          <Route path="/my-list" component={Login} />
+        )}
+
         <Route render={() => <h2>404</h2>} />
       </Switch>
       {api.isLoggedIn() && <BottomNav2 />}

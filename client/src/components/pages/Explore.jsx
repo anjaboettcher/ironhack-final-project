@@ -11,26 +11,26 @@ import { Link } from 'react-router-dom'
 // import Select from 'react-select'
 
 export default function Explore() {
-  const [personcount, setPersoncount] = useState({
-    value: 4,
-    label: '4 people',
-  })
+  // const [personcount, setPersoncount] = useState({
+  //   value: 4,
+  //   label: '4 people',
+  // })
   const [recipes, setRecipes] = useState([])
   const [search, setSearch] = useState('')
   const [user, setUser] = useState(null)
 
-  let NbrOfPeople = [
-    { value: 1, label: '1' },
-    { value: 2, label: '2' },
-    { value: 3, label: '3' },
-    { value: 4, label: '4' },
-    { value: 5, label: '5' },
-    { value: 6, label: '6' },
-    { value: 7, label: '7' },
-    { value: 8, label: '8' },
-    { value: 9, label: '9' },
-    { value: 10, label: '10' },
-  ]
+  // let NbrOfPeople = [
+  //   { value: 1, label: '1' },
+  //   { value: 2, label: '2' },
+  //   { value: 3, label: '3' },
+  //   { value: 4, label: '4' },
+  //   { value: 5, label: '5' },
+  //   { value: 6, label: '6' },
+  //   { value: 7, label: '7' },
+  //   { value: 8, label: '8' },
+  //   { value: 9, label: '9' },
+  //   { value: 10, label: '10' },
+  // ]
 
   useEffect(() => {
     api.exploreRecipes().then(info => {
@@ -49,21 +49,21 @@ export default function Explore() {
 
   if (!user) return null
 
-  function changePersonCount(e) {
-    console.log(e)
-    setPersoncount(e)
-  }
+  // function changePersonCount(e) {
+  //   console.log(e)
+  //   setPersoncount(e)
+  // }
 
   function handleChange(e) {
     setSearch(e.target.value)
   }
 
-  function forkThisRecipe(recipeId) {
-    api
-      .forkRecipe(recipeId)
-      .then(recipe => {})
-      .catch(err => console.log('catch: ', err))
-  }
+  // function forkThisRecipe(recipeId) {
+  //   api
+  //     .forkRecipe(recipeId)
+  //     .then(recipe => {})
+  //     .catch(err => console.log('catch: ', err))
+  // }
 
   function checkForUser(recipe) {
     return String(user._id) !== String(recipe._owner._id)
