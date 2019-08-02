@@ -136,48 +136,33 @@ export default function Explore() {
         {filterBySearch(recipes).map((recipe, i) => (
           <div class="row">
             <div class="col-12 mt-3">
-              <div class="card">
-                <div class="card-horizontal">
-                  <div class="">
-                    <Link to={'/recipes/' + recipe._id}>
-                      <div class="img-square-wrapper">
-                        <img
-                          className=""
-                          alt="error"
-                          width="100%"
-                          max-width="100px"
-                          height="auto"
-                          src={recipe.picture}
-                        />
-                      </div>
-                    </Link>
-                  </div>
-                  <div className="card-body">
-                    <Link
-                      to={'/recipes/' + recipe._id}
-                      style={{ textDecoration: 'none', color: '#696A66' }}
-                    >
+              <Link
+                to={'/recipes/' + recipe._id}
+                style={{ textDecoration: 'none', color: '#696A66' }}
+              >
+                <div class="card">
+                  <div class="card-horizontal">
+                    <img
+                      className="img-square-wrapper"
+                      alt="error"
+                      src={recipe.picture}
+                    />
+                    <div className="card-body">
                       <h5 className="card-title">{recipe.name}</h5>
                       <hr />
-
-                      <div className="mb-3">
-                        <img
-                          // className="recipe-profile-picture"
-                          alt="error"
-                          src={recipe._owner.image}
-                          style={{ width: '20', height: '20' }}
-                        />
-                        <strong>Cook:</strong> {recipe._owner.username}
-                        <br />
-                        <strong>Duration:</strong> {recipe.duration}
-                        <br />
-                        <strong>Ingredients:</strong>{' '}
-                        {recipe.ingredients.length}
-                      </div>
-                    </Link>
-                    <hr />
-                    {/* DOUBLES */}
-                    {/* <button
+                      <img
+                        className="recipe-profile-picture"
+                        alt="error"
+                        src={recipe._owner.image}
+                      />
+                      <br />
+                      <strong>Cook:</strong> {recipe._owner.username} <br />{' '}
+                      <strong>Duration:</strong> {recipe.duration}
+                      <br />
+                      <strong>Ingredients:</strong> {recipe.ingredients.length}
+                      <hr />
+                      {/* DOUBLES */}
+                      {/* <button
                       color="secondary"
                       block
                       className="recipe-card-button"
@@ -196,9 +181,9 @@ export default function Explore() {
                     >
                       Grocery List
                     </button> */}
+                    </div>
                   </div>
-                </div>
-                {/* <div class="card-footer">
+                  {/* <div class="card-footer">
                   <div style={{ display: 'flex' }}>
                     <button
                       color="secondary"
@@ -246,9 +231,10 @@ export default function Explore() {
                       />{' '}
                       Add to grocery list
                     </button> */}
-                {/* </div> */}
-                {/* </div> */}
-              </div>
+                  {/* </div> */}
+                  {/* </div> */}
+                </div>
+              </Link>
             </div>
           </div>
         ))}
