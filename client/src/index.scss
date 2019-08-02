@@ -23,7 +23,7 @@ $primary: #f18461; // is it working?
 $danger: #32c3ff;
 
 .border {
-  border: 1px solid black;
+  border: 5px solid black;
 }
 
 .buttons {
@@ -421,11 +421,16 @@ footer {
 }
 
 .img-square-wrapper {
-  width: 50%;
+  width: 100%;
   height: 300px;
   object-fit: cover;
 }
 
 .card-body {
   flex: 1;
+}
+
+.card-body-explore {
+  flex: 1;
+  width: 50%;
 }
