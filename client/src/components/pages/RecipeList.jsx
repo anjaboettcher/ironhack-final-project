@@ -206,7 +206,18 @@ export default function MyRecipes() {
                       padding: '25px 12px 0px 12px',
                     }}
                   >
-                    {l.qty} {l.unit}
+                    {/* list[i].checked === true */}
+                    {list[i].checked === true ? (
+                      <strike>
+                        {' '}
+                        {l.qty} {l.unit}{' '}
+                      </strike>
+                    ) : (
+                      <div>
+                        {' '}
+                        {l.qty} {l.unit}{' '}
+                      </div>
+                    )}
                   </td>
 
                   <td
@@ -214,7 +225,11 @@ export default function MyRecipes() {
                       padding: '25px 12px 0px 12px',
                     }}
                   >
-                    {l.item}
+                    {list[i].checked === true ? (
+                      <strike> {l.item} </strike>
+                    ) : (
+                      <div> {l.item} </div>
+                    )}
                   </td>
                   <td>
                     <button
