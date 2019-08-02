@@ -28,7 +28,7 @@ function MainNavbar(props) {
 
   useEffect(() => {
     window.onclick = e => {
-      let elt = e.target
+      // let elt = e.target
       console.log('window.onclick', e, burgerRef.current)
       setIsOpen(isOpen => {
         return false

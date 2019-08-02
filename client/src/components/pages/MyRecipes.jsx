@@ -5,13 +5,11 @@ import { Col, Container } from 'reactstrap'
 import { MDBCol } from 'mdbreact'
 import { Link } from 'react-router-dom'
 import Loader from 'react-dots-loader'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-import { faList } from '@fortawesome/free-solid-svg-icons'
 
 export default function MyRecipes() {
   const [recipes, setRecipes] = useState([])
   const [search, setSearch] = useState('')
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     api.getMyRecipes().then(info => {
@@ -21,6 +19,17 @@ export default function MyRecipes() {
       console.log('TCL: MyRecipes -> setRecipes', setRecipes)
     })
   }, [])
+
+  useEffect(() => {
+    api
+      .getProfile()
+      .then(user => {
+        setUser(user)
+      })
+      .catch(err => console.log(err))
+  }, [])
+
+  if (!user) return null
 
   function handleChange(e) {
     setSearch(e.target.value)
@@ -39,12 +48,12 @@ export default function MyRecipes() {
     )
   }
 
-  function addRecipesToGroceryList(recipeId, personcount) {
-    api
-      .addIngredients(recipeId, personcount)
-      .then(ingredients => {})
-      .catch(err => console.log('catch: ', err))
-  }
+  // function addRecipesToGroceryList(recipeId, personcount) {
+  //   api
+  //     .addIngredients(recipeId, personcount)
+  //     .then(ingredients => {})
+  //     .catch(err => console.log('catch: ', err))
+  // }
 
   if (recipes.length === 0) {
     return (
@@ -61,14 +70,43 @@ export default function MyRecipes() {
 
   return (
     <Col>
-      <div className="border-0 search-bar ">
+      <div
+        style={{
+          display: 'flex',
+          alignContent: 'center',
+          flexDirection: 'column',
+          marginTop: '20px',
+          marginBottom: '0px',
+        }}
+      >
+        <div>
+          <img
+            className="my-recipes-profile-picture"
+            alt="error"
+            src={user.image}
+          />
+        </div>
+
+        <h5
+          style={{ marginBottom: '0px', marginTop: '10px' }}
+          className="card-title"
+        >
+          Welcome {user.username}!
+        </h5>
+      </div>
+
+      {/* <div style={{ display: 'flex', alignItems: 'flexstart' }}>
+        <img className="recipe-profile-picture" alt="error" src={user.image} />
+      </div> */}
+
+      <div className="border-0 search-bar">
         <MDBCol>
           <div className="input-group md-form form-sm form-1 pl-0  ">
             <div className="input-group-prepend" />
             <input
               className="form-control my-0 py-1 rounded-pill"
               type="text"
-              placeholder="Search for a recipe..."
+              placeholder="Search your recipes..."
               aria-label="Search"
               value={search}
               onChange={handleChange}

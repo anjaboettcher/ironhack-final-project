@@ -50,7 +50,7 @@ function BottomNav2(props) {
           style={{ color: 'white', textDecoration: 'none' }}
           to="/recipes/my-recipes"
         >
-          <FontAwesomeIcon icon={faUser} size="1.5x" />
+          <FontAwesomeIcon icon={faUser} size="fa-sm" />
           <div
             style={{
               fontSize: '50%',
@@ -73,7 +73,7 @@ function BottomNav2(props) {
           style={{ color: 'white', textDecoration: 'none' }}
           to="/recipes/create-recipe"
         >
-          <FontAwesomeIcon icon={faPlus} size="1.5x" className="icon" />
+          <FontAwesomeIcon icon={faPlus} size="fa-sm" className="icon" />
           <div style={{ fontSize: '50%' }}> NEW RECIPE </div>
         </Col>
         <Col
@@ -81,7 +81,7 @@ function BottomNav2(props) {
           style={{ color: 'white', textDecoration: 'none' }}
           to="/my-list"
         >
-          <FontAwesomeIcon icon={faList} size="1.5x" className="icon" />
+          <FontAwesomeIcon icon={faList} size="fa-sm" className="icon" />
           <div style={{ fontSize: '50%' }}> GROCERY LIST </div>
         </Col>
       </Row>

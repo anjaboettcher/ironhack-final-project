@@ -48,6 +48,14 @@ export default function Login(props) {
             />
           </FormGroup>
         </Col>
+
+        <span className="form-text text-muted">
+          {' '}
+          Not a Forkify member yet?{' '}
+          <a style={{ color: '#8AB661' }} href="/signup">
+            Sign up
+          </a>
+        </span>
         <button className="my-4 recipe-button rounded-pill">Login</button>
       </Form>
       {message && <div className="info info-danger">{message}</div>}
