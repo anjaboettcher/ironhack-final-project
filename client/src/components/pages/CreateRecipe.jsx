@@ -20,7 +20,7 @@ export default function AddRecipe(props) {
   const [state, setState] = useState({
     name: '',
     description: '',
-    picture: '/images/recipeIcon.png', //  '/images/default-recipe-image.jpg',
+    picture: '/images/default-recipe-image.jpg', //'/images/recipeIcon.png',
     personcount: 4,
     duration: '',
     categories: [],
