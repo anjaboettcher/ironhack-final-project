@@ -21,7 +21,7 @@ export default function EditRecipe(props) {
   const [state, setState] = useState({
     name: '',
     description: '',
-    picture: '/images/default-recipe-image.jpg',
+    picture: '/images/recipeIcon.png', //'/images/default-recipe-image.jpg',
     personcount: '',
     duration: '',
     categories: [],

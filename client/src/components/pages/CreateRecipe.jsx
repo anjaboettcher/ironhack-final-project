@@ -20,7 +20,7 @@ export default function AddRecipe(props) {
   const [state, setState] = useState({
     name: '',
     description: '',
-    picture: '/images/default-recipe-image.jpg',
+    picture: '/images/recipeIcon.png', //  '/images/default-recipe-image.jpg',
     personcount: 4,
     duration: '',
     categories: [],
@@ -269,7 +269,6 @@ export default function AddRecipe(props) {
             <FormFeedback>Please add your ingredient</FormFeedback>
           </Col>
         </Row>
-        <br />
         <Row form>
           <Col md={5}>
             {/* <Label for="quantity">Quantity</Label> */}

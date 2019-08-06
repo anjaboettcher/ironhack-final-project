@@ -60,7 +60,7 @@ const recipeSchema = new Schema(
     // ],
     picture: {
       type: String,
-      default: '/images/default-recipe-image.jpg',
+      default: '/images/recipeIcon.png', //'/images/default-recipe-image.jpg',
     },
     personcount: { type: Number },
     duration: { type: String },

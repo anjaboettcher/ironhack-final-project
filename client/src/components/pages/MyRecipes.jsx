@@ -60,7 +60,7 @@ export default function MyRecipes() {
       <Container>
         <h5 className="mt-4">
           You havent forked or created any recipes yet.{' '}
-          <Link to={'recipes/explore'}>Start exploring recipes now</Link>
+          <Link to={'/recipes/explore'}>Start exploring recipes now</Link>
         </h5>
       </Container>
     )
