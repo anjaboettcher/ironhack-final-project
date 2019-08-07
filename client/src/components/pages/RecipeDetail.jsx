@@ -128,8 +128,11 @@ export default function RecipeDetail(props) {
   }
 
   const EditButton = () => (
-    <Link to={`/recipes/${recipeId}/edit-recipe`}>
-      <button className="my-3 recipe-button-orange">Edit</button>
+    <Link
+      to={`/recipes/${recipeId}/edit-recipe`}
+      className="my-3 recipe-button-orange"
+    >
+      Edit
     </Link>
   )
   const AddButton = () => (
@@ -241,8 +244,8 @@ export default function RecipeDetail(props) {
           </CardSubtitle>
           <Container>
             {recipe &&
-              recipe.categories.map(category => (
-                <button className="category-button">
+              recipe.categories.map((category, i) => (
+                <button key={i} className="category-button">
                   {category && <>{category}</>}
                 </button>
               ))}
@@ -282,8 +285,8 @@ export default function RecipeDetail(props) {
                 }}
               >
                 {recipe &&
-                  recipe.ingredients.map(ingredient => (
-                    <span>
+                  recipe.ingredients.map((ingredient, i) => (
+                    <span key={i}>
                       {ingredient.qty} {ingredient.unit} {ingredient.item}
                     </span>
                   ))}

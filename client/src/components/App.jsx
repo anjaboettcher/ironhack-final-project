@@ -17,9 +17,6 @@ import RecipeList from './pages/RecipeList'
 import CreateRecipe from './pages/CreateRecipe'
 import EditRecipe from './pages/EditRecipe'
 
-// {api.isLoggedIn() ? <Route path="/add-library" component={AddLibrary} />
-// : <Route path="/add-library" component={Login} />}
-
 function App() {
   return (
     <div className="App">
@@ -55,14 +52,14 @@ function App() {
           <Route path="/recipes/create-recipe" component={Login} />
         )}
         {api.isLoggedIn() ? (
-          <Route path="/recipes/:recipeId" component={RecipeDetail} />
+          <Route exact path="/recipes/:recipeId" component={RecipeDetail} />
         ) : (
-          <Route path="/recipes/:recipeId" component={Login} />
+          <Route exact path="/recipes/:recipeId" component={Login} />
         )}
         {api.isLoggedIn() ? (
           <Route path="/recipes/:recipeId/edit-recipe" component={EditRecipe} />
         ) : (
-          <Route path="/recipes/:recipeId" component={Login} />
+          <Route path="/recipes/:recipeId/edit-recipe" component={Login} />
         )}
 
         {api.isLoggedIn() ? (

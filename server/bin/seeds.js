@@ -16,16 +16,16 @@ require('../configs/database')
 
 let users = [
   new User({
-    username: 'alice',
-    email: 'alice@gmail.com',
-    password: bcrypt.hashSync('alice', bcrypt.genSaltSync(bcryptSalt)),
-    image: '/images/user_alice_career.jpg',
-  }),
-  new User({
     username: 'bob',
     email: 'bob@gmail.com',
     password: bcrypt.hashSync('bob', bcrypt.genSaltSync(bcryptSalt)),
     image: '/images/user_stan_bob.jpg',
+  }),
+  new User({
+    username: 'alice',
+    email: 'alice@gmail.com',
+    password: bcrypt.hashSync('alice', bcrypt.genSaltSync(bcryptSalt)),
+    image: '/images/user_alice_career.jpg',
   }),
   new User({
     username: 'Jamie Oliver',
@@ -38,6 +38,12 @@ let users = [
     email: 'mum@gmail.com',
     password: bcrypt.hashSync('mum', bcrypt.genSaltSync(bcryptSalt)),
     image: '/images/user_mum.jpg',
+  }),
+  new User({
+    username: 'seb',
+    email: 'smorelle14@gmail.com',
+    password: bcrypt.hashSync('bob', bcrypt.genSaltSync(bcryptSalt)),
+    image: '/images/seb2.jpg',
   }),
 ]
 
