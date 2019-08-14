@@ -41,7 +41,9 @@ router.post('/signup', (req, res, next) => {
 
 router.post('/login', (req, res, next) => {
   const { email, password } = req.body
-
+  const salt = bcrypt.genSaltSync(bcryptSalt)
+  const hashPass = bcrypt.hashSync('seb', salt)
+  console.log('password seb', hashPass)
   // first check to see if there's a document with that email
   User.findOne({ email })
     .then(userDoc => {

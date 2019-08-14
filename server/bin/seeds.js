@@ -42,7 +42,7 @@ let users = [
   new User({
     username: 'seb',
     email: 'smorelle14@gmail.com',
-    password: bcrypt.hashSync('bob', bcrypt.genSaltSync(bcryptSalt)),
+    password: bcrypt.hashSync('seb', bcrypt.genSaltSync(bcryptSalt)),
     image: '/images/seb2.jpg',
   }),
 ]

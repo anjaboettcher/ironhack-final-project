@@ -5,6 +5,7 @@ import api from '../../api'
 
 export default function Profile(props) {
   const [profile, setProfile] = useState(null)
+  const [message, setMessage] = useState(null)
   const { formValues, setFormValues, getInputProps } = useForm()
 
   useEffect(() => {
@@ -35,10 +36,14 @@ export default function Profile(props) {
     uploadData.append('password', password)
     uploadData.append('image', image)
 
-    api.editProfile(uploadData).then(profile => {
-      console.log(profile)
-      props.history.push('/profile')
-    })
+    api
+      .editProfile(uploadData)
+      .then(profile => {
+        setMessage(`Your account has been updated!`)
+        console.log(message)
+        props.history.push('/profile')
+      })
+      .catch(err => setProfile({ message: err.toString() }))
   }
 
   function handleFileChange(e) {
@@ -118,7 +123,7 @@ export default function Profile(props) {
               />
             </Col>
           </Row>
-
+          {message && <div className="info">{message}</div>}
           <button className="my-4 recipe-button" color="danger" block>
             Edit profile
           </button>

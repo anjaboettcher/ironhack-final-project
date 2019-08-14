@@ -5,6 +5,10 @@ const Recipe = require('../models/Recipe')
 const uploader = require('../configs/cloudinary.js')
 const router = express.Router()
 
+// Bcrypt to encrypt passwords
+const bcrypt = require('bcrypt')
+const bcryptSalt = 10
+
 router.get('/profile', isLoggedIn, (req, res, next) => {
   let id = req.user.id
   console.log('request profile', id)
@@ -25,13 +29,15 @@ router.post(
 
     let userId = req.user.id
     let { username, email, password, image } = req.body
+    const salt = bcrypt.genSaltSync(bcryptSalt)
+    const hashPass = bcrypt.hashSync(password, salt)
     if (req.file) image = req.file.secure_url
 
     User.findByIdAndUpdate(userId)
       .then(user => {
         user.username = username
         user.email = email
-        user.password = password
+        user.password = hashPass
         user.image = image
         user.save().then(() => {
           res.json(user)
