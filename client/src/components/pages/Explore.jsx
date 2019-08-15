@@ -62,7 +62,6 @@ export default function Explore() {
 
   function removeDuplicates(allRecipes) {
     // return [...new Set(allRecipes)]
-
     if (allRecipes.length === 0) {
       return allRecipes
     }

@@ -33,7 +33,9 @@ export default function Profile(props) {
     const uploadData = new FormData()
     uploadData.append('username', username)
     uploadData.append('email', email)
-    uploadData.append('password', password)
+    if (password.length > 1) {
+      uploadData.append('password', password)
+    }
     uploadData.append('image', image)
 
     api
