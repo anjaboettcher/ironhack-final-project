@@ -3,18 +3,8 @@ import React, { useState, useEffect } from 'react'
 import api from '../../api.js'
 import { MDBCol } from 'mdbreact'
 import { Link } from 'react-router-dom'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-// import { faList } from '@fortawesome/free-solid-svg-icons'
-// import { FormGroup, Label } from 'reactstrap'
-// import ReactModal from 'react-modal'
-// import Select from 'react-select'
 
 export default function Explore() {
-  // const [personcount, setPersoncount] = useState({
-  //   value: 4,
-  //   label: '4 people',
-  // })
   const [recipes, setRecipes] = useState([])
   const [search, setSearch] = useState('')
   const [user, setUser] = useState(null)
@@ -49,34 +39,13 @@ export default function Explore() {
 
   if (!user) return null
 
-  // function changePersonCount(e) {
-  //   console.log(e)
-  //   setPersoncount(e)
-  // }
-
   function handleChange(e) {
     setSearch(e.target.value)
   }
 
-  // function forkThisRecipe(recipeId) {
-  //   api
-  //     .forkRecipe(recipeId)
-  //     .then(recipe => {})
-  //     .catch(err => console.log('catch: ', err))
-  // }
-
   function checkForUser(recipe) {
     return String(user._id) !== String(recipe._owner._id)
   }
-
-  // function addRecipesToGroceryList(recipeId, personcount) {
-  //   //console.log('personcount', personcount)
-  //   //console.log('recipeId', recipeId)
-  //   api
-  //     .addIngredients(recipeId, personcount)
-  //     .then(ingredients => {})
-  //     .catch(err => console.log('catch: ', err))
-  // }
 
   // This is the search bar
   function filterBySearch(allRecipes) {
@@ -89,27 +58,28 @@ export default function Explore() {
           .includes(search.toUpperCase()) ||
         recipe._owner.username.toUpperCase().includes(search.toUpperCase())
     )
+  }
 
-    //Way number 2 of doing it!
-    // let recipeList = []
-    // for (let j = 0; j < allRecipes.length; j++) {
-    //   if( allRecipes[j].name.toUpperCase().includes(search.toUpperCase())) {
-    //     recipeList.push(allRecipes[j])
-    //   }
-    //   else {
-    //   for (let k = 0; k < allRecipes[j].categories.length; k++) {
-    //     if (
-    //       allRecipes[j].categories[k]
-    //         .toUpperCase()
-    //         .includes(search.toUpperCase())
-    //     ) {
-    //       recipeList.push(allRecipes[j])
-    //     }
-    //   }
-    //   }
-    // }
-    // console.log('recipeList', recipeList)
-    // return recipeList
+  function removeDuplicates(allRecipes) {
+    // return [...new Set(allRecipes)]
+
+    if (allRecipes.length === 0) {
+      return allRecipes
+    }
+
+    let sortedRecipes = allRecipes.sort((a, b) => {
+      if (a.name < b.name) {
+        return -1
+      } else return 1
+    })
+
+    let nonDuplicates = [sortedRecipes[0]]
+    for (let i = 1; i < sortedRecipes.length; i++) {
+      if (sortedRecipes[i].name !== sortedRecipes[i - 1].name) {
+        nonDuplicates.push(sortedRecipes[i])
+      }
+    }
+    return nonDuplicates
   }
 
   return (
@@ -133,7 +103,7 @@ export default function Explore() {
       </MDBCol>
 
       <div class="container-fluid">
-        {filterBySearch(recipes).map((recipe, i) => (
+        {removeDuplicates(filterBySearch(recipes)).map((recipe, i) => (
           <div class="row">
             <div class="col-12 mt-3">
               <Link
