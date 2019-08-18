@@ -150,7 +150,7 @@ export default function EditRecipe(props) {
     }
     let data = {
       name: state.name,
-      description: state.description,
+      description: state.description, //.replace(/\r\n|\n|\r/g, '<br />'),
       picture: state.picture,
       ingredients: ingredientList,
       personcount: state.personcount,

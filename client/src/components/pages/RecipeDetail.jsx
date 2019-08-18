@@ -302,7 +302,9 @@ export default function RecipeDetail(props) {
                 Preparations:
               </h5>
               <br />
-              {recipe && <>{recipe.description}</>}
+              <div style={{ whiteSpace: 'pre-wrap' }}>
+                {recipe && <>{recipe.description}</>}
+              </div>
             </span>
             <div>
               {message.fork && <div className="info">{message.fork}</div>}
