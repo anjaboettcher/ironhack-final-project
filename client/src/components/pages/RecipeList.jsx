@@ -75,12 +75,14 @@ export default function MyRecipes() {
   }
 
   function removeDoubles(ingredients) {
+    console.log('ingredients', ingredients)
     let newArray = []
     let mergedcell
     if (ingredients.length > 0) {
       mergedcell = ingredients[0]
     }
     for (let i = 1; i < ingredients.length; i++) {
+      console.log(ingredients[i].item)
       if (
         mergedcell.unit === ingredients[i].unit &&
         mergedcell.item === ingredients[i].item
@@ -92,12 +94,12 @@ export default function MyRecipes() {
       }
     }
     if (
-      mergedcell.unit !== ingredients[ingredients.length - 1].unit ||
-      mergedcell.item !== ingredients[ingredients.length - 1].item
+      mergedcell.unit !== ingredients[ingredients.length - 2].unit ||
+      mergedcell.item !== ingredients[ingredients.length - 2].item
     ) {
       newArray.push(mergedcell)
     }
-
+    console.log('newArray', newArray)
     return newArray
   }
 

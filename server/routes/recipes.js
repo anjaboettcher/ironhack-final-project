@@ -102,6 +102,7 @@ router.put(
           item: ing.item,
         }))
       )
+      // console.log('ingredients', req.user.ingredients)
       req.user.save().then(() => {
         res.json({
           success: true,
